@@ -11,7 +11,7 @@ import { ContentModel } from '../content.model';
 })
 export class ContentCreateComponent implements OnInit {
   private mode = 'create';
-  content: any[] = [];
+  content: any[];
   form: FormGroup;
   private contentId: string;
   constructor(public contenstService: ContentService,public route: ActivatedRoute) { }
