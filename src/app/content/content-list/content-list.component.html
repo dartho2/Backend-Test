@@ -1,3 +1,27 @@
-<div *ngFor="let x of contents">{{x._id}} - {{x.content.title}} 
-  <a button [routerLink]="['/edit', x._id]" type="button" class="btn btn-info">Edit</a>
-</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Acction</th>
+      </tr>
+    </thead>
+    <tbody>
+<tr *ngFor="let contentData of contents">
+  <td>
+  {{contentData._id}}
+</td>
+<td>
+    {{contentData.content.title}}
+  </td>
+  <td>
+      {{contentData.type}}
+    </td>
+<td>
+<a button [routerLink]="['/edit', contentData._id]" type="button" class="btn btn-sm btn-info">Edit</a>
+<a button [routerLink]="['/edit', contentData._id]" type="button" class="btn btn-sm btn-danger">Del</a>
+</td>
+</tr>
+</tbody>
+</table>

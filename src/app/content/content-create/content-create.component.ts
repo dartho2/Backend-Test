@@ -41,7 +41,7 @@ export class ContentCreateComponent implements OnInit {
             text: res.content.text,
             lead: res.content.lead,
             title: res.content.title,
-            image: res.content.image
+            image: res.content.image,
           });
         });
       } else {
@@ -51,6 +51,17 @@ export class ContentCreateComponent implements OnInit {
     });
     
   }
-onAddPost() {}
+onAddContent() {
+  if (this.mode === "edit") {
+    this.contenstService.updateContent(
+      this.contentId,
+      this.form.value.title,
+      this.form.value.content,
+      this.form.value.image
+    );
+  }
+  this.form.reset();
+
+}
 
 }
