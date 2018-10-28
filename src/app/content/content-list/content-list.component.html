@@ -1,0 +1,3 @@
+<div *ngFor="let x of contents">{{x._id}} - {{x.content.title}} 
+  <a button [routerLink]="['/edit', x._id]" type="button" class="btn btn-info">Edit</a>
+</div>
