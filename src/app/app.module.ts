@@ -5,9 +5,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule  } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ContentListComponent } from './content/content-list/content-list.component';
-import { ContentService } from './content/content.service';
 import { ContentCreateComponent } from './content/content-create/content-create.component';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +18,8 @@ import { ContentCreateComponent } from './content/content-create/content-create.
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

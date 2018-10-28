@@ -1,3 +1,28 @@
-<p>
-  content-create works!
+<p *ngIf="content">
+
+  {{content|json}}
 </p>
+  <form [formGroup]="form" (submit)="onAddPost()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">ImagePath</label>
+        <input class="form-control" id="exampleInputEmail1" formControlName="image" name="image" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+          <label for="exampleInputEmail1">Title</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="title" name="title" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Lead</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="lead" name="lead" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          
+      <div class="form-group">
+        <label for="exampleTextarea">TEXT</label>
+        <textarea class="form-control" id="exampleTextarea" formControlName="text" name="text" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  

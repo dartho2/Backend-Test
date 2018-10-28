@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
-import { Content } from './content.model';
+import { ContentModel } from './content.model';
 
 @Injectable({ providedIn: 'root' })
 export class ContentService {
     private contents;
-    private contentsUpdated = new Subject<Content[]>();
+    private contentsUpdated = new Subject<ContentModel[]>();
     constructor(private _http: HttpClient) { }
 
     getContents() {
@@ -21,7 +21,7 @@ export class ContentService {
         return this.contentsUpdated.asObservable();
     }
     getContent(id: string) {
-        return this._http.get<{_id: string;}>("https://yoga-server.herokuapp.com/api/content_items/" + id);
+        return this._http.get<{_id: string; text:string;}>("https://yoga-server.herokuapp.com/api/content_items/" + id);
     }
  
 }
