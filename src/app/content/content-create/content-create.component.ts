@@ -31,7 +31,7 @@ export class ContentCreateComponent implements OnInit {
         this.contentId = paramMap.get("contentId");
         this.contenstService.getContent(this.contentId).subscribe((res: any) => {
           // console.log(postData)
-          this.content = res
+          this.content = res._id
           // this.content= {
           //   id: postData._id,
           //   text: postData.content.text
