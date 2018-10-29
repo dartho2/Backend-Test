@@ -1,12 +1,9 @@
-export interface ContentModel {
-    id: string;
-    text: string;
-    // content: Content;
-    content: Content;
-};
 export interface Content {
-    text: string;
-}
-// export interface Styles {
-   
-// }
+    id: string;
+    type: string;
+    styles: Styles;
+    content: ContentModel;
+};
+export interface Styles {};
+export interface ContentModel {};
+

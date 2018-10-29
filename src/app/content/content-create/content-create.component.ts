@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ContentModel } from '../content.model';
+import { Content } from '../content.model';
 
 @Component({
   selector: 'app-content-create',
@@ -11,7 +11,7 @@ import { ContentModel } from '../content.model';
 })
 export class ContentCreateComponent implements OnInit {
   private mode = 'create';
-  content: any[];
+  content: Content;
   form: FormGroup;
   private contentId: string;
   constructor(
@@ -22,29 +22,27 @@ export class ContentCreateComponent implements OnInit {
   ngOnInit() {
     this.form = this._fb.group({
       id: '',
-      text: '',
-      lead: '',
-      title: '',
-      image: ''
+      type: '',
+      styles: {}
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("contentId")) {
         this.mode = "edit";
         this.contentId = paramMap.get("contentId");
-        this.contenstService.getContent(this.contentId).subscribe((res: any) => {
+        this.contenstService.getContent(this.contentId).subscribe(content => {
           // console.log(postData)
-          this.content = res
-          // this.content= {
-          //   id: postData._id,
-          //   text: postData.content.text
-          // };
+          // this.content = res
+          this.content= {
+            id: content._id,
+            type: content.type,
+            styles: {},
+            content: {}
+          };
           this.form.setValue({
-            id: res._id,
-            text: res.content.text,
-            lead: res.content.lead,
-            title: res.content.title,
-            image: res.content.image,
+            id: content._id,
+            type: content.type,
+            styles: {}
           });
         });
       } else {
@@ -58,9 +56,7 @@ onAddContent() {
   if (this.mode === "edit") {
     this.contenstService.updateContent(
       this.contentId,
-      this.form.value.title,
-      this.form.value.content,
-      this.form.value.image
+      this.content.type
     );
   }
   this.form.reset();

@@ -5,7 +5,7 @@
             <!-- <p *ngIf="content._id > 0" class="form-control-static">Id: {{content._id}}</p> -->
           </div>
         </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="exampleInputEmail1">ImagePath</label>
         <input class="form-control" id="exampleInputEmail1" formControlName="image" name="image" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted"></small>
@@ -19,7 +19,7 @@
             <label for="exampleInputEmail1">Lead</label>
             <input type="email" class="form-control" id="exampleInputEmail1" formControlName="lead" name="lead" aria-describedby="emailHelp">
             <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
+          </div> -->
           <!-- <div class="form-group" *ngIf="content.content.references !== undefined">
               <label for="exampleInputEmail1">References</label>
               <input class="form-control" id="exampleInputEmail1" formControlName="references" name="references" aria-describedby="emailHelp">
@@ -29,16 +29,20 @@
                 <label for="exampleInputEmail1">Email</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" name="email" aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted"></small>
-              </div>
-              <div class="form-group" *ngIf="content.content.references">
+              </div>-->
+              <div class="form-group">
                   <label for="exampleInputEmail1">Phone</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" formControlName="phone" name="phone" aria-describedby="emailHelp">
+                  <input type="email" class="form-control" id="exampleInputEmail1" formControlName="type" name="type" aria-describedby="emailHelp">
                   <small id="emailHelp" class="form-text text-muted"></small>
-                </div> -->
-      <div class="form-group">
+                </div> 
+                <div class="form-group">
+                  <label for="exampleTextarea">TEXT</label>
+                  <textarea class="form-control" id="exampleTextarea" formControlName="id" name="id" rows="3"></textarea>
+                </div>
+      <!-- <div class="form-group">
         <label for="exampleTextarea">TEXT</label>
         <textarea class="form-control" id="exampleTextarea" formControlName="text" name="text" rows="3"></textarea>
-      </div>
+      </div> -->
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   

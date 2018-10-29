@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ContentModel } from '../content.model';
+import { Content } from '../content.model';
 import { ContentService } from '../content.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ContentService } from '../content.service';
   styleUrls: ['./content-list.component.css']
 })
 export class ContentListComponent implements OnInit, OnDestroy {
-  contents: ContentModel[];
+  contents: Content[];
   private contentsSub: Subscription;
   
   constructor(public contentsService: ContentService ) {}
@@ -18,7 +18,7 @@ export class ContentListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.contentsService.getContents();
     this.contentsSub = this.contentsService.getContentUpdatedListener()
-    .subscribe((contents: ContentModel[]) => {
+    .subscribe((contents: Content[]) => {
       this.contents = contents;
 
   });
