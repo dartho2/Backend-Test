@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ContentModel } from '../content.model';
 
 @Component({
@@ -14,15 +14,18 @@ export class ContentCreateComponent implements OnInit {
   content: any[];
   form: FormGroup;
   private contentId: string;
-  constructor(public contenstService: ContentService,public route: ActivatedRoute) { }
+  constructor(
+    public contenstService: ContentService, 
+    private _fb: FormBuilder,
+    public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      id: new FormControl(),
-      text: new FormControl(), 
-      lead: new FormControl(),
-      title: new FormControl(),
-      image: new FormControl(),
+    this.form = this._fb.group({
+      id: '',
+      text: '',
+      lead: '',
+      title: '',
+      image: ''
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
