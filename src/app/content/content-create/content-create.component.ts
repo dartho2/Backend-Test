@@ -23,7 +23,8 @@ export class ContentCreateComponent implements OnInit {
     this.form = this._fb.group({
       id: '',
       type: '',
-      styles: {}
+      styles: {},
+      content: {}
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {

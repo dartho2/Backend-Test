@@ -5,5 +5,11 @@ export interface Content {
     content: ContentModel;
 };
 export interface Styles {};
-export interface ContentModel {};
+export interface ContentModel {
+    // title: string;
+    // lead: string;
+    // text: string;
+    // reference: string;
+    // decriptions: string;
+};
 
