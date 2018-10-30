@@ -1,3 +1,4 @@
+<h1>REFERENCJE</h1>
 <table class="table">
   <thead>
     <tr>
@@ -8,7 +9,7 @@
     </tr>
   </thead>
   <tbody *ngFor="let contentData of contents">
-    <tr *ngIf="contentData.type === 'text_and_image'">
+    <tr *ngIf="contentData.type === 'text_and_image' && contentData.styles.text_type === 'block-ref'">
       <td>
         {{contentData._id}}
       </td>
