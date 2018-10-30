@@ -1,5 +1,5 @@
 export interface Content {
-    id: string;
+    _id: string;
     type: string;
     styles: Styles;
     content: ContentModel;
@@ -18,6 +18,6 @@ export interface ContentModel {
     signature: string;
     button: string;
     data: string;
-    // reference: string;
-    // decriptions: string;
-};
+    reference: string;
+    decriptions: string;
+} 

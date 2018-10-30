@@ -10,6 +10,7 @@
   </thead>
   <tbody *ngFor="let contentData of contents">
     <tr *ngIf="contentData.type === 'text_and_image' && contentData.styles.text_type === 'block-ref'">
+        <!-- <tr *ngIf="contentData.type === 'text_and_image'"> -->
       <td>
         {{contentData._id}}
       </td>
