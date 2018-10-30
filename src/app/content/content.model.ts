@@ -4,12 +4,20 @@ export interface Content {
     styles: Styles;
     content: ContentModel;
 };
-export interface Styles {};
+export interface Styles {
+    float: string;
+    text_type: string;
+    list_type: string;
+
+};
 export interface ContentModel {
-    // title: string;
-    // lead: string;
-    // text: string;
+    title: string;
+    text: string;
+    image: string;
+    lead: string;
+    signature: string;
+    button: string;
+    data: string;
     // reference: string;
     // decriptions: string;
 };
-

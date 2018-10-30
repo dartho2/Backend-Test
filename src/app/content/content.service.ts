@@ -22,38 +22,18 @@ export class ContentService {
         return this.contentsUpdated.asObservable();
     }
     getContent(id: string) {
-        return this._http.get<{_id: string; type:string; styles:{}, content:{}}>("https://karmazdrowia.pl:8080/api/content_items/" + id);
+        return this._http.get<{_id: string; type: string; styles: {float:string ,list_type: string, text_type:string}, content:{title:string; text: string; image: string;lead: string,signature: string;button: string;data: string}}>("https://karmazdrowia.pl:8080/api/content_items/" + id);
     }
-    updateContent(id: string, type: string) {
+    updateContent(id: string, type: string,  title:string, text: string, image: string, lead: string,float:string ,list_type: string, text_type:string, signature: string,button: string,data: string) {
         console.log('id',id)
         let contentData: Content | FormData;
         if (id === '0') {
             contentData = new FormData();
             contentData.append("id", id);
         } else {
-             contentData = { id: id, type: type, styles:{},content:{}}
+             contentData = { id: id, type: type, styles: {float: float, list_type: list_type, text_type: text_type},content:{ title: title, text: text, image: image, lead: lead ,signature: signature,button:button,data:data}}
         }
-        // let x = {
-        //     "_id": "5bb7858c5aece30013308102",
-        //     "type": "text_and_image",
-        //     "styles": {
-        //     "float": "unset",
-        //     "text_type": "block_box",
-        //     "list_type": "normal"
-        //     },
-        //     "content": [
-        //     {
-        //     "title": "P-DTR",
-        //     "lead": "",
-        //     "text": "Uwalnianie od bólu, regulacja pracy mięśni i stawów, wygaszanie napięć fizycznych i psychosomatycznych w przestymulowanym układzie nerwowym za pomocą proprioceptywnej terapii odruchowej – innowacyjne metody pracy z układem nerwowym. Dla dorosłych i dzieci.",
-        //     "reference": "/pdtr/method",
-        //     "decriptions": "czytaj więcej..."
-        //     }
-        //     ],
-        //     "created_at": "2018-10-05T15:38:52.669Z",
-        //     "updated_at": "2018-10-29T23:04:42.734Z"
-        //     }
-        console.log('c', id)
+        console.log(contentData)
         this._http.post("https://karmazdrowia.pl:8080/api/content_items/"+ id, contentData)
         
         .subscribe(response => {
