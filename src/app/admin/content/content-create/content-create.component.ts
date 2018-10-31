@@ -12,6 +12,7 @@ import { Content } from '../content.model';
 export class ContentCreateComponent implements OnInit {
   private mode = 'create';
   content: Content;
+  message;
   form: FormGroup;
   private contentId: string;
   constructor(
@@ -48,10 +49,8 @@ export class ContentCreateComponent implements OnInit {
         this.mode = "edit";
         this.contentId = paramMap.get("contentId");
         this.contenstService.getContent(this.contentId).subscribe((res: Content) => {
-          this.content = res
-          // console.log(this.content.value)
-          // this.form.setValue(this.content)
-          this.form.patchValue(this.content)
+          this.content = res;
+          this.form.patchValue(this.content);
         });
       } else {
         this.mode = "create";
@@ -62,7 +61,12 @@ export class ContentCreateComponent implements OnInit {
   }
   onAddContent() {
     if (this.mode === "edit") {
-      this.contenstService.updateContent(this.form.value)
+      this.contenstService.updateContent(this.form.value).subscribe(response => {
+      this.message = response;
+    });
+
+      
+    
     }
     // this.form.reset();
 

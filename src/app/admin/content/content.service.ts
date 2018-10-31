@@ -25,9 +25,9 @@ export class ContentService {
         return this._http.get("https://karmazdrowia.pl:8080/api/content_items/" + id);
     }
     updateContent(content: Content) {
-        this._http.post("https://karmazdrowia.pl:8080/api/content_items/" + content._id, content).subscribe(response => {
-            this.router.navigate(["/content"]);
-        });
+        return this._http.post("https://karmazdrowia.pl:8080/api/content_items/" + content._id, content);
+       
+    
     }
 
 
