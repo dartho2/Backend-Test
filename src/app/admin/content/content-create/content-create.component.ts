@@ -11,7 +11,7 @@ import { Content } from '../content.model';
 })
 export class ContentCreateComponent implements OnInit {
   private mode = 'create';
-  content: any;
+  content: Content;
   form: FormGroup;
   private contentId: string;
   constructor(
@@ -33,11 +33,11 @@ export class ContentCreateComponent implements OnInit {
         text: '',
         image: '',
         lead: '',
-        signature: "",
+        signature: '',
         button: '',
         data: '',
-        // reference: '',
-        // decriptions: ''
+        reference: '',
+        decriptions: ''
       }),
       created_at: '',
       updated_at: ''
@@ -47,9 +47,11 @@ export class ContentCreateComponent implements OnInit {
       if (paramMap.has("contentId")) {
         this.mode = "edit";
         this.contentId = paramMap.get("contentId");
-        this.contenstService.getContent(this.contentId).subscribe((res) => {
+        this.contenstService.getContent(this.contentId).subscribe((res: Content) => {
           this.content = res
-          this.form.setValue(this.content)
+          // console.log(this.content.value)
+          // this.form.setValue(this.content)
+          this.form.patchValue(this.content)
         });
       } else {
         this.mode = "create";

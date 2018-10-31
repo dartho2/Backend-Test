@@ -18,6 +18,6 @@ export interface ContentModel {
     signature: string;
     button: string;
     data: string;
-    reference: string;
+    reference?: string;
     decriptions: string;
 } 
