@@ -1,23 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { HeaderComponent} from './layout/header/header.component'
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-// import { ContentListComponent } from './content/content-list/content-list.component';
-// import { ContentCreateComponent } from './content/content-create/content-create.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/index';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-// import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // HeaderComponent,
-    // ContentListComponent,
-    // ContentCreateComponent,
     LoginComponent,
-    // HomeComponent
   ],
   imports: [
     BrowserModule,
