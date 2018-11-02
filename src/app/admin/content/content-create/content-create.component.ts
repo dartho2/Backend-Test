@@ -30,6 +30,7 @@ export class ContentCreateComponent implements OnInit {
     get items(){
       return this.form.get('items') as FormArray;
     }
+    get formData() { return <FormArray>this.form.get('content'); }
   ngOnInit() {
     $(document).ready(function() {
       $('select[name=simple-select]').select2Buttons();
@@ -53,7 +54,7 @@ export class ContentCreateComponent implements OnInit {
     });
 
   }
-
+  
   initForms(content){
     this.initForm(content.length)
   }
