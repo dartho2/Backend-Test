@@ -1,40 +1,45 @@
 <div class="alert alert-success" *ngIf="message">
   <strong>Success!</strong> {{message}}
 </div>
-<div class="container">
-    <div class="tab-content">
-      <div class="tab-pane active" id="fixed">
-        <div class="editable-content" style="padding: 5px; margin: 5px; min-height: 200px">
-          <div  *ngFor="let content of form.value.content">
-      <div *ngIf="content.title" [innerHTML]="content.title + content.lead" >  {{content.title}} {{content.lead}}</div>
-  <div [ngStyle]="{'text-align': textAlign}" *ngIf="content.text" [innerHTML]="content.text" >  {{content.text}}</div>
-</div>
+<div class="container editor">
+  <div class="tab-content">
+    <div class="tab-pane active" id="fixed">
+      <div class="editable-content" style="padding: 5px; margin: 5px; min-height: 200px">
+        <div class="editable-body" *ngFor="let content of form.value.content">
+          <h5>
+            <div *ngIf="content.title" [innerHTML]="content.title+' '+content.lead"></div>
+          </h5>
+          <div [ngStyle]="{'text-align': textAlign}" *ngIf="content.text" [innerHTML]="content.text"></div>
         </div>
       </div>
+    
+    </div>
   </div>
-  </div>
-  
+</div>
+
+
 <form [formGroup]="form" (submit)="onAddContent()">
   <div class="form-group">
     <div class="col-sm-10">
     </div>
   </div>
   <div class="clearfix"></div>
-     <div class="toggle-type">
-        <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
-            <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
-            <label for="{{radiotypeId+types}}" class="btn"> <i class="fas fa-align-{{types}}" ></i></label>
-        </div>
-      </div>
-  <div formGroupName="styles" class="toggle-editor">
-    
-    <div class="toggle" *ngFor="let align of aligns;let radioId=index">
-        <input type="radio" id="{{radioId+align}}" [(ngModel)]="textAlign" [value]="align" formControlName="text_align" name="text_align">
-        <label for="{{radioId+align}}"  class="btn"> <i class="fas fa-align-{{align}}" ></i></label>
-        
+  <div class="toggle-type">
+    <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
+      <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
+      <label for="{{radiotypeId+types}}" class="btn"> <i class="fas fa-align-{{types}}"></i></label>
     </div>
-   
-      
+  </div>
+  <div formGroupName="styles" class="toggle-editor">
+
+    <div class="toggle" *ngFor="let align of aligns;let radioId=index">
+      <input type="radio" id="{{radioId+align}}" [(ngModel)]="textAlign" [value]="align" formControlName="text_align"
+        name="text_align">
+      <label for="{{radioId+align}}" class="btn"> <i class="fas fa-align-{{align}}"></i></label>
+
+    </div>
+
+
     <div class="clearfix"></div>
   </div>
   <div formArrayName="content">
@@ -55,13 +60,14 @@
           </div>
         </div>
         <label for="exampleInputEmail1" class="lead-visible">text</label>
-        <textarea class="form-control text-body" id="exampleTextarea" formControlName="text" formControlName="text" name="text" rows="3"></textarea>
+        <textarea class="form-control text-body" id="exampleTextarea" formControlName="text" formControlName="text"
+          name="text" rows="3"></textarea>
         <small id="emailHelp" class="form-text text-muted"></small>
         <div class="form-group">
-            <label for="tag">tag</label>
-            <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
+          <label for="tag">tag</label>
+          <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
         <div class="form-group">
           <label for="exampleInputEmail1">reference</label>
           <input type="email" class="form-control" id="exampleInputEmail1" formControlName="reference" name="reference"
@@ -69,31 +75,32 @@
           <small id="emailHelp" class="form-text text-muted"></small>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">decriptions</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="decriptions" name="decriptions"
-              aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
+          <label for="exampleInputEmail1">decriptions</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="decriptions" name="decriptions"
+            aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">signature</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="signature" name="signature"
-              aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
-          <div class="form-group">
-              <label for="exampleInputEmail1">button</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" formControlName="button" name="button"
-                aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted"></small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">date</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="date" name="date"
-                  aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted"></small>
-              </div>
+          <label for="exampleInputEmail1">signature</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="signature" name="signature"
+            aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">button</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="button" name="button"
+            aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">date</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="date" name="date"
+            aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
         <div class="panel-heading">
-          <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)"> <span class="fa fa-minus"></span></a>
+          <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)">
+            <span class="fa fa-minus"></span></a>
         </div>
       </div>
       <hr>
@@ -102,5 +109,5 @@
 
   <button type="submit" class="btn btn-primary">Save</button>
   <a type="submit" class="btn btn-info" (click)="addContent()"> <span class="fa fa-plus"></span></a>
- 
+
 </form>

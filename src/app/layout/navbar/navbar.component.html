@@ -1,28 +1,44 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<!-- <nav class="col-md-1  bg-light sidebar">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/"><i class="fab fa-2x fa-github"></i> Dashboard</a>
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
         <a class="nav-link active" routerLink="/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
+          <i class="fa fa-lg fa-home"></i>
           Dashboard <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="feather feather-file">
-            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-            <polyline points="13 2 13 9 20 9"></polyline>
-          </svg>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-lg fa-edit"></i>
           Content </a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a routerLink="/content">Referencje</a></li>
+        <ul class="dropdown-menu" >
+          <li class="nav-item"><a routerLink="/content">Referencje</a></li>
         </ul>
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->
+<div class="nav-side-menu">
+    <div class="brand"> <a routerLink="/"><i class="fab fa-2x fa-github"></i> Dashboard</a></div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a routerLink="/"><i class="fa fa-home fa-lg fa-fw sidebar-icon"></i> Home</a>
+                </li>
+                
+                
+                <li data-toggle="collapse" data-target="#content" class="collapsed">
+                  <a routerLink="/"><i class="fa fa-edit fa-lg fa-fw sidebar-icon"></i> Content <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="content">
+                    <li><a routerLink="/content"><i class="fa fa-angle-double-right"></i> Referencje</a></li>
+                </ul>
+               
+              
+            </ul>
+     </div>
+</div>

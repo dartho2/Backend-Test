@@ -46,6 +46,13 @@ color: white !important;
     font-size: 15px;
     margin: 0 5px 5px 0;
 }
+.container.editor {
+    display: block;
+    float: left;
+    overflow: overlay;
+    height: 210px;
+    padding-bottom: 10px
+}
 .toggle-type  {
     display: inline-block;
     padding: 0px 8px 0px 0px;
@@ -53,6 +60,13 @@ color: white !important;
 .toggle-editor {
     display: inline-block;
     padding: 0px 0px 0px 8px;
+}
+.editable-content {
+    border: 1px solid #eaeaea;
+    background: #fbfbfb;
+}
+.editable-body {
+    padding:5px;
 }
 .toggle:hover {
     background: #3c89c8;
