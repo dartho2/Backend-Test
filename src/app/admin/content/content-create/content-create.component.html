@@ -1,74 +1,107 @@
 <div class="alert alert-success" *ngIf="message">
-    <strong>Success!</strong> {{message}}
+  <strong>Success!</strong> {{message}}
+</div>
+
+  <!-- <div *ngFor="let a of form.value.content">{{a|json}}</div> -->
+  <div  *ngFor="let content of form.value.content">
+      <div *ngIf="content.title">  {{content.title}}-  {{content.lead}}</div>
+  <div *ngIf="content.text">  {{content.text}}</div>
+</div>
+
+<form [formGroup]="form" (submit)="onAddContent()">
+  <div class="form-group">
+    <div class="col-sm-10">
+    </div>
   </div>
-  <form [formGroup]="form" (submit)="onAddContent()">
-      <div class="form-group">
-          <div class="col-sm-10">
-            <!-- <p *ngIf="content._id > 0" class="form-control-static">Id: {{content._id}}</p> -->
+  <div class="clearfix"></div>
+ 
+      <select class="form-control" id="type" formControlName="type" name="simple-select">
+          <option *ngFor="let types of type" [value]="types"><i class="fas fa-align-{{types}}"></i></option>
+        </select>
+    <!-- <label for="type">type</label>
+    <input type="email" class="form-control" id="type" formControlName="type" name="type" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted"></small> -->
+  
+  <div formGroupName="styles" class="toggle-editor">
+    <!-- <div class="form-group">
+      <label for="title">text_type</label>
+      <input type="email" class="form-control col-md-6" id="text_type" formControlName="text_type" name="text_type"
+        aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted"></small>
+    </div> -->
+    <!-- <select class="form-control" id="text_type" formControlName="text_type" name="simple-select">
+        <option *ngFor="let type of text_type" [value]="type"><i class="fas fa-align-{{type}}"></i></option>
+      </select> -->
+
+    <select class="form-control" id="aligns" formControlName="text_align" name="simple-select">
+      <option *ngFor="let align of aligns" [value]="align"><i class="fas fa-align-{{align}}"></i></option>
+    </select>
+    <div class="clearfix"></div>
+  </div>
+  <div formArrayName="content">
+    <div *ngFor="let content of form.controls.content.controls; let i=index">
+      <div [formGroupName]="i">
+        <div class="form-inline">
+          <div class="form-group col-md-6">
+            <label for="title">content/title</label>
+            <input type="email" class="form-control full" id="title" formControlName="title" name="title"
+              aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="title">content/lead</label>
+            <input type="email" class="form-control full" id="image" formControlName="lead" name="lead"
+              aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"></small>
           </div>
         </div>
-      <!-- <div class="form-group">
-        <label for="exampleInputEmail1">ImagePath</label>
-        <input class="form-control" id="exampleInputEmail1" formControlName="image" name="image" aria-describedby="emailHelp">
+        <label for="exampleInputEmail1" class="lead-visible">text</label>
+        <textarea class="form-control text-body" id="exampleTextarea" formControlName="text" formControlName="text" name="text" rows="3"></textarea>
         <small id="emailHelp" class="form-text text-muted"></small>
-      </div>
-      <div class="form-group">
-          <label for="exampleInputEmail1">Title</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="title" name="title" aria-describedby="emailHelp">
+        <div class="form-group">
+            <label for="tag">tag</label>
+            <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">reference</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="reference" name="reference"
+            aria-describedby="emailHelp">
           <small id="emailHelp" class="form-text text-muted"></small>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Lead</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="lead" name="lead" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1">decriptions</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="decriptions" name="decriptions"
+              aria-describedby="emailHelp">
             <small id="emailHelp" class="form-text text-muted"></small>
-          </div> -->
-          <!-- <div class="form-group" *ngIf="content.content.references !== undefined">
-              <label for="exampleInputEmail1">References</label>
-              <input class="form-control" id="exampleInputEmail1" formControlName="references" name="references" aria-describedby="emailHelp">
+          </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">signature</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="signature" name="signature"
+              aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1">button</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" formControlName="button" name="button"
+                aria-describedby="emailHelp">
               <small id="emailHelp" class="form-text text-muted"></small>
             </div>
-            <div class="form-group" *ngIf="content.content.references">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" name="email" aria-describedby="emailHelp">
+            <div class="form-group">
+                <label for="exampleInputEmail1">date</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="date" name="date"
+                  aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted"></small>
-              </div>-->
-              <div class="clearfix"></div>
-              <div class="form-group">
-                  <label for="type">type</label>
-                  <input type="email" class="form-control" id="type" formControlName="type" name="type" aria-describedby="emailHelp">
-                  <small id="emailHelp" class="form-text text-muted"></small>
-                </div> 
-           <div formGroupName="content">
-                <div class="form-group">
-                  <label for="title">content/title</label>
-                  <input type="email" class="form-control" id="title" formControlName="title" name="title" aria-describedby="emailHelp">
-                  <small id="emailHelp" class="form-text text-muted"></small>
-                </div> 
-                <!-- <div class="form-group">
-                    <label for="exampleInputEmail1">content/lead</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="lead" name="lead" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted"></small>
-                  </div>   -->
-                  <div class="form-group">
-                      <label for="text">TEXT</label>
-                      <textarea class="form-control" id="text" formControlName="text" name="text" rows="3"></textarea>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label for="exampleInputEmail1">content/reference</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" formControlName="reference" name="reference" aria-describedby="emailHelp">
-                        <small id="emailHelp" class="form-text text-muted"></small>
-                      </div> 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">content/decriptions</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="decriptions" name="decriptions" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted"></small>
-                  </div>   -->
-               </div>
-                <!-- <div class="form-group">
-                  <label for="exampleTextarea">TEXT</label>
-                  <textarea class="form-control" id="exampleTextarea" formControlName="id" name="id" rows="3"></textarea>
-                </div> -->
-     
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  
+              </div>
+        <div class="panel-heading">
+          <button type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)"> <span class="fa fa-minus"></span></button>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="submit" class="btn btn-info" (click)="addContent()"> <span class="fa fa-plus"></span></button>
+ 
+</form>

@@ -29,6 +29,11 @@ export class ContentService {
        
     
     }
+    createContent(content: Content) {
+        return this._http.post("https://karmazdrowia.pl:8080/api/content_items/", content);
+       
+    
+    }
 
 
 }

@@ -8,6 +8,7 @@ export interface Styles {
     float: string;
     text_type: string;
     list_type: string;
+    text_align: string;
 
 };
 export interface ContentModel {

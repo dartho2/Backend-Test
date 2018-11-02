@@ -20,7 +20,8 @@ import { NavbarComponent } from '../layout/navbar/navbar.component';
     ContentListComponent,
     ContentCreateComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    
   ]
 })
 export class AdminModule {}

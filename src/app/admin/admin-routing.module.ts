@@ -17,7 +17,8 @@ const adminRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
           { path: 'content', component: ContentListComponent },
-          { path: 'content/edit/:contentId', component: ContentCreateComponent }
+          { path: 'content/edit/:contentId', component: ContentCreateComponent },
+          { path: 'content/create', component: ContentCreateComponent }
         ]
       }
     ]

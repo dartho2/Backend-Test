@@ -10,8 +10,8 @@
     </tr>
   </thead>
   <tbody *ngFor="let contentData of contents">
-    <tr *ngIf="contentData.type === 'text_and_image' && contentData.styles.text_type === 'block-ref'">
-        <!-- <tr *ngIf="contentData.type === 'text_and_image'"> -->
+    <!-- <tr *ngIf="contentData.type === 'text_and_image' && contentData.styles.text_type === 'block-ref'"> -->
+        <tr *ngIf="contentData._id === '5bdb4db314aeb700136fe927' || contentData._id ==='5bdc46aa4d63e30013a74b8d'">
       <td>
         {{contentData._id}}
       </td>
@@ -22,6 +22,7 @@
         {{contentData.type}}
       </td>
       <td>
+          <a button [routerLink]="['/content/create']" type="button" class="btn-sm btn btn-primary">Edit</a>
         <a button [routerLink]="['/content/edit/', contentData._id]" type="button" class="btn btn-sm btn-info">Edit</a>
         <a button [routerLink]="['/content/edit/', contentData._id]" type="button" class="btn btn-sm btn-danger">Del</a>
       </td>

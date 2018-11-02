@@ -1,0 +1,26 @@
+/* .form-inline .form-group {
+    display: block;
+}
+.form-control.full {
+    width: 100% !important;
+    margin-bottom: -59px;
+}
+.lead-visible {
+    display: none;
+}
+.form-control.text-body {
+padding-top: 40px;
+}*/
+.col-md-6 {
+    padding: 0px;
+} 
+.fa-align-text:before {
+  content: "\f039";
+}
+
+.fa-align-gallery:before {
+    content: "\f03e";
+}
+.toggle-editor {
+    display: inline-block;
+}
