@@ -14,7 +14,7 @@ export class ContentCreateComponent implements OnInit {
   aligns = ['left','center','right', 'justify'];
   type = ['text','text_and_images','gallery']
   private mode = 'create';
-  content: Content;
+  contents: Content;
   message;
   form: FormGroup;
   selectedDay: string = '';
@@ -30,7 +30,7 @@ export class ContentCreateComponent implements OnInit {
     get items(){
       return this.form.get('items') as FormArray;
     }
-    get formData() { return <FormArray>this.form.get('content'); }
+    get content() { return <FormArray>this.form.get('content'); }
   ngOnInit() {
     $(document).ready(function() {
       $('select[name=simple-select]').select2Buttons();
@@ -42,9 +42,9 @@ export class ContentCreateComponent implements OnInit {
         this.mode = "edit";
         this.contentId = paramMap.get("contentId");
         this.contenstService.getContent(this.contentId).subscribe((res: Content) => {
-          this.content = res;
-          this.initForms(this.content.content);
-          this.form.patchValue(this.content);
+          this.contents = res;
+          this.initForms(this.contents.content);
+          this.form.patchValue(this.contents);
         });
       } else {
         this.mode = "create";
