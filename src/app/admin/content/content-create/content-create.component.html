@@ -21,7 +21,7 @@
     <div class="clearfix"></div>
   </div>
   <div formArrayName="content">
-    <div *ngFor="let content of form.controls.content.controls; let i=index">
+    <div *ngFor="let content of content.controls; let i=index">
       <div [formGroupName]="i">
         <div class="form-inline">
           <div class="form-group col-md-6">
