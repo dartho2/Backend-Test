@@ -1,38 +1,20 @@
 <div class="alert alert-success" *ngIf="message">
   <strong>Success!</strong> {{message}}
 </div>
-
-  <!-- <div *ngFor="let a of form.value.content">{{a|json}}</div> -->
   <div  *ngFor="let content of form.value.content">
       <div *ngIf="content.title">  {{content.title}}-  {{content.lead}}</div>
   <div *ngIf="content.text">  {{content.text}}</div>
 </div>
-
 <form [formGroup]="form" (submit)="onAddContent()">
   <div class="form-group">
     <div class="col-sm-10">
     </div>
   </div>
   <div class="clearfix"></div>
- 
       <select class="form-control" id="type" formControlName="type" name="simple-select">
           <option *ngFor="let types of type" [value]="types"><i class="fas fa-align-{{types}}"></i></option>
         </select>
-    <!-- <label for="type">type</label>
-    <input type="email" class="form-control" id="type" formControlName="type" name="type" aria-describedby="emailHelp">
-    <small id="emailHelp" class="form-text text-muted"></small> -->
-  
   <div formGroupName="styles" class="toggle-editor">
-    <!-- <div class="form-group">
-      <label for="title">text_type</label>
-      <input type="email" class="form-control col-md-6" id="text_type" formControlName="text_type" name="text_type"
-        aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted"></small>
-    </div> -->
-    <!-- <select class="form-control" id="text_type" formControlName="text_type" name="simple-select">
-        <option *ngFor="let type of text_type" [value]="type"><i class="fas fa-align-{{type}}"></i></option>
-      </select> -->
-
     <select class="form-control" id="aligns" formControlName="text_align" name="simple-select">
       <option *ngFor="let align of aligns" [value]="align"><i class="fas fa-align-{{align}}"></i></option>
     </select>
