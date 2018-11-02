@@ -12,10 +12,12 @@ declare var jQuery: any;
 })
 export class ContentCreateComponent implements OnInit {
   aligns = ['left','center','right', 'justify'];
-  type = ['text','text_and_images','gallery']
+  type = ['text','text_and_images','gallery', 'contact']
   private mode = 'create';
   contents: Content;
   message;
+  accepted: true;
+  align= 'default';
   form: FormGroup;
   selectedDay: string = '';
   private contentId: string;
@@ -35,6 +37,7 @@ export class ContentCreateComponent implements OnInit {
   ngOnInit() {
     $(document).ready(function() {
       $('select[name=simple-select]').select2Buttons();
+  
    });
     
    this.initForm(0);
