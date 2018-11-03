@@ -37,17 +37,15 @@ export class ContentCreateComponent implements OnInit {
         
         return <FormArray>this.form.get('content'); }
       get image() {
-        console.log(<FormArray>this.content.get('image'))
         return <FormArray>this.content.get('image'); }
   ngOnInit() {
     $(document).ready(function() {
-      console.log('read')
         $(".toggle-btn").click(function(){
             $("#myCollapsible").collapse('toggle');
     });
   }); 
       
-   this.initForm(0);
+   this.initForm(1);
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("contentId")) {
         this.mode = "edit";
@@ -65,7 +63,9 @@ export class ContentCreateComponent implements OnInit {
     });
 
   }
-  
+  getImage(index): FormArray {
+return this.content.at(index).get('image') as FormArray;
+  }
   initForms(content){
     this.initForm(content.length)
   }
@@ -96,23 +96,26 @@ export class ContentCreateComponent implements OnInit {
     if (this.mode === "edit") {
       this.contenstService.updateContent(this.form.value).subscribe(response => {
         this.message = response;
-      
-          window.setTimeout(function () { 
-            $(".alert-success").fadeOut( 500, function() {
-              $(this).remove();
-          });
-        }, 500)
+        this.contenstService.allert();
+        //   window.setTimeout(function () { 
+        //     $(".alert-success").fadeOut( 500, function() {
+        //       $(this).hidden();
+        //   });
+        // }, 500)
 
-    }) } else {
+    })
+   } else {
+      delete this.form.value._id
       this.contenstService.createContent(this.form.value).subscribe(response => {
         this.message = response;
+        this.contenstService.allert();
       })
     };
     // this.form.reset();
   }
  
   initContent() {
-    
+   
     return this._fb.group({
       title: '',
       text: new FormControl(''),
@@ -126,9 +129,8 @@ export class ContentCreateComponent implements OnInit {
         this._fb.control('')
       ]),
       image: this._fb.array([
+        this.initImages()
         // this._fb.control('')
-        this.initImages(),
-        
       ]),
       videos: this._fb.array([
         this.initVideo()

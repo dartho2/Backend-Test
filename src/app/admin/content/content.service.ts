@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { Content } from './content.model';
 import { Router } from "@angular/router";
+declare var $: any;
+declare var jQuery: any;
 
 @Injectable({ providedIn: 'root' })
 export class ContentService {
@@ -34,6 +36,14 @@ export class ContentService {
        
     
     }
+    allert() {
+        window.setTimeout(function () { 
+            console.log('allert')
+        $('.alert-success').show().fadeOut( 1000, function() {
+        $('.alert-success').hide();
+        })
+        }, 1000)
+       }
 
 
 }

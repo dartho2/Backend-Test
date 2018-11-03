@@ -50,15 +50,17 @@
     </div>
   </div> -->
   </div>
-  <!-- <div formGroupName="styles" class="toggle-editor">
-    <div class="toggle" *ngFor="let align of aligns;let radioId=index">
+  <div formGroupName="styles" class="toggle-editor">
+      <label for="title">Text Type</label>
+      <input type="email" class="form-control full" id="text_type" formControlName="text_type" name="text_type">
+   <!--  <div class="toggle" *ngFor="let align of aligns;let radioId=index">
       <input type="radio" id="{{radioId+align}}" [(ngModel)]="textAlign" [value]="align" formControlName="text_align"
         name="text_align">
       <label for="{{radioId+align}}" class="btn"> <i class="fas fa-align-{{align}}"></i>{{text_align}}</label>
     </div>
 
-  </div> 
-</div>-->
+  </div> -->
+</div> 
   <div formArrayName="content">
     <div *ngFor="let contentitems of content.controls; let i=index">
       <!-- <div *ngFor="let a of form.controls.content.controls">{{ a[0].title }}</div> -->
@@ -167,23 +169,35 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="clearfix"></div>
+          
+          <!-- <div class="clearfix"></div> -->
           <div formArrayName="image">
-            a {{contentitems.controls.image}}
-              <div *ngFor="let img of contentitems.controls.image.controls; let indexImage=index">
+              <div *ngFor="let img of getImage(i)?.controls; let indexImage=index">
                   <div [formGroupName]="indexImage">
-                  <label >Key: </label>
-                  <input type="email" class="form-control" id="title" formControlName="title" name="title">
-                  <label >Key: </label>
-                  <input type="email" class="form-control" id="url" formControlName="url" name="url">
+                      <div class="panel panel-default">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#images">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <label for="images">image</label>
+                              </h4>
+                            </div>
+                          </a>
+                          <div id="images" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <p>
+                                <input type="email" class="form-control" id="images" formControlName="title" name="title">
+                                <input type="email" class="form-control" id="images" formControlName="url" name="url">
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                   </div>
               </div>
           <div class="panel-heading">
             <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)">
               <span class="fa fa-minus"></span></a>
           </div>
-      </div>
+      </div></div>
       <div class="clearfix"></div>
      <hr>
     
