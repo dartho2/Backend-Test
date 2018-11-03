@@ -34,7 +34,7 @@ export class ContentCreateComponent implements OnInit {
     }
    
       get content() {
-        console.log('a')
+        
         return <FormArray>this.form.get('content'); }
       get image() {
         console.log(<FormArray>this.content.get('image'))
@@ -127,8 +127,8 @@ export class ContentCreateComponent implements OnInit {
       ]),
       image: this._fb.array([
         // this._fb.control('')
-        this._fb.control(''),
-        this.initImages()
+        this.initImages(),
+        
       ]),
       videos: this._fb.array([
         this.initVideo()

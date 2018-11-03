@@ -170,8 +170,8 @@
           </div>
           <div class="clearfix"></div>
           <div formArrayName="image">
-            a {{content.image}}
-              <div *ngFor="let img of contentitems.image.controls; let indexImage=index">
+            a {{contentitems.controls.image}}
+              <div *ngFor="let img of contentitems.controls.image.controls; let indexImage=index">
                   <div [formGroupName]="indexImage">
                   <label >Key: </label>
                   <input type="email" class="form-control" id="title" formControlName="title" name="title">
