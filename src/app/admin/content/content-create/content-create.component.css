@@ -17,6 +17,7 @@ padding-top: 40px;
 .fa-align-text:before {
   content: "\f039";
 }
+
 span.arrow:before {
     font-family: 'FontAwesome';
     content: "\f107";
@@ -29,6 +30,8 @@ span.arrow:before {
 label {
     color: black;
     font-weight: 400;
+    width: 100%;
+    text-align: left;
 }
 .fa-align-gallery:before {
     content: "\f03e";
@@ -41,14 +44,28 @@ label {
 }
 
 input:checked + label {
-background: #3c89c8 !important;
-color: white !important;
+    background: #3c89c8 !important;
+    color: white !important;
+    width: 100%;
+    text-align: left;
 }
 .btn:hover {
     color: white;
 }
+.fa-padding{
+    padding-right:10px
+}
+.alert-success {
+    position: fixed;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    z-index: 200;
+    right: 0px;
+    top: 45px;
+}
 .toggle {
-    display: inline-block;
+    display: block;
     color: #3c89c8; 
     text-align: center;
     text-decoration: none;

@@ -12,7 +12,7 @@ declare var jQuery: any;
 })
 export class ContentCreateComponent implements OnInit {
   aligns = ['left','center','right', 'justify'];
-  type = ['text','text_and_images','gallery', 'contact']
+  type = ['text','text_and_image','gallery', 'contact']
   private mode = 'create';
   contents: Content;
   message;
@@ -33,16 +33,20 @@ export class ContentCreateComponent implements OnInit {
       return this.form.get('items') as FormArray;
     }
    
-      get content() {return <FormArray>this.form.get('content'); }
+      get content() {
+        console.log('a')
+        return <FormArray>this.form.get('content'); }
+      get image() {
+        console.log(<FormArray>this.content.get('image'))
+        return <FormArray>this.content.get('image'); }
   ngOnInit() {
     $(document).ready(function() {
-      $(document).ready(function(){
+      console.log('read')
         $(".toggle-btn").click(function(){
             $("#myCollapsible").collapse('toggle');
-        });
     });
-   });
-    
+  }); 
+      
    this.initForm(0);
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("contentId")) {
@@ -92,8 +96,14 @@ export class ContentCreateComponent implements OnInit {
     if (this.mode === "edit") {
       this.contenstService.updateContent(this.form.value).subscribe(response => {
         this.message = response;
-      })
-    } else {
+      
+          window.setTimeout(function () { 
+            $(".alert-success").fadeOut( 500, function() {
+              $(this).remove();
+          });
+        }, 500)
+
+    }) } else {
       this.contenstService.createContent(this.form.value).subscribe(response => {
         this.message = response;
       })
@@ -115,7 +125,9 @@ export class ContentCreateComponent implements OnInit {
       items: this._fb.array([
         this._fb.control('')
       ]),
-      images: this._fb.array([
+      image: this._fb.array([
+        // this._fb.control('')
+        this._fb.control(''),
         this.initImages()
       ]),
       videos: this._fb.array([

@@ -16,6 +16,15 @@ display:  block !important;
 main {
     padding-bottom: 100px;
 }
+body {
+  background: #2e353d12;
+}
+.ngx-editor .ngx-wrapper .ngx-editor-textarea {
+  background-color: white !important;
+}
+.ngx-editor-textarea {
+  min-height: 200px !important;
+}
     .select2Buttons strong {
         display: block;
         clear: left;

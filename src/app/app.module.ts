@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/index';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxEditorModule 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

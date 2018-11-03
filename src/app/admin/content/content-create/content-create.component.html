@@ -3,34 +3,18 @@
 </div>
 
 <form [formGroup]="form" (submit)="onAddContent()">
-  <div class="container editor col-md-6">
-      
-    <div class="tab-content">
-      <div class="tab-pane active" id="fixed">
-        <div class="editable-content" style="padding: 5px; margin: 5px; min-height: 200px">
-          <div class="editable-body" *ngFor="let content of form.value.content">
-            <h5>
-              <div *ngIf="content.title" [innerHTML]="content.title+' '+content.lead"></div>
-            </h5>
-            <div [ngStyle]="{'text-align': textAlign}" *ngIf="content.text" [innerHTML]="content.text"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-  </div>
   <div class="clearfix"></div>
   <div class="col-md-6 cont-r">
     <div class="panel panel-default">
-      <a data-toggle="collapse" data-parent="#accordion" href="#tag">
+      <a data-toggle="collapse" data-parent="#accordion" href="#tag" aria-expanded="true">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <label for="tag">tag</label>
+            <label for="tag">tag<span _ngcontent-c3="" class="arrow"></span></label>
           </h4>
-          <span _ngcontent-c3="" class="arrow"></span>
+          
         </div>
       </a>
-      <div id="tag" class="panel-collapse collapse">
+      <div id="tag" class="panel-collapse collapse show">
         <div class="panel-body">
           <p>
             <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
@@ -38,26 +22,45 @@
         </div>
       </div>
       </div>
-    </div>
-    <div class="col-md-6">
-  <div class="toggle-type">
+      <div class="panel panel-default">
+      <a data-toggle="collapse" data-parent="#accordion" href="#type" aria-expanded="true">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <label for="type">Format<span _ngcontent-c3="" class="arrow"></span></label> 
+          </h4>
+         
+        </div>
+      </a>
+      <div id="type" class="panel-collapse collapse show">
+        <div class="panel-body">
+         
+              <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
+                  <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
+                  <label for="{{radiotypeId+types}}" class="btn"> <i class="fa-padding fas fa-align-{{types}}"></i>{{types}}</label>
+               </div>
+         
+        </div>
+      </div>
+      </div>
+   <!-- <div class="panel-collapse collapse">
+   <div class="panel-body">
     <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
       <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
       <label for="{{radiotypeId+types}}" class="btn"> <i class="fas fa-align-{{types}}"></i></label>
     </div>
+  </div> -->
   </div>
-  
-  <div formGroupName="styles" class="toggle-editor">
+  <!-- <div formGroupName="styles" class="toggle-editor">
     <div class="toggle" *ngFor="let align of aligns;let radioId=index">
       <input type="radio" id="{{radioId+align}}" [(ngModel)]="textAlign" [value]="align" formControlName="text_align"
         name="text_align">
       <label for="{{radioId+align}}" class="btn"> <i class="fas fa-align-{{align}}"></i>{{text_align}}</label>
     </div>
 
-  </div>
-</div>
+  </div> 
+</div>-->
   <div formArrayName="content">
-    <div *ngFor="let content of content.controls; let i=index">
+    <div *ngFor="let contentitems of content.controls; let i=index">
       <!-- <div *ngFor="let a of form.controls.content.controls">{{ a[0].title }}</div> -->
       
       <div [formGroupName]="i">
@@ -76,10 +79,11 @@
               <small id="emailHelp" class="form-text text-muted"></small>
             </div>
           </div>
-          <label for="exampleInputEmail1" class="lead-visible">text</label>
+          <app-ngx-editor formControlName="text"></app-ngx-editor>
+          <!-- <label for="exampleInputEmail1" class="lead-visible">text</label>
           <textarea class="form-control text-body" id="exampleTextarea" formControlName="text" formControlName="text"
             name="text" rows="3"></textarea>
-          <small id="emailHelp" class="form-text text-muted"></small>
+          <small id="emailHelp" class="form-text text-muted"></small> -->
         </div>
         <div class="collapse-body col-md-6" >
             <div class="panel panel-default">
@@ -165,6 +169,16 @@
             </div>
           </div>
           <div class="clearfix"></div>
+          <div formArrayName="image">
+            a {{content.image}}
+              <div *ngFor="let img of contentitems.image.controls; let indexImage=index">
+                  <div [formGroupName]="indexImage">
+                  <label >Key: </label>
+                  <input type="email" class="form-control" id="title" formControlName="title" name="title">
+                  <label >Key: </label>
+                  <input type="email" class="form-control" id="url" formControlName="url" name="url">
+                  </div>
+              </div>
           <div class="panel-heading">
             <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)">
               <span class="fa fa-minus"></span></a>
@@ -172,8 +186,23 @@
       </div>
       <div class="clearfix"></div>
      <hr>
+    
+
+
+     </div>
     </div>
+    <!--  -->
+        <!-- <div *ngFor="let img of image; let indexImage=index"> -->
+          <!--  
+            -->
+            <!-- <div [formGroupName]="indexImage">
+a
+            </div> -->
+            <!-- </div>  -->
+
+    <!-- </div> -->
   </div>
+  
   <div class="clearfix"></div>
   <button type="submit" class="btn btn-primary">Save</button>
   <a type="submit" class="btn btn-info" (click)="addContent()"> <span class="fa fa-plus"></span></a>
