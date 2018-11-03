@@ -74,9 +74,8 @@ padding-right: 10px;
 vertical-align: middle;
 float: right;
 } */
-.navbar-light .navbar-brand {
-  color:white !important;
-}
+
+
 i.fa.fa-home.fa-lg.fa-fw.sidebar-icon {
   color: red;
 }

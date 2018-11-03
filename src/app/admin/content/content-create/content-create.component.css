@@ -12,12 +12,24 @@
 padding-top: 40px;
 }*/
 .col-md-6 {
-    padding: 0px;
+    /* padding: 0px; */
 } 
 .fa-align-text:before {
   content: "\f039";
 }
-
+span.arrow:before {
+    font-family: 'FontAwesome';
+    content: "\f107";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: right;
+  }
+label {
+    color: black;
+    font-weight: 400;
+}
 .fa-align-gallery:before {
     content: "\f03e";
 }
@@ -45,6 +57,15 @@ color: white !important;
     -webkit-border-radius: 3px;
     font-size: 15px;
     margin: 0 5px 5px 0;
+}
+.cont-l{
+    float:left;
+}
+.cont-r{
+    float: right;
+}
+textarea.form-control {
+    min-height: 200px;
 }
 .container.editor {
     display: block;

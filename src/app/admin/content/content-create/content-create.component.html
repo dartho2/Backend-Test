@@ -1,112 +1,180 @@
 <div class="alert alert-success" *ngIf="message">
   <strong>Success!</strong> {{message}}
 </div>
-<div class="container editor">
-  <div class="tab-content">
-    <div class="tab-pane active" id="fixed">
-      <div class="editable-content" style="padding: 5px; margin: 5px; min-height: 200px">
-        <div class="editable-body" *ngFor="let content of form.value.content">
-          <h5>
-            <div *ngIf="content.title" [innerHTML]="content.title+' '+content.lead"></div>
-          </h5>
-          <div [ngStyle]="{'text-align': textAlign}" *ngIf="content.text" [innerHTML]="content.text"></div>
-        </div>
-      </div>
-    
-    </div>
-  </div>
-</div>
-
 
 <form [formGroup]="form" (submit)="onAddContent()">
-  <div class="form-group">
-    <div class="col-sm-10">
+  <div class="container editor col-md-6">
+      
+    <div class="tab-content">
+      <div class="tab-pane active" id="fixed">
+        <div class="editable-content" style="padding: 5px; margin: 5px; min-height: 200px">
+          <div class="editable-body" *ngFor="let content of form.value.content">
+            <h5>
+              <div *ngIf="content.title" [innerHTML]="content.title+' '+content.lead"></div>
+            </h5>
+            <div [ngStyle]="{'text-align': textAlign}" *ngIf="content.text" [innerHTML]="content.text"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  
   </div>
   <div class="clearfix"></div>
+  <div class="col-md-6 cont-r">
+    <div class="panel panel-default">
+      <a data-toggle="collapse" data-parent="#accordion" href="#tag">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <label for="tag">tag</label>
+          </h4>
+          <span _ngcontent-c3="" class="arrow"></span>
+        </div>
+      </a>
+      <div id="tag" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>
+            <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
+          </p>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-6">
   <div class="toggle-type">
     <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
       <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
       <label for="{{radiotypeId+types}}" class="btn"> <i class="fas fa-align-{{types}}"></i></label>
     </div>
   </div>
+  
   <div formGroupName="styles" class="toggle-editor">
-
     <div class="toggle" *ngFor="let align of aligns;let radioId=index">
       <input type="radio" id="{{radioId+align}}" [(ngModel)]="textAlign" [value]="align" formControlName="text_align"
         name="text_align">
-      <label for="{{radioId+align}}" class="btn"> <i class="fas fa-align-{{align}}"></i></label>
-
+      <label for="{{radioId+align}}" class="btn"> <i class="fas fa-align-{{align}}"></i>{{text_align}}</label>
     </div>
 
-
-    <div class="clearfix"></div>
   </div>
+</div>
   <div formArrayName="content">
     <div *ngFor="let content of content.controls; let i=index">
+      <!-- <div *ngFor="let a of form.controls.content.controls">{{ a[0].title }}</div> -->
+      
       <div [formGroupName]="i">
-        <div class="form-inline">
-          <div class="form-group col-md-6">
-            <label for="title">content/title</label>
-            <input type="email" class="form-control full" id="title" formControlName="title" name="title"
-              aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted"></small>
+        <div class="col-md-6">
+          <div class="form-inlines">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="email" class="form-control full" id="title" formControlName="title" name="title"
+                aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+              <label for="title">Lead</label>
+              <input type="email" class="form-control full" id="image" formControlName="lead" name="lead"
+                aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="title">content/lead</label>
-            <input type="email" class="form-control full" id="image" formControlName="lead" name="lead"
-              aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted"></small>
+          <label for="exampleInputEmail1" class="lead-visible">text</label>
+          <textarea class="form-control text-body" id="exampleTextarea" formControlName="text" formControlName="text"
+            name="text" rows="3"></textarea>
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="collapse-body col-md-6" >
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#reference">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="reference">reference</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="reference" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="reference" formControlName="reference" name="reference"
+                      aria-describedby="emailHelp">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#decriptions">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="decriptions">decriptions</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="decriptions" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="decriptions" formControlName="decriptions" name="decriptions">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#button">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="button">button</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="button" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="button" formControlName="button" name="button">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#signature">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="signature">signature</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="signature" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="signature" formControlName="signature" name="signature">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#date">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="date">date</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="date" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="date" formControlName="date" name="date">
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <label for="exampleInputEmail1" class="lead-visible">text</label>
-        <textarea class="form-control text-body" id="exampleTextarea" formControlName="text" formControlName="text"
-          name="text" rows="3"></textarea>
-        <small id="emailHelp" class="form-text text-muted"></small>
-        <div class="form-group">
-          <label for="tag">tag</label>
-          <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">reference</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="reference" name="reference"
-            aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">decriptions</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="decriptions" name="decriptions"
-            aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">signature</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="signature" name="signature"
-            aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">button</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="button" name="button"
-            aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">date</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="date" name="date"
-            aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="panel-heading">
-          <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)">
-            <span class="fa fa-minus"></span></a>
-        </div>
+          <div class="clearfix"></div>
+          <div class="panel-heading">
+            <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)">
+              <span class="fa fa-minus"></span></a>
+          </div>
       </div>
-      <hr>
+      <div class="clearfix"></div>
+     <hr>
     </div>
   </div>
-
+  <div class="clearfix"></div>
   <button type="submit" class="btn btn-primary">Save</button>
   <a type="submit" class="btn btn-info" (click)="addContent()"> <span class="fa fa-plus"></span></a>
 

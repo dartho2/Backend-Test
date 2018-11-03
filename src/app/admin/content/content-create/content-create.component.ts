@@ -36,8 +36,11 @@ export class ContentCreateComponent implements OnInit {
       get content() {return <FormArray>this.form.get('content'); }
   ngOnInit() {
     $(document).ready(function() {
-      $('select[name=simple-select]').select2Buttons();
-  
+      $(document).ready(function(){
+        $(".toggle-btn").click(function(){
+            $("#myCollapsible").collapse('toggle');
+        });
+    });
    });
     
    this.initForm(0);
@@ -71,6 +74,7 @@ export class ContentCreateComponent implements OnInit {
     this.form = this._fb.group({
       _id: '',
       type: '',
+      tag: '',
       styles: this._fb.group({
         float: '',
         text_type: '',
@@ -108,7 +112,6 @@ export class ContentCreateComponent implements OnInit {
       date: '',
       reference: '',
       decriptions: '',
-      tag: '',
       items: this._fb.array([
         this._fb.control('')
       ]),
