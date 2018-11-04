@@ -14,18 +14,41 @@ export class ContentComponent implements OnInit {
   mode;
   contentId;
   contentForm;
+  message;
   type = ['text', 'text_and_image', 'gallery', 'contact']
   bodyForm: FormGroup;
   constructor(public contenstService: ContentService,
     private _fb: FormBuilder,
     public route: ActivatedRoute) {
     this.initComp()
+    
     this.buildForm(null)
     // this.buildForm()
   }
 
 
   ngOnInit() {
+  }
+  onAddContent() {
+    if (this.mode === "edit") {
+      this.contenstService.updateContent(this.bodyForm.value).subscribe(response => {
+        this.message = response;
+        this.contenstService.allert();
+        //   window.setTimeout(function () { 
+        //     $(".alert-success").fadeOut( 500, function() {
+        //       $(this).hidden();
+        //   });
+        // }, 500)
+
+    })
+   } else {
+      delete this.bodyForm.value._id
+      this.contenstService.createContent(this.bodyForm.value).subscribe(response => {
+        this.message = response;
+        this.contenstService.allert();
+      })
+    };
+    // this.form.reset();
   }
   initComp() {
     console.log('init', this.contentForm)
