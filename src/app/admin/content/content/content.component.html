@@ -1,0 +1,6 @@
+<form [formGroup]="bodyForm" (submit)="onAddContent()">
+    <input type="email" class="form-control" id="type" formControlName="type" name="type">
+    <div formGroupName="styles" class="toggle-editor">
+        <input type="email" class="form-control" id="text_type" formControlName="text_type" name="text_type">
+    </div>
+</form>

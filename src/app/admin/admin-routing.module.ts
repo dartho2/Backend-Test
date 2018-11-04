@@ -5,6 +5,7 @@ import { AdminComponent }           from './admin/admin.component';
 import { ContentListComponent }  from './content/content-list/content-list.component';
 import { ContentCreateComponent }  from './content/content-create/content-create.component';
 import { AuthGuard }                from '../_guards/auth.guard';
+import { ContentComponent } from './content/content/content.component';
 
 const adminRoutes: Routes = [
   {
@@ -18,7 +19,8 @@ const adminRoutes: Routes = [
         children: [
           { path: 'content', component: ContentListComponent },
           { path: 'content/edit/:contentId', component: ContentCreateComponent },
-          { path: 'content/create', component: ContentCreateComponent }
+          { path: 'content/create', component: ContentCreateComponent },
+          { path: 'contents/edit/:contentId',component:  ContentComponent}
         ]
       }
     ]
