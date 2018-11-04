@@ -26,7 +26,9 @@ export class ContentComponent implements OnInit {
     // this.buildForm()
   }
 
-
+  get content() {
+        
+    return <FormArray>this.bodyForm.get('content'); }
   ngOnInit() {
   }
   onAddContent() {

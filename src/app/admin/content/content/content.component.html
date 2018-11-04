@@ -39,7 +39,7 @@
       <input type="email" class="form-control full" id="text_type" formControlName="text_type" name="text_type">
     </div>
   <div formArrayName="content">
-    <div *ngFor="let contentBody of bodyForm.get('content').controls; let i=index">
+    <div *ngFor="let contentBody of content.controls; let i=index">
       <div formGroupName="{{i}}">
         <div class="col-md-6">
           <div class="form-inlines">
