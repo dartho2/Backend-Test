@@ -20,7 +20,7 @@ const adminRoutes: Routes = [
           { path: 'content', component: ContentListComponent },
           { path: 'content/edit/:contentId', component: ContentCreateComponent },
           { path: 'content/create', component: ContentCreateComponent },
-          { path: 'contents/edit/:contentId',component:  ContentComponent}
+          { path: 'contents/edit/:contentId', component:  ContentComponent}
         ]
       }
     ]
