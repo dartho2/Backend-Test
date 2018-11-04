@@ -40,7 +40,7 @@
     </div>
   <div formArrayName="content">
     <div *ngFor="let contentBody of bodyForm.controls.content.controls; let i=index">
-      <div [formGroupName]="i">
+      <div formGroupName="{{i}}">
         <div class="col-md-6">
           <div class="form-inlines">
             <div class="form-group">
@@ -54,88 +54,89 @@
         </div>
         <div class="collapse-body col-md-6">
           <div class="panel panel-default">
-            <a data-toggle="collapse" data-parent="#accordion" href="#reference">
+            <a data-toggle="collapse" data-parent="#accordion" href="#reference{{i}}">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <label for="reference">reference</label>
+                  <label for="reference{{i}}">reference</label>
                 </h4>
               </div>
             </a>
-            <div id="reference" class="panel-collapse collapse">
+            <div id="reference{{i}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <p>
-                  <input type="email" class="form-control" id="reference" formControlName="reference" name="reference"
+                  <input type="email" class="form-control" id="reference{{i}}" formControlName="reference" name="reference"
                     aria-describedby="emailHelp">
                 </p>
               </div>
             </div>
           </div>
           <div class="panel panel-default">
-            <a data-toggle="collapse" data-parent="#accordion" href="#decriptions">
+            <a data-toggle="collapse" data-parent="#accordion" href="#decriptions{{i}}">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <label for="decriptions">decriptions</label>
+                  <label for="decriptions{{i}}">decriptions</label>
                 </h4>
               </div>
             </a>
-            <div id="decriptions" class="panel-collapse collapse">
+            <div id="decriptions{{i}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <p>
-                  <input type="email" class="form-control" id="decriptions" formControlName="decriptions" name="decriptions">
+                  <input type="email" class="form-control" id="decriptions{{i}}" formControlName="decriptions" name="decriptions">
                 </p>
               </div>
             </div>
           </div>
           <div class="panel panel-default">
-            <a data-toggle="collapse" data-parent="#accordion" href="#button">
+            <a data-toggle="collapse" data-parent="#accordion" href="#button{{i}}">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <label for="button">button</label>
+                  <label for="button{{i}}">button</label>
                 </h4>
               </div>
             </a>
-            <div id="button" class="panel-collapse collapse">
+            <div id="button{{i}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <p>
-                  <input type="email" class="form-control" id="button" formControlName="button" name="button">
+                  <input type="email" class="form-control" id="button{{i}}" formControlName="button" name="button">
                 </p>
               </div>
             </div>
           </div>
           <div class="panel panel-default">
-            <a data-toggle="collapse" data-parent="#accordion" href="#signature">
+            <a data-toggle="collapse" data-parent="#accordion" href="#signature{{i}}">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <label for="signature">signature</label>
+                  <label for="signature{{i}}">signature</label>
                 </h4>
               </div>
             </a>
-            <div id="signature" class="panel-collapse collapse">
+            <div id="signature{{i}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <p>
-                  <input type="email" class="form-control" id="signature" formControlName="signature" name="signature">
+                  <input type="email" class="form-control" id="signature{{i}}" formControlName="signature" name="signature">
                 </p>
               </div>
             </div>
           </div>
           <div class="panel panel-default">
-            <a data-toggle="collapse" data-parent="#accordion" href="#date">
+            <a data-toggle="collapse" data-parent="#accordion" href="#date{{i}}">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <label for="date">date</label>
+                  <label for="date{{i}}">date</label>
                 </h4>
               </div>
             </a>
-            <div id="date" class="panel-collapse collapse">
+            <div id="date{{i}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <p>
-                  <input type="email" class="form-control" id="date" formControlName="date" name="date">
+                  <input type="email" class="form-control" id="date{{i}}" formControlName="date" name="date">
                 </p>
               </div>
             </div>
           </div>
-          <div formArrayName="image">
-            <div *ngFor="let contentitems of contentBody.controls.image.controls; let j=index">
+         <div formArrayName="image">
+             <!-- <div *ngFor="let contentitems of contentBody.controls.image.controls; let j=index"> -->
+                <div *ngFor="let contentitems of contentBody.get('image').controls; let j=index">
               <div [formGroupName]="j">
                 <div class="panel panel-default">
                   <a data-toggle="collapse" data-parent="#accordion" href="#images-{{j}}{{i}}">
@@ -163,8 +164,9 @@
       </div>
      
     </div>
+    <a type="submit" class="btn btn-info" (click)="addC()"> <span class="fa fa-plus"></span></a>
   </div>
-   <a type="submit" class="btn btn-info" (click)="addC(bodyForm.controls)"> <span class="fa fa-plus"></span></a>
+  
 </form>
 <hr>
 
