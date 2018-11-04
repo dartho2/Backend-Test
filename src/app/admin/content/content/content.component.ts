@@ -42,6 +42,9 @@ initComp(){
         // this.bodyForm.patchValue(this.contentForm);
       });
     } else {
+      this.mode = "create";
+      this.contentId = null;
+      this.buildForm(null)
     }
   });
 }
@@ -58,10 +61,10 @@ return this.bodyForm = this._fb.group({
   )
 })
 }
-getContent(content:any[]): FormGroup[]{
+getContent(content:any): FormGroup[]{
   return content? content.map(contentBody=>{
      return this._fb.group({
-      title: [ contentBody.title],
+      title: [ contentBody? contentBody.title: '' ],
       lead: [ contentBody.lead],
       text: [ contentBody.text],
       signature: [ contentBody.signature],
@@ -98,5 +101,15 @@ getImage(image:any[]): FormGroup[]{
   title: ''
 })]
 }
+addC(x){
+  // let control = <FormArray>this.bodyForm.controls.content;
+  //    control.push(
+  //     this._fb.group({
+  //       content: this._fb.array([
+  //         this._fb.group({text: ''})
+  //       ])
+  //     })
+  //   )
 
+  }
 }

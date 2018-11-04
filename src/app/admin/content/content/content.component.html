@@ -161,7 +161,11 @@
         <div class="clearfix"></div>
         <hr>
       </div>
+     
     </div>
   </div>
+   <a type="submit" class="btn btn-info" (click)="addC(bodyForm.controls)"> <span class="fa fa-plus"></span></a>
 </form>
 <hr>
+
+<p>{{bodyForm.value | json}}</p>
