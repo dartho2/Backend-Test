@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
@@ -11,9 +11,11 @@ declare var jQuery: any;
   styleUrls: ['./content-create.component.css']
 })
 export class ContentCreateComponent implements OnInit {
+ 
   aligns = ['left','center','right', 'justify'];
   type = ['text','text_and_image','gallery', 'contact']
   mode;
+  typeID = '';
   contentId;
   contentForm;
   message;
@@ -57,8 +59,9 @@ export class ContentCreateComponent implements OnInit {
   }
   initComp() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("contentId")) {
+      if (paramMap.has("contentId") && paramMap.has("typeID")) {
         this.mode = "edit";
+        this.typeID = paramMap.get("typeID");
         this.contentId = paramMap.get("contentId");
         this.contenstService.getContent(this.contentId).subscribe(res => {
           this.contentForm = res;
@@ -68,7 +71,7 @@ export class ContentCreateComponent implements OnInit {
       } else {
         this.mode = "create";
         this.contentId = null;
-        this.buildForm(null)
+        // this.buildForm(null)
       }
     });
   }

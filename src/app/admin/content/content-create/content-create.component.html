@@ -1,7 +1,9 @@
 <div class="alert alert-success" *ngIf="message">
     <strong>Success!</strong> {{message}}
   </div>
-<form [formGroup]="bodyForm" (submit)="onAddContent()">
+  <div *ngIf="typeID ==='text_and_image' ||  mode ==='create'">
+<form  [formGroup]="bodyForm" (submit)="onAddContent()">
+ 
   <div class="col-md-6 cont-r">
     <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#tag" aria-expanded="true">
@@ -45,7 +47,9 @@
   <div formArrayName="content">
     <div *ngFor="let contentBody of content.controls; let i=index">
       <div formGroupName="{{i}}">
-        <div class="col-md-6">
+          <form-content [group]="bodyForm.controls.content.controls[i]" [i]="i">
+          </form-content>
+        <!-- <div class="col-md-6">
           <div class="form-inlines">
             <div class="form-group">
               <label for="title">Title</label>
@@ -162,7 +166,7 @@
             </div>
           </div>
         </div>
-        <div class="clearfix"></div>
+        <div class="clearfix"></div> -->
         <a type="submit" class="btn btn-danger" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span class="fa fa-minus"></span></a>
         <hr>
       </div>
@@ -176,3 +180,4 @@
 <hr>
 
 <pre>{{bodyForm.value | json}}</pre>
+</div>
