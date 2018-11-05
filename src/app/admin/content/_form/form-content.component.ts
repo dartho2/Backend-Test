@@ -16,4 +16,7 @@ export class FormContentComponent implements OnInit {
     public contentForm: FormGroup;
   ngOnInit() {
   }
+  get image() {
+      return <FormArray>this.contentForm.get('image');
+    }
 }

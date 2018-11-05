@@ -32,9 +32,9 @@ export class ContentCreateComponent implements OnInit {
   get content() {
     return <FormArray>this.bodyForm.get('content');
   }
-  get image() {
-    return <FormArray>this.bodyForm.get('image');
-  }
+  // get image() {
+  //   return <FormArray>this.bodyForm.get('image');
+  // }
 
   ngOnInit() {
     this.initComp()
