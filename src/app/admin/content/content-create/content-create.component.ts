@@ -13,152 +13,129 @@ declare var jQuery: any;
 export class ContentCreateComponent implements OnInit {
   aligns = ['left','center','right', 'justify'];
   type = ['text','text_and_image','gallery', 'contact']
-  private mode = 'create';
-  contents: Content;
+  mode;
+  contentId;
+  contentForm;
   message;
-  accepted: true;
-  align= 'default';
-  form: FormGroup;
-  selectedDay: string = '';
-  private contentId: string;
-  constructor(
-    public contenstService: ContentService,
+  bodyForm: FormGroup;
+  constructor(public contenstService: ContentService,
     private _fb: FormBuilder,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute) {
+    // this.initComp()
 
-    radioChange (event: any) {
-      this.selectedDay = event.target.value;
-    }
-    get items(){
-      return this.form.get('items') as FormArray;
-    }
-   
-      get content() {
-        
-        return <FormArray>this.form.get('content'); }
-      get image() {
-        return <FormArray>this.content.get('image'); }
+    this.buildForm(null)
+    // this.buildForm()
+  }
+  // Add for abstract problem
+  get content() {
+    return <FormArray>this.bodyForm.get('content');
+  }
+
   ngOnInit() {
-    $(document).ready(function() {
-        $(".toggle-btn").click(function(){
-            $("#myCollapsible").collapse('toggle');
-    });
-  }); 
-      
-   this.initForm(1);
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("contentId")) {
-        this.mode = "edit";
-        this.contentId = paramMap.get("contentId");
-        this.contenstService.getContent(this.contentId).subscribe((res: Content) => {
-          this.contents = res;
-          this.initForms(this.contents.content);
-          this.form.patchValue(this.contents);
-        });
-      } else {
-        this.mode = "create";
-        this.contentId = null;
-        delete this.form.value._id
-      }
-    });
-
-  }
-  getImage(index): FormArray {
-return this.content.at(index).get('image') as FormArray;
-  }
-  initForms(content){
-    this.initForm(content.length)
-  }
-  initForm(x: number){
-    var arr = [];
-    for(var i =0; x> i; i++)
-    {
-      arr.push(this.initContent())
-    }
-    this.form = this._fb.group({
-      _id: '',
-      type: '',
-      tag: '',
-      styles: this._fb.group({
-        float: '',
-        text_type: '',
-        list_type: '',
-        text_align: ''
-      }),
-      content: this._fb.array(
-        arr
-      ),
-      created_at: '',
-      updated_at: ''
-    });
+    this.initComp()
   }
   onAddContent() {
     if (this.mode === "edit") {
-      this.contenstService.updateContent(this.form.value).subscribe(response => {
+      this.contenstService.updateContent(this.bodyForm.value).subscribe(response => {
         this.message = response;
         this.contenstService.allert();
-        //   window.setTimeout(function () { 
-        //     $(".alert-success").fadeOut( 500, function() {
-        //       $(this).hidden();
-        //   });
-        // }, 500)
+        window.setTimeout(function () {
+          $(".alert-success").fadeOut(500, function () {
+            $(this).hidden();
+          });
+        }, 500)
 
-    })
-   } else {
-      delete this.form.value._id
-      this.contenstService.createContent(this.form.value).subscribe(response => {
+      })
+    } else {
+      delete this.bodyForm.value._id
+      this.contenstService.createContent(this.bodyForm.value).subscribe(response => {
         this.message = response;
         this.contenstService.allert();
       })
     };
     // this.form.reset();
   }
- 
-  initContent() {
-   
-    return this._fb.group({
-      title: '',
-      text: new FormControl(''),
-      lead: '',
-      signature: '',
-      button: '',
-      date: '',
-      reference: '',
-      decriptions: '',
-      items: this._fb.array([
-        this._fb.control('')
-      ]),
-      image: this._fb.array([
-        this.initImages()
-        // this._fb.control('')
-      ]),
-      videos: this._fb.array([
-        this.initVideo()
-      ])
+  initComp() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has("contentId")) {
+        this.mode = "edit";
+        this.contentId = paramMap.get("contentId");
+        this.contenstService.getContent(this.contentId).subscribe(res => {
+          this.contentForm = res;
+          this.buildForm(this.contentForm)
+          // this.bodyForm.patchValue(this.contentForm);
+        });
+      } else {
+        this.mode = "create";
+        this.contentId = null;
+        this.buildForm(null)
+      }
     });
   }
- 
-  initImages() {
-    return this._fb.group({
-      url: "",
-      title: ""
+  buildForm(data: any): FormGroup {
+    return this.bodyForm = this._fb.group({
+      type: [data ? data.type : '',],
+      tag: [data ? data.tag : '',],
+      styles: this._fb.group({
+        text_type: [data ? data.styles.text_type : '',]
+      }),
+      content: this._fb.array(
+        this.getContent(data ? data.content : null)
+      )
     })
   }
-  initVideo() {
-    return this._fb.group({
-      url: "",
-      title: "",
-      description: ""
-    })
-  }
+  getContent(content: any) {
+    return content ? content.map(contentBody => {
+      return this._fb.group({
+        title: [contentBody.title],
+        lead: [contentBody.lead? contentBody.lead : ''],
+        text: [contentBody.text],
+        signature: [contentBody.signature],
+        button: [contentBody.button],
+        date: [contentBody.date],
+        reference: [contentBody.reference],
+        decriptions: [contentBody.decriptions],
+        image: this._fb.array(
+          this.getImage(contentBody ? contentBody.image : null)
+        )
+      });
+    }) :
+      [this._fb.group({
+        title: '',
+        text: '',
+        lead: '',
+        signature: '',
+        button: '',
+        date: '',
+        reference: '',
+        decriptions: '',
+        image: this._fb.array(
+          this.getImage(null)
+        )
+      })]
 
+  }
+  getImage(image: any[]): FormGroup[] {
+    return image ? image.map(imageBody => {
+      return this._fb.group({
+        url: [imageBody.url],
+        title: [imageBody.title]
+      });
+    }) : [this._fb.group({
+      url: '',
+      title: ''
+    })]
+  }
   addContent() {
-    const control = <FormArray>this.form.controls['content'];
-    control.push(this.initContent());
+    (this.getContent(null).map(addForm => {
+      (<FormArray>this.bodyForm.controls['content']).push(
+        addForm
+      );
+    }))
   }
   removeContent(i: number) {
-    const control = <FormArray>this.form.controls['content'];
+    console.log(i)
+    const control = <FormArray>this.bodyForm.controls['content'];
     control.removeAt(i);
   }
-
 }

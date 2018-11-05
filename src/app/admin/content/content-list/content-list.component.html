@@ -17,7 +17,9 @@
         {{contentData._id}}
       </td>
       <td>
-        {{contentData.content.title}}
+       <div *ngIf="contentData.content.title">{{contentData.content.title}} </div>
+       <div *ngIf="contentData.content.length > 0"><i class="fa fa-check-circle" style="font-size:20px;color:green"></i>
+         </div>
       </td>
       <td>
         {{contentData.type}}
@@ -25,7 +27,6 @@
       <td>
           <a button [routerLink]="['/content/create']" type="button" class="btn-sm btn btn-primary">Add</a>
         <a button [routerLink]="['/content/edit/', contentData._id]" type="button" class="btn btn-sm btn-info">Edit</a>
-        <a button [routerLink]="['/contents/edit/', contentData._id]" type="button" class="btn btn-sm btn-danger">Edit_v1</a>
       </td>
     </tr>
   </tbody>

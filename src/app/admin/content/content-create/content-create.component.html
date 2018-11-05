@@ -1,9 +1,7 @@
 <div class="alert alert-success" *ngIf="message">
-  <strong>Success!</strong> {{message}}
-</div>
-
-<form [formGroup]="form" (submit)="onAddContent()">
-  <div class="clearfix"></div>
+    <strong>Success!</strong> {{message}}
+  </div>
+<form [formGroup]="bodyForm" (submit)="onAddContent()">
   <div class="col-md-6 cont-r">
     <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#tag" aria-expanded="true">
@@ -11,7 +9,6 @@
           <h4 class="panel-title">
             <label for="tag">tag<span class="arrow"></span></label>
           </h4>
-          
         </div>
       </a>
       <div id="tag" class="panel-collapse collapse show">
@@ -21,35 +18,33 @@
           </p>
         </div>
       </div>
-      </div>
-      <div class="panel panel-default">
+    </div>
+    
+    <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#type" aria-expanded="true">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <label for="type">Format<span class="arrow"></span></label> 
+            <label for="type">Format<span class="arrow"></span></label>
           </h4>
-         
         </div>
       </a>
       <div id="type" class="panel-collapse collapse show">
         <div class="panel-body">
-         
-              <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
-                  <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
-                  <label for="{{radiotypeId+types}}" class="btn"> <i class="fa-padding fas fa-align-{{types}}"></i>{{types}}</label>
-               </div>
-         
+          <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
+            <input type="radio" id="{{radiotypeId+types}}" [value]="types" formControlName="type" name="type">
+            <label for="{{radiotypeId+types}}" class="btn"> <i class="fa-padding fas fa-align-{{types}}"></i>{{types}}</label>
+          </div>
         </div>
       </div>
-      </div>
+    </div>
   </div>
   <div formGroupName="styles" class="toggle-editor">
       <label for="title">Text Type</label>
       <input type="email" class="form-control full" id="text_type" formControlName="text_type" name="text_type">
-</div> 
+    </div>
   <div formArrayName="content">
-    <div *ngFor="let contentitems of content.controls; let i=index">
-      <div [formGroupName]="i">
+    <div *ngFor="let contentBody of content.controls; let i=index">
+      <div formGroupName="{{i}}">
         <div class="col-md-6">
           <div class="form-inlines">
             <div class="form-group">
@@ -58,135 +53,126 @@
                 aria-describedby="emailHelp">
               <small id="emailHelp" class="form-text text-muted"></small>
             </div>
-            <div class="form-group">
-              <label for="title">Lead</label>
-              <input type="email" class="form-control full" id="image" formControlName="lead" name="lead"
-                aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted"></small>
-            </div>
           </div>
           <app-ngx-editor formControlName="text"></app-ngx-editor>
         </div>
-        <div class="collapse-body col-md-6" >
-            <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#reference">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <label for="reference">reference</label>
-                  </h4>
-                </div>
-              </a>
-              <div id="reference" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <p>
-                    <input type="email" class="form-control" id="reference" formControlName="reference" name="reference"
-                      aria-describedby="emailHelp">
-                  </p>
-                </div>
+        <div class="collapse-body col-md-6">
+          <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#reference{{i}}">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="reference{{i}}">reference</label>
+                </h4>
+              </div>
+            </a>
+            <div id="reference{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  <input type="email" class="form-control" id="reference{{i}}" formControlName="reference" name="reference"
+                    aria-describedby="emailHelp">
+                </p>
               </div>
             </div>
-            <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#decriptions">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <label for="decriptions">decriptions</label>
-                  </h4>
-                </div>
-              </a>
-              <div id="decriptions" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <p>
-                    <input type="email" class="form-control" id="decriptions" formControlName="decriptions" name="decriptions">
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#button">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <label for="button">button</label>
-                  </h4>
-                </div>
-              </a>
-              <div id="button" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <p>
-                    <input type="email" class="form-control" id="button" formControlName="button" name="button">
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#signature">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <label for="signature">signature</label>
-                  </h4>
-                </div>
-              </a>
-              <div id="signature" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <p>
-                    <input type="email" class="form-control" id="signature" formControlName="signature" name="signature">
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#date">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <label for="date">date</label>
-                  </h4>
-                </div>
-              </a>
-              <div id="date" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <p>
-                    <input type="email" class="form-control" id="date" formControlName="date" name="date">
-                  </p>
-                </div>
-              </div>
-            </div>
-          <div formArrayName="image">
-              <div *ngFor="let img of getImage(i)?.controls; let indexImage=index">
-                  <div [formGroupName]="indexImage">
-                      <div class="panel panel-default">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#images">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <label for="images">image</label>
-                              </h4>
-                            </div>
-                          </a>
-                          <div id="images" class="panel-collapse collapse">
-                            <div class="panel-body">
-                              <p>
-                                <input type="email" class="form-control" id="images" formControlName="title" name="title">
-                                <input type="email" class="form-control" id="images" formControlName="url" name="url">
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                  </div>
-              </div>
-          <div class="panel-heading">
-            <a type="submit" *ngIf="form.controls.content.controls.length > 1" class="btn btn-warning" (click)="removeContent(i)">
-              <span class="fa fa-minus"></span></a>
           </div>
-      </div></div>
-      <div class="clearfix"></div>
-     <hr>
-    
-
-
-     </div>
+          <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#decriptions{{i}}">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="decriptions{{i}}">decriptions</label>
+                </h4>
+              </div>
+            </a>
+            <div id="decriptions{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  <input type="email" class="form-control" id="decriptions{{i}}" formControlName="decriptions" name="decriptions">
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#button{{i}}">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="button{{i}}">button</label>
+                </h4>
+              </div>
+            </a>
+            <div id="button{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  <input type="email" class="form-control" id="button{{i}}" formControlName="button" name="button">
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#signature{{i}}">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="signature{{i}}">signature</label>
+                </h4>
+              </div>
+            </a>
+            <div id="signature{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  <input type="email" class="form-control" id="signature{{i}}" formControlName="signature" name="signature">
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#date{{i}}">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="date{{i}}">date</label>
+                </h4>
+              </div>
+            </a>
+            <div id="date{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  <input type="email" class="form-control" id="date{{i}}" formControlName="date" name="date">
+                </p>
+              </div>
+            </div>
+          </div>
+         <div formArrayName="image">
+                <div *ngFor="let contentitems of contentBody.get('image').controls; let j=index">
+              <div [formGroupName]="j">
+                <div class="panel panel-default">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#images-{{j}}{{i}}">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <label for="images-{{j}}{{i}}">image</label>
+                      </h4>
+                    </div>
+                  </a>
+                  <div id="images-{{j}}{{i}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <p>
+                        <input type="email" class="form-control" id="images-{{j}}{{i}}" formControlName="title" name="title">
+                        <input type="email" class="form-control" id="images-{{j}}{{i}}" formControlName="url" name="url">
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <a type="submit" class="btn btn-danger" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span class="fa fa-minus"></span></a>
+        <hr>
+      </div>
+     
     </div>
+    
   </div>
-  
-  <div class="clearfix"></div>
-  <button type="submit" class="btn btn-primary">Save</button>
   <a type="submit" class="btn btn-info" (click)="addContent()"> <span class="fa fa-plus"></span></a>
-
+  <button type="submit" class="btn btn-primary">Save</button>
 </form>
+<hr>
+
+<pre>{{bodyForm.value | json}}</pre>

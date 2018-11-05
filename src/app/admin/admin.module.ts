@@ -9,7 +9,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { NavbarComponent } from '../layout/navbar/navbar.component';
 import { NgxEditorModule } from 'ngx-editor';
-import { ContentComponent } from './content/content/content.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,8 +21,7 @@ import { ContentComponent } from './content/content/content.component';
     ContentListComponent,
     ContentCreateComponent,
     HeaderComponent,
-    NavbarComponent,
-    ContentComponent
+    NavbarComponent
     
   ]
 })
