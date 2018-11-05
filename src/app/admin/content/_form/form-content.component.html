@@ -94,7 +94,7 @@
         </div>
       <div formArrayName="image">
         
-               <div *ngFor="let contentitems of contentForm.get('image').controls; let j=index">
+               <div *ngFor="let contentitems of contentForm.get('image')['controls']; let j=index">
             <div [formGroupName]="j">
               <div class="panel panel-default">
                 <a data-toggle="collapse" data-parent="#accordion" href="#images-{{j}}{{i}}">
