@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
@@ -11,9 +11,9 @@ declare var jQuery: any;
   styleUrls: ['./content-create.component.css']
 })
 export class ContentCreateComponent implements OnInit {
- 
-  aligns = ['left','center','right', 'justify'];
-  type = ['text','text_and_image','gallery', 'contact']
+
+  aligns = ['left', 'center', 'right', 'justify'];
+  type = ['text', 'text_and_image', 'table', 'gallery', 'contact']
   mode;
   typeID = '';
   contentId;
@@ -23,32 +23,32 @@ export class ContentCreateComponent implements OnInit {
   constructor(public contenstService: ContentService,
     private _fb: FormBuilder,
     public route: ActivatedRoute) {
-    // this.initComp()
 
     this.buildForm(null)
-    // this.buildForm()
+
   }
   // Add for abstract problem
   get content() {
     return <FormArray>this.bodyForm.get('content');
   }
-  // get image() {
-  //   return <FormArray>this.bodyForm.get('image');
-  // }
+
 
   ngOnInit() {
     this.initComp()
+  }
+  change(type) {
+    this.typeID = type
   }
   onAddContent() {
     if (this.mode === "edit") {
       this.contenstService.updateContent(this.bodyForm.value).subscribe(response => {
         this.message = response;
-        this.contenstService.allert();
-        window.setTimeout(function () {
-          $(".alert-success").fadeOut(500, function () {
-            $(this).hidden();
-          });
-        }, 500)
+        this.contenstService.allert()
+        // window.setTimeout(function () {
+        //   $(".alert-success").fadeOut(500, function () {
+        //     $(this).hidden();
+        //   });
+        // }, 500)
 
       })
     } else {
@@ -58,28 +58,28 @@ export class ContentCreateComponent implements OnInit {
         this.contenstService.allert();
       })
     };
-    // this.form.reset();
   }
   initComp() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("contentId") && paramMap.has("typeID")) {
+      if (paramMap.has("contentId")) {
         this.mode = "edit";
-        this.typeID = paramMap.get("typeID");
         this.contentId = paramMap.get("contentId");
         this.contenstService.getContent(this.contentId).subscribe(res => {
           this.contentForm = res;
+
+          this.typeID = this.contentForm.type;
           this.buildForm(this.contentForm)
-          // this.bodyForm.patchValue(this.contentForm);
+
         });
       } else {
         this.mode = "create";
         this.contentId = null;
-        // this.buildForm(null)
       }
     });
   }
   buildForm(data: any): FormGroup {
     return this.bodyForm = this._fb.group({
+      _id: [data ? data._id : null],
       type: [data ? data.type : '',],
       tag: [data ? data.tag : '',],
       styles: this._fb.group({
@@ -94,7 +94,7 @@ export class ContentCreateComponent implements OnInit {
     return content ? content.map(contentBody => {
       return this._fb.group({
         title: [contentBody.title],
-        lead: [contentBody.lead? contentBody.lead : ''],
+        lead: [contentBody.lead ? contentBody.lead : ''],
         text: [contentBody.text],
         signature: [contentBody.signature],
         button: [contentBody.button],

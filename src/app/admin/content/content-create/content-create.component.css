@@ -36,7 +36,11 @@ label {
 .fa-align-gallery:before {
     content: "\f03e";
 }
-.fa-align-text_and_images:before {
+
+.fa-align-table:before {
+    content: "\f0ce";
+}
+.fa-align-text_and_image:before {
     content: "\f15c";
 }
 .fa-align-contact:before {
