@@ -31,21 +31,31 @@
       <div *ngFor="let cc of contentForm.get('data')['controls']; let j=index" class="tr">
         <a type="submit" class="btn-xs btn-danger" (click)="contentCreate.removeRowTable(contentForm.controls.data, j)">
           <span class="fa fa-minus"></span></a>
-
         <div [formArrayName]="j" *ngFor="let data of cc.controls; async as users; let c=index; last as isLast" class="td">
 
-          <input type="email" class="form-control" formControlName="{{c}}">
+          <div *ngIf="getDataType(data.value) === 'array'">
+            <div [formArrayName]="c" *ngFor="let array of data.controls; async as users; let x=index; last as isLast">
+              <input type="email" class="form-control" formControlName="{{x}}">
+
+              <a type="submit" *ngIf="isLast && x !== 1" class="btn-xs btn-success" (click)="contentCreate.addSubCellTable(contentForm.controls.data, x, j, data.value)">
+                <span class="fa fa-plus"></span></a>
+            
+            </div>
+          </div>
+
+          <div *ngIf="getDataType(data.value) === 'string'">
+            <input type="email" class="form-control" formControlName="{{c}}">
+
+            <a type="submit" *ngIf="getDataType(data.value) === 'string'" class="btn-xs btn-success" (click)="contentCreate.addSubCellTable(contentForm.controls.data, c, j, data.value)">
+              <span class="fa fa-plus"></span></a>
+          </div>
+
           <a type="submit" *ngIf="isLast" class="btn-xs btn-success cell-add" (click)="contentCreate.addCellTable(contentForm.controls.data, c, j)">
             <span class="fa fa-plus"></span></a>
           <a type="submit" *ngIf="isLast" class="btn-xs btn-danger cell-add-bottom" (click)="contentCreate.removeCellTable(contentForm.controls.data, c, j)">
             <span class="fa fa-minus"></span></a>
         </div>
-
-
-
       </div>
-
-
       <a type="submit" class="btn-xs btn-success" (click)="contentCreate.addRowTable(contentForm.controls.data)"> <span
           class="fa fa-plus"></span></a>
     </div>

@@ -17,7 +17,17 @@ export class TableContentomponent implements OnInit {
   constructor(public contentCreate: ContentCreateComponent){}
   ngOnInit() { }
   
- 
+  getDataType(data) {
+    if (!data) {
+      return 'string';
+    } else if (Array.isArray(data)) {
+      return 'array'
+    } else if (!Array.isArray(data)) {
+      return 'string'
+    } else {
+      return 'string'
+    }
+  }
 }
 
 

@@ -95,19 +95,25 @@ export class ContentCreateComponent implements OnInit {
   getContent(content: any) {
     return content ? content.map(contentBody => {
       return this._fb.group({
-        title: [contentBody.title],
+        title: [contentBody.title ? contentBody.title : ''],
         lead: [contentBody.lead ? contentBody.lead : ''],
-        text: [contentBody.text],
-        signature: [contentBody.signature],
-        button: [contentBody.button],
-        date: [contentBody.date],
-        reference: [contentBody.reference],
-        decriptions: [contentBody.decriptions],
-        headers: this._fb.array(contentBody.headers),
+        text: [contentBody.text ? contentBody.text : ''],
+        signature: [contentBody.signature ? contentBody.signature : ''],
+        button: [contentBody.button ? contentBody.button : ''],
+        date: [contentBody.date ? contentBody.date : ''],
+        reference: [contentBody.reference ? contentBody.reference : ''],
+        decriptions: [contentBody.decriptions ? contentBody.decriptions : ''],
+        headers: this._fb.array(contentBody.headers ? contentBody.headers : ''),
         data: this._fb.array(
-          contentBody.data.map(data => {
+          contentBody.data.map(dataResult => {
             return this._fb.array(
-              data
+              dataResult.map(arrayResult => {
+                if (Array.isArray(arrayResult)) {
+                  return this._fb.array(arrayResult)
+                }
+                return arrayResult
+              })
+
             )
           }
           )
@@ -157,27 +163,31 @@ export class ContentCreateComponent implements OnInit {
     const control = <FormArray>this.bodyForm.controls['content'];
     control.removeAt(i);
   }
-  addRowTable(control){
-    
-      control.push(
-        this._fb.array([''])
-      )
-      
+  addRowTable(control) {
+
+    control.push(
+      this._fb.array([''])
+    )
+
   }
-  addCellTable(control, indextd, indextr){
-      control.at(indextr).insert(indextd+1,
-     this._fb.control(null)
+  addCellTable(control, indextd, indextr) {
+    control.at(indextr).insert(indextd + 1,
+      this._fb.control(null)
     )
   }
-  removeRowTable(control, index){
+  removeRowTable(control, index) {
     control.removeAt(index)
-    // controls.removeAt(index);
   }
-  removeCellTable(control, indextd, indextr){
-   if(indextd !== 0) {
-    control.at(indextr).removeAt(indextd)
-  } else {
-    this.removeRowTable(control, indextr )
+  removeCellTable(control, indextd, indextr) {
+    if (indextd !== 0) {
+      control.at(indextr).removeAt(indextd)
+    } else {
+      this.removeRowTable(control, indextr)
+    }
   }
-}
+  addSubCellTable(control, indexX, indexY, value) {
+    control.at(indexY).removeAt(indexX)
+    control.at(indexY).insert(indexX, this._fb.array([value, ""]))
+  }
+
 }
