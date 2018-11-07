@@ -31,7 +31,9 @@ export class ContentCreateComponent implements OnInit {
   get content() {
     return <FormArray>this.bodyForm.get('content');
   }
-
+  // get headers(): FormArray { 
+  //   console.log('ass')
+  //   return this.bodyForm.get('headers') as FormArray; }
 
   ngOnInit() {
     this.initComp()
@@ -101,6 +103,13 @@ export class ContentCreateComponent implements OnInit {
         date: [contentBody.date],
         reference: [contentBody.reference],
         decriptions: [contentBody.decriptions],
+        // headers: [contentBody.headers],
+        headers: this._fb.array(contentBody.headers),
+        // headers: this._fb.array(content.headers.map(contentBody => {  return contentBody})),
+        // headers: this._fb.array(contentBody.headers),
+        data: this._fb.array(
+        []
+        ),
         image: this._fb.array(
           this.getImage(contentBody ? contentBody.image : null)
         )
@@ -115,12 +124,15 @@ export class ContentCreateComponent implements OnInit {
         date: '',
         reference: '',
         decriptions: '',
+        headers: this._fb.array([]),
+        data:  this._fb.array([]),
         image: this._fb.array(
           this.getImage(null)
         )
       })]
 
   }
+
   getImage(image: any[]): FormGroup[] {
     return image ? image.map(imageBody => {
       return this._fb.group({

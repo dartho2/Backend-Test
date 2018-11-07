@@ -1,1 +1,31 @@
-<H1 style="color:red">Wybierz Inny format <span class="badge badge-secondary">Comming soon !!!</span></H1>
+<H1 style="color:red">Wybierz Inny format! Table <span class="badge badge-secondary">Comming soon !!!</span></H1>
+<div [formGroup]="contentForm">
+  <div class="col-md-6">
+    <div class="form-inlines">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="email" class="form-control full" id="title" formControlName="title" name="title" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>
+    </div>
+    <div formArrayName="headers">
+      <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#headers{{i}}">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <label for="headers{{i}}">headers</label>
+            </h4>
+          </div>
+        </a>
+        <div id="headers{{i}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div *ngFor="let header of contentForm.controls.headers.controls; let j=index">
+              <input type="email" class="form-control" id="headers{{i}}" formControlName="{{j}}" name="{{j}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

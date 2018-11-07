@@ -50,9 +50,12 @@
         <div *ngIf="typeID === 'text_and_image'">
           <text-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-content>
         </div>
-        <div *ngIf="typeID !== 'text_and_image'">
+        <div *ngIf="typeID === 'table'">
           <table-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></table-content>
         </div>
+        <div *ngIf="typeID !== 'table' && typeID !== 'text_and_image'">
+            <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
+          </div>
         <a type="submit" class="btn btn-danger" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span
             class="fa fa-minus"></span></a>
         <hr>

@@ -11,6 +11,7 @@ import { NavbarComponent } from '../layout/navbar/navbar.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { TextContentComponent } from './content/_form/text-content.component';
 import { TableContentomponent } from './content/_form/table-content.component';
+import { GalleryContentomponent } from './content/_form/gallery-content.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +26,8 @@ import { TableContentomponent } from './content/_form/table-content.component';
     HeaderComponent,
     NavbarComponent,
     TextContentComponent,
-    TableContentomponent
+    TableContentomponent,
+    GalleryContentomponent
     
   ]
 })
