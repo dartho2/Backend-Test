@@ -19,7 +19,7 @@
         </a>
         <div id="headers{{i}}" class="panel-collapse collapse">
           <div class="panel-body">
-            <div *ngFor="let header of contentForm.controls.headers.controls; let j=index">
+            <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index">
               <input type="email" class="form-control" id="headers{{i}}" formControlName="{{j}}" name="{{j}}">
             </div>
           </div>
