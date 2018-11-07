@@ -11,9 +11,52 @@
 .form-control.text-body {
 padding-top: 40px;
 }*/
-.col-md-6 {
-    /* padding: 0px; */
-} 
+
+/* TABLE  */
+.table
+{
+	display:table;
+	border-collapse:separate;
+	border-spacing:2px;
+}
+.thead
+{
+	display:table-header-group;
+	color:white;
+	font-weight:bold;
+	background-color:grey;
+}
+.tbody
+{
+	display:table-row-group;
+}
+.tr
+{
+	display:table-row;
+}
+.td
+{
+	display:table-cell;
+	border:1px solid black;
+	padding:1px;
+}
+.tr.editing .td INPUT
+{
+	width:100px;
+}
+.cell-add {
+    position: absolute;
+    margin-top: -38px;
+    right: -5px;
+}
+.cell-add-bottom {
+    position: absolute;
+    margin-top: -19px;
+    right: -5px;
+}
+
+/* TABLE  */
+
 .fa-align-text:before {
   content: "\f039";
 }

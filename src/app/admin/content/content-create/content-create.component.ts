@@ -103,12 +103,14 @@ export class ContentCreateComponent implements OnInit {
         date: [contentBody.date],
         reference: [contentBody.reference],
         decriptions: [contentBody.decriptions],
-        // headers: [contentBody.headers],
         headers: this._fb.array(contentBody.headers),
-        // headers: this._fb.array(content.headers.map(contentBody => {  return contentBody})),
-        // headers: this._fb.array(contentBody.headers),
         data: this._fb.array(
-        []
+          contentBody.data.map(data => {
+            return this._fb.array(
+              data
+            )
+          }
+          )
         ),
         image: this._fb.array(
           this.getImage(contentBody ? contentBody.image : null)
@@ -124,8 +126,8 @@ export class ContentCreateComponent implements OnInit {
         date: '',
         reference: '',
         decriptions: '',
-        headers: this._fb.array([]),
-        data:  this._fb.array([]),
+        headers: this._fb.array(['']),
+        data: this._fb.array([this._fb.array([''])]),
         image: this._fb.array(
           this.getImage(null)
         )
@@ -152,8 +154,30 @@ export class ContentCreateComponent implements OnInit {
     }))
   }
   removeContent(i: number) {
-    console.log(i)
     const control = <FormArray>this.bodyForm.controls['content'];
     control.removeAt(i);
   }
+  addRowTable(control){
+    
+      control.push(
+        this._fb.array([''])
+      )
+      
+  }
+  addCellTable(control, indextd, indextr){
+      control.at(indextr).insert(indextd+1,
+     this._fb.control(null)
+    )
+  }
+  removeRowTable(control, index){
+    control.removeAt(index)
+    // controls.removeAt(index);
+  }
+  removeCellTable(control, indextd, indextr){
+   if(indextd !== 0) {
+    control.at(indextr).removeAt(indextd)
+  } else {
+    this.removeRowTable(control, indextr )
+  }
+}
 }
