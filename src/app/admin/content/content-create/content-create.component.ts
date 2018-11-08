@@ -186,7 +186,7 @@ export class ContentCreateComponent implements OnInit {
   }
   addRowTable(control) {
     control.push(
-      this._fb.control('')
+      this._fb.array([''])
     )
   }
   removeTag(i: number) {
@@ -203,6 +203,10 @@ export class ContentCreateComponent implements OnInit {
   }
   removeRowTable(control, index) {
     control.removeAt(index)
+  }
+  addHeader(control, index){
+    control.insert(index+1,this._fb.control(''))
+
   }
   removeCellTable(control, indextd, indextr) {
     if (indextd !== 0) {

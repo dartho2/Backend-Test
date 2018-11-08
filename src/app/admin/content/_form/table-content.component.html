@@ -16,15 +16,16 @@
 
 
 
-        <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index" class="td">
+        <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index; async as users; last as isLast" class="td">
           <input type="email" class="form-control" formControlName="{{j}}">
           <a type="submit" class="btn-xs btn-danger" (click)="contentCreate.removeCellTable(contentForm.controls.headers, i, j)">
             <span class="fa fa-minus"></span></a>
+            <a type="submit" *ngIf="isLast" class="btn-xs btn-success" (click)="contentCreate.addHeader(contentForm.controls.headers, j)">
+                    <span class="fa fa-plus"></span></a>
         </div>
       
       </div>
-  <a type="submit" class="btn-xs btn-success" (click)="contentCreate.addRowTable(contentForm.controls.headers)">
-          <span class="fa fa-plus"></span></a>
+     
 </div>
 
 <div class="table">
