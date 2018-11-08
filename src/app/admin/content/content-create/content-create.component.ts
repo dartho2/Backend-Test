@@ -111,6 +111,10 @@ export class ContentCreateComponent implements OnInit {
                 if (Array.isArray(arrayResult)) {
                   return this._fb.array(arrayResult)
                 }
+                //  CENNIK OBJECT
+                // if (Array.isArray(arrayResult)) {
+                //   return this._fb.array(arrayResult)
+                // }
                 return arrayResult
               })
 
