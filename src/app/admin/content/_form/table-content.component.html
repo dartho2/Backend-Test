@@ -12,8 +12,7 @@
 
     <div formArrayName="headers"class="thead">
      
-            <a type="submit" class="btn-xs btn-danger cell-add" (click)="contentCreate.removeRowTable(contentForm.controls.data, j)">
-                    <span class="fa fa-minus"></span></a>
+          
         
         
             <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index" class="td">
