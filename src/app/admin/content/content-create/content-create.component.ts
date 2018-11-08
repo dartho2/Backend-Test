@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { Content } from '../content.model';
+import { isObject } from 'util';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -80,17 +81,25 @@ export class ContentCreateComponent implements OnInit {
     });
   }
   buildForm(data: any): FormGroup {
+    console.log(data)
     return this.bodyForm = this._fb.group({
       _id: [data ? data._id : null],
       type: [data ? data.type : '',],
-      tag: [data ? data.tag : '',],
       styles: this._fb.group({
         text_type: [data ? data.styles.text_type : '',]
       }),
       content: this._fb.array(
         this.getContent(data ? data.content : null)
-      )
+      ),
+      tags: this._fb.array(
+        this.getTags(data ? data.tags : null)
+      ),
     })
+  }
+  getTags(tags: any) {
+    return tags ? tags.map(tagsBody => {
+      return tagsBody
+    }) : ['']
   }
   getContent(content: any) {
     return content ? content.map(contentBody => {
@@ -110,6 +119,13 @@ export class ContentCreateComponent implements OnInit {
               dataResult.map(arrayResult => {
                 if (Array.isArray(arrayResult)) {
                   return this._fb.array(arrayResult)
+                }
+                if (isObject(arrayResult)) {
+                  return this._fb.group({
+                    background_color: [arrayResult.background_color],
+                    content: [arrayResult.content],
+                    extra_content: [arrayResult.extra_content]
+                  })
                 }
                 //  CENNIK OBJECT
                 // if (Array.isArray(arrayResult)) {
@@ -163,16 +179,22 @@ export class ContentCreateComponent implements OnInit {
       );
     }))
   }
+
   removeContent(i: number) {
     const control = <FormArray>this.bodyForm.controls['content'];
     control.removeAt(i);
   }
   addRowTable(control) {
-
     control.push(
       this._fb.array([''])
     )
-
+  }
+  removeTag(i: number) {
+    const controls = <FormArray>this.bodyForm.controls['tags'];
+    controls.removeAt(i);
+  }
+  addTag(control) {
+    control.push(this._fb.control(''))
   }
   addCellTable(control, indextd, indextr) {
     control.at(indextr).insert(indextd + 1,

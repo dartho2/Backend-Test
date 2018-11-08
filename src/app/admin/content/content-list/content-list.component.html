@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Tags</th>
       <th>Title</th>
       <th>Type</th>
       <th>Acction</th>
@@ -16,6 +17,9 @@
         <!-- <tr *ngIf="contentData._id === '5bdb4db314aeb700136fe927' || contentData._id ==='5bdc46aa4d63e30013a74b8d'"> -->
       <td>
         {{contentData._id}}
+      </td>
+      <td>
+          <div *ngIf="contentData.tags">{{contentData.tags}} </div>
       </td>
       <td>
        <div *ngIf="contentData.content.title">{{contentData.content.title}} </div>

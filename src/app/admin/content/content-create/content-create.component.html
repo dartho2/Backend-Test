@@ -3,6 +3,24 @@
 </div>
 <form [formGroup]="bodyForm" (submit)="onAddContent()">
   <div class="col-md-3 cont-r">
+      <div formGroupName="styles">
+          <div class="panel panel-default">
+          <a data-toggle="collapse" data-parent="#accordion" href="#text_type" aria-expanded="true">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="text_type">Text Type<span class="arrow"></span></label>
+                </h4>
+              </div>
+            </a>
+            <div id="text_type" class="panel-collapse collapse show">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="text_type" formControlName="text_type" name="text_type">
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div> 
     <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#tag" aria-expanded="true">
         <div class="panel-heading">
@@ -13,9 +31,15 @@
       </a>
       <div id="tag" class="panel-collapse collapse show">
         <div class="panel-body">
+            <div formArrayName="tags" *ngFor="let tag of  bodyForm.get('tags')['controls'];let indexTag= index; async as users; last as isLast">
           <p>
-            <input type="email" class="form-control" id="tag" formControlName="tag" name="tag" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="tag" formControlName="{{indexTag}}" name="tag" >
           </p>
+          <a type="submit" *ngIf="isLast" class="btn-xs btn-danger" (click)="removeTag(indexTag)"> <span
+            class="fa fa-minus"></span></a>
+          <a type="submit" *ngIf="isLast" class="btn-xs btn-success" (click)="addTag(bodyForm.get('tags')['controls'])"> <span
+            class="fa fa-plus"></span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -38,11 +62,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <div formGroupName="styles" class="toggle-editor">
-    <label for="title">Text Type</label>
-    <input type="email" class="form-control full" id="text_type" formControlName="text_type" name="text_type">
-  </div>
+</div>
   <div formArrayName="content">
     <div></div>
     <div *ngFor="let contentBody of content.controls; let i=index">

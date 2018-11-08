@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ContentCreateComponent} from '../content-create/content-create.component'
+import { isObject } from 'util';
 
 
 @Component({
@@ -22,8 +23,8 @@ export class TableContentomponent implements OnInit {
       return 'string';
     } else if (Array.isArray(data)) {
       return 'array'
-    } else if (!Array.isArray(data)) {
-      return 'string'
+    } else if (isObject(data)) {
+      return 'object'
     } else {
       return 'string'
     }
