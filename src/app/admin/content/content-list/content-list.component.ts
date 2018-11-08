@@ -26,7 +26,9 @@ export class ContentListComponent implements OnInit, OnDestroy {
         if (paramMap.has("type")) {
           console.log(contents)
           this.modeType = paramMap.get("type")
-          this.contents = contents.filter(type => type.type === this.modeType)
+          // this.contents = contents.filter(type => type.type === this.modeType)
+          this.contents = contents.filter(type => type.tags.includes(this.modeType))
+          console.log(this.contents)
           // console.log(this.contentArray)
           //  this.contents(this.contentArray)    
         }else{

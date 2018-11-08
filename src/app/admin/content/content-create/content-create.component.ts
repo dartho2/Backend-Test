@@ -83,6 +83,7 @@ export class ContentCreateComponent implements OnInit {
       _id: [data ? data._id : null],
       type: [data ? data.type : '',],
       styles: this._fb.group({
+        float: [data ? data.styles.float : '',],
         text_type: [data ? data.styles.text_type : '',]
       }),
       content: this._fb.array(

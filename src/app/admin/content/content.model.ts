@@ -2,7 +2,7 @@ export interface Content {
     _id: string;
     type: string;
     styles: Styles;
-    tags: [string];
+    tags: string;
     content: ContentModel;
 };
 
