@@ -39,10 +39,10 @@ export class ContentService {
     allert() {
         window.setTimeout(function () { 
             console.log('allert')
-        $('.alert-success').show().fadeOut( 1000, function() {
+        $('.alert-success').show().fadeOut( 2000, function() {
         $('.alert-success').hide();
         })
-        }, 1000)
+        }, 2000)
        }
 
 

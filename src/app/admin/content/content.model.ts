@@ -2,8 +2,10 @@ export interface Content {
     _id: string;
     type: string;
     styles: Styles;
+    tags: [string];
     content: ContentModel;
 };
+
 export interface Styles {
     float: string;
     text_type: string;

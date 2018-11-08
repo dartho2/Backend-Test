@@ -14,7 +14,7 @@ declare var jQuery: any;
 export class ContentCreateComponent implements OnInit {
 
   aligns = ['left', 'center', 'right', 'justify'];
-  type = ['text', 'text_and_image', 'table', 'gallery', 'contact']
+  type = ['text', 'text_and_image', 'schedule', 'table', 'gallery', 'contact']
   mode;
   typeID = '';
   contentId;
@@ -32,28 +32,26 @@ export class ContentCreateComponent implements OnInit {
   get content() {
     return <FormArray>this.bodyForm.get('content');
   }
-  // get headers(): FormArray { 
-  //   console.log('ass')
-  //   return this.bodyForm.get('headers') as FormArray; }
 
   ngOnInit() {
     this.initComp()
   }
-  change(type) {
+  changes(type) {
+    if(this.mode === 'create'){
     this.typeID = type
+  } else {
+    this.message = 'Nie można zmienić edytowanego Formatu';
+    this.contenstService.allert()
+    this.typeID = this.typeID
+  
+  }
   }
   onAddContent() {
     if (this.mode === "edit") {
       this.contenstService.updateContent(this.bodyForm.value).subscribe(response => {
         this.message = response;
         this.contenstService.allert()
-        // window.setTimeout(function () {
-        //   $(".alert-success").fadeOut(500, function () {
-        //     $(this).hidden();
-        //   });
-        // }, 500)
-
-      })
+        })
     } else {
       delete this.bodyForm.value._id
       this.contenstService.createContent(this.bodyForm.value).subscribe(response => {
@@ -69,7 +67,6 @@ export class ContentCreateComponent implements OnInit {
         this.contentId = paramMap.get("contentId");
         this.contenstService.getContent(this.contentId).subscribe(res => {
           this.contentForm = res;
-
           this.typeID = this.contentForm.type;
           this.buildForm(this.contentForm)
 
@@ -96,10 +93,10 @@ export class ContentCreateComponent implements OnInit {
       ),
     })
   }
-  getTags(tags: any) {
-    return tags ? tags.map(tagsBody => {
-      return tagsBody
-    }) : ['']
+  getTags(tagsItems: any) {
+    return tagsItems? tagsItems.map(tagsBody => {
+      return [tagsBody? tagsBody : '' ]
+    }) : [this._fb.control('')]
   }
   getContent(content: any) {
     return content ? content.map(contentBody => {
@@ -184,40 +181,14 @@ export class ContentCreateComponent implements OnInit {
     const control = <FormArray>this.bodyForm.controls['content'];
     control.removeAt(i);
   }
-  addRowTable(control) {
-    control.push(
-      this._fb.array([''])
-    )
-  }
+
   removeTag(i: number) {
     const controls = <FormArray>this.bodyForm.controls['tags'];
     controls.removeAt(i);
   }
-  addTag(control) {
-    control.push(this._fb.control(''))
-  }
-  addCellTable(control, indextd, indextr) {
-    control.at(indextr).insert(indextd + 1,
-      this._fb.control(null)
-    )
-  }
-  removeRowTable(control, index) {
-    control.removeAt(index)
-  }
-  addHeader(control, index){
-    control.insert(index+1,this._fb.control(''))
-
-  }
-  removeCellTable(control, indextd, indextr) {
-    if (indextd !== 0) {
-      control.at(indextr).removeAt(indextd)
-    } else {
-      this.removeRowTable(control, indextr)
-    }
-  }
-  addSubCellTable(control, indexX, indexY, value) {
-    control.at(indexY).removeAt(indexX)
-    control.at(indexY).insert(indexX, this._fb.array([value, ""]))
+  addTag() {
+    const controls = <FormArray>this.bodyForm.controls['tags'];
+    controls.push(this._fb.control(''))
   }
 
 }

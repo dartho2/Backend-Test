@@ -12,6 +12,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { TextContentComponent } from './content/_form/text-content.component';
 import { TableContentomponent } from './content/_form/table-content.component';
 import { GalleryContentomponent } from './content/_form/gallery-content.component';
+import { ScheduleContentomponent } from './content/_form/schedule-content.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +28,9 @@ import { GalleryContentomponent } from './content/_form/gallery-content.componen
     NavbarComponent,
     TextContentComponent,
     TableContentomponent,
-    GalleryContentomponent
+    GalleryContentomponent,
+    ScheduleContentomponent
+    
     
   ]
 })

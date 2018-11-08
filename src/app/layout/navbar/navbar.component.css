@@ -75,7 +75,9 @@ vertical-align: middle;
 float: right;
 } */
 
-
+i.fa-calendar.fa-lg.fa-fw.sidebar-icon {
+  color: rgb(0, 94, 172);
+}
 i.fa.fa-home.fa-lg.fa-fw.sidebar-icon {
   color: red;
 }

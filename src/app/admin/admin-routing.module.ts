@@ -18,7 +18,8 @@ const adminRoutes: Routes = [
         children: [
           { path: 'content', component: ContentListComponent },
           { path: 'content/edit/:contentId', component: ContentCreateComponent },
-          { path: 'content/create', component: ContentCreateComponent }
+          { path: 'content/create', component: ContentCreateComponent },
+          { path: 'content/:type', component: ContentListComponent }
         ]
       }
     ]

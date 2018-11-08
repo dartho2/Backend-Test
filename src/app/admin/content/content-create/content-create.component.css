@@ -79,6 +79,9 @@ label {
 .fa-align-gallery:before {
     content: "\f03e";
 }
+.fa-align-schedule:before {
+    content: "\f274";
+}
 
 .fa-align-table:before {
     content: "\f0ce";

@@ -37,9 +37,10 @@
           </p>
           <a type="submit" *ngIf="isLast" class="btn-xs btn-danger" (click)="removeTag(indexTag)"> <span
             class="fa fa-minus"></span></a>
-          <a type="submit" *ngIf="isLast" class="btn-xs btn-success" (click)="addTag(bodyForm.get('tags')['controls'])"> <span
+         
+          </div> 
+          <a type="submit"  class="btn-xs btn-success" (click)="addTag()"> <span
             class="fa fa-plus"></span></a>
-          </div>
         </div>
       </div>
     </div>
@@ -55,7 +56,7 @@
       <div id="type" class="panel-collapse collapse show">
         <div class="panel-body">
           <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
-            <input type="radio" id="{{radiotypeId+types}}" [value]="types" (click)="change(type[radiotypeId])"
+            <input type="radio" id="{{radiotypeId+types}}" [value]="types" (click)="changes(type[radiotypeId])"
               formControlName="type" name="type">
             <label for="{{radiotypeId+types}}" class="btn"> <i class="fa-padding fas fa-align-{{types}}"></i>{{types}}</label>
           </div>
@@ -64,16 +65,18 @@
     </div>
 </div>
   <div formArrayName="content">
-    <div></div>
     <div *ngFor="let contentBody of content.controls; let i=index">
       <div formGroupName="{{i}}">
         <div *ngIf="typeID === 'text_and_image'">
           <text-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-content>
         </div>
+        <div *ngIf="typeID === 'schedule'">
+            <schedule-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></schedule-content>
+          </div>
         <div *ngIf="typeID === 'table'">
           <table-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></table-content>
         </div>
-        <div *ngIf="typeID !== 'table' && typeID !== 'text_and_image'">
+        <div *ngIf="typeID !== 'table' && typeID !== 'text_and_image' && typeID !=='schedule'">
             <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
           </div>
         <a type="submit" class="btn btn-danger" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span
