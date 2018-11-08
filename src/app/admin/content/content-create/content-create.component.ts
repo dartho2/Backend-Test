@@ -186,7 +186,7 @@ export class ContentCreateComponent implements OnInit {
   }
   addRowTable(control) {
     control.push(
-      this._fb.array([''])
+      this._fb.control('')
     )
   }
   removeTag(i: number) {
