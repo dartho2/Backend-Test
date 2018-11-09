@@ -12,6 +12,7 @@ import { ParamMap, ActivatedRoute } from '@angular/router';
 })
 export class ContentListComponent implements OnInit, OnDestroy {
   modeType;
+  title= '';
   contents: Content[];
   private contentsSub: Subscription;
   
@@ -25,7 +26,7 @@ export class ContentListComponent implements OnInit, OnDestroy {
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (paramMap.has("type")) {
           console.log(contents)
-          this.modeType = paramMap.get("type")
+          this.title = this.modeType = paramMap.get("type")
           // this.contents = contents.filter(type => type.type === this.modeType)
           this.contents = contents.filter(type => type.tags.includes(this.modeType))
           console.log(this.contents)

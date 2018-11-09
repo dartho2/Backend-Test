@@ -9,8 +9,7 @@
     <div class="table">
       <div formArrayName="headers" class="thead">
         <button type="button" class="btn-xs btn-danger button-rotete-left cell-rem-left">Remove</button>
-        <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index; async as users; last as isLast"
-          class="td">
+        <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index; async as users; last as isLast" class="td">
           <div class="cell-top">
             <button type="button" class="btn-xs btn-danger " (click)="removeCellTable(contentForm.controls.headers, i, j)">Remove</button>
             <button type="button" *ngIf="isLast" class="btn-xs btn-success" (click)="addHeader(contentForm.controls.headers, j)">Add</button>
@@ -39,13 +38,17 @@
                 <input type="email" class="form-control" formControlName="extra_content">
               </div>
             </div>
-            <button type="button" *ngIf="isLast" class="btn-xs btn-success cell-add button-rotete-right" (click)="addScheduleColumn(contentForm.controls.data, c, j)">Add</button>
-            <button type="button" *ngIf="isLast" class="btn-xs btn-danger cell-add-bottom button-rotete-right" (click)="removeScheduleColumn(contentForm.controls.data, c, j)">Remove</button>
+            <!-- <button type="button" *ngIf="isLast" class="btn-xs btn-success cell-add button-rotete-right" (click)="addScheduleColumn(contentForm.controls.data, c, j)">Add</button>
+            <button type="button" *ngIf="isLast" class="btn-xs btn-danger cell-add-bottom button-rotete-right" (click)="removeScheduleColumn(contentForm.controls.data, c, j)"> a Remove</button> -->
           </div>
+         <div class="schedule-table">
+          <button type="button" class="btn-xs btn-success  button-rotete-right" (click)="addScheduleColumn(contentForm.controls.data, c, j)">Add</button>
+          <button type="button"  class="btn-xs btn-danger  button-rotete-right" (click)="removeScheduleColumn(contentForm.controls.data, c, j)">Remove</button>
         </div>
-        <button type="button" class="btn-xs btn-success" (click)="addScheduleRow(contentForm.controls.data)">Add</button>
+        </div>
       </div>
-    </div>
+    <button type="button" class="btn-xs btn-success btn-width-lg" (click)="addScheduleRow(contentForm.controls.data)">Add</button>
+    </div>        
   </div>
 </div>
 <div class="clearfix"></div>
