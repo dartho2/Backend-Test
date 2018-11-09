@@ -2,7 +2,7 @@
   <strong>{{message}}</strong>
 </div>
 <form [formGroup]="bodyForm" (submit)="onAddContent()">
-  <div class="col-md-3 cont-r">
+  <div class="col-md-3 cont-r panel-left">
       <div formGroupName="styles">
           <div class="panel panel-default">
           <a data-toggle="collapse" data-parent="#accordion" href="#text_type" aria-expanded="true">
@@ -51,12 +51,10 @@
           <p>
             <input type="email" class="form-control" id="tag" formControlName="{{indexTag}}" name="tag" >
           </p>
-          <a type="submit" *ngIf="isLast" class="btn-xs btn-danger" (click)="removeTag(indexTag)"> <span
-            class="fa fa-minus"></span></a>
+          <button type="button" *ngIf="isLast" class="btn-xs btn-danger btn-width-lg" (click)="removeTag(indexTag)">Remove</button>
          
           </div> 
-          <a type="submit"  class="btn-xs btn-success" (click)="addTag()"> <span
-            class="fa fa-plus"></span></a>
+          <button type="button" class="btn-xs btn-success btn-width-lg" (click)="addTag()">Add</button>
         </div>
       </div>
     </div>
@@ -81,7 +79,7 @@
     </div>
 </div>
   <div formArrayName="content">
-    <div *ngFor="let contentBody of content.controls; let i=index">
+    <div *ngFor="let contentBody of content.controls; let i=index" class="body-forms">
       <div formGroupName="{{i}}">
         <div *ngIf="typeID === 'text_and_image'">
           <text-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-content>
@@ -95,16 +93,22 @@
         <div *ngIf="typeID !== 'table' && typeID !== 'text_and_image' && typeID !=='schedule'">
             <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
           </div>
-        <a type="submit" class="btn btn-danger" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span
-            class="fa fa-minus"></span></a>
-        <hr>
-      </div>
-
+        
+       
+      </div>  
+      <div class="clearfix"></div>
+<button type="submit" class="btn btn-default btn-width-lg" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span
+            class="fa fa-minus"></span>Usuń</button>
     </div>
 
   </div>
-  <a type="submit" class="btn btn-info" (click)="addContent()"> <span class="fa fa-plus"></span></a>
-  <button type="submit" class="btn btn-primary">Save</button>
+
+  <div class="data-panel">
+    <div class="panel-sub">
+  <button type="button" class="btn btn-info" (click)="addContent()">Dodaj</button>
+  <button type="submit" class="btn btn-primary ">Save</button>
+</div>
+</div>
 </form>
 <hr>
 <div class="clearfix"></div>

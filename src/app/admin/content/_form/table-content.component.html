@@ -11,24 +11,20 @@
         <div *ngFor="let header of contentForm.get('headers')['controls']; let j=index; async as users; last as isLast"
           class="td">
           <input type="email" class="form-control" formControlName="{{j}}">
-          <a type="submit" class="btn-xs btn-danger" (click)="removeCellTable(contentForm.controls.headers, i, j)">
-            <span class="fa fa-minus"></span></a>
-          <a type="submit" *ngIf="isLast" class="btn-xs btn-success" (click)="addHeader(contentForm.controls.headers, j)">
-            <span class="fa fa-plus"></span></a>
+          <button type="button"  class="btn-xs btn-danger" (click)="removeCellTable(contentForm.controls.headers, i, j)">Remove</button>
+          <button type="button"  *ngIf="isLast" class="btn-xs btn-success" (click)="addHeader(contentForm.controls.headers, j)">Add</button>
         </div>
       </div>
     </div>
     <div class="table">
       <div formArrayName="data" class="tbody">
         <div *ngFor="let cc of contentForm.get('data')['controls']; let j=index" class="tr">
-          <a type="submit" class="btn-xs btn-danger" (click)="removeRowTable(contentForm.controls.data, j)">
-            <span class="fa fa-minus"></span></a>
+          <button type="button" class="btn-xs btn-danger" (click)="removeRowTable(contentForm.controls.data, j)">Remove</button>
           <div [formArrayName]="j" *ngFor="let data of cc.controls; async as users; let c=index; last as isLast" class="td">
             <div *ngIf="getDataType(data.value) === 'array'">
               <div [formArrayName]="c" *ngFor="let array of data.controls; async as users; let x=index; last as isLast">
                 <input type="email" class="form-control" formControlName="{{x}}">
-                <a type="submit" *ngIf="isLast && x !== 1" class="btn-xs btn-success" (click)="contentCreate.addSubCellTable(contentForm.controls.data, x, j, data.value)">
-                  <span class="fa fa-plus"></span></a>
+                <button type="button"  *ngIf="isLast && x !== 1" class="btn-xs btn-success" (click)="contentCreate.addSubCellTable(contentForm.controls.data, x, j, data.value)">Add</button>
               </div>
             </div>
             <div *ngIf="getDataType(data.value) === 'object'">
@@ -40,17 +36,13 @@
             </div>
             <div *ngIf="getDataType(data.value) === 'string'">
               <input type="email" class="form-control" formControlName="{{c}}">
-              <a type="submit" *ngIf="getDataType(data.value) === 'string'" class="btn-xs btn-success" (click)="addSubCellTable(contentForm.controls.data, c, j, data.value)">
-                <span class="fa fa-plus"></span></a>
+              <button type="button" *ngIf="getDataType(data.value) === 'string'" class="btn-xs btn-success" (click)="addSubCellTable(contentForm.controls.data, c, j, data.value)">Add</button>
             </div>
-            <a type="submit" *ngIf="isLast" class="btn-xs btn-success cell-add" (click)="addCellTable(contentForm.controls.data, c, j)">
-              <span class="fa fa-plus"></span></a>
-            <a type="submit" *ngIf="isLast" class="btn-xs btn-danger cell-add-bottom" (click)="removeCellTable(contentForm.controls.data, c, j)">
-              <span class="fa fa-minus"></span></a>
+            <button type="button"  *ngIf="isLast" class="btn-xs btn-success cell-add" (click)="addCellTable(contentForm.controls.data, c, j)">ADD</button>
+            <button type="button"  *ngIf="isLast" class="btn-xs btn-danger cell-add-bottom" (click)="removeCellTable(contentForm.controls.data, c, j)">Remove</button>
           </div>
         </div>
-        <a type="submit" class="btn-xs btn-success" (click)="addRowTable(contentForm.controls.data)">
-          <span class="fa fa-plus"></span></a>
+        <button type="button" class="btn-xs btn-success" (click)="addRowTable(contentForm.controls.data)">Add</button>
       </div>
     </div>
   </div>

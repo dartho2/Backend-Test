@@ -44,15 +44,23 @@ padding-top: 40px;
 {
 	width:100px;
 }
+.cell-top{
+    width: 100%;
+}
+.cell-rem-left{
+    position: absolute;
+    margin-top: 18px;
+    margin-left: -3px;
+}
 .cell-add {
     position: absolute;
-    margin-top: -38px;
-    right: -5px;
+    margin-top: -92px;
+    right: -10px;
 }
 .cell-add-bottom {
     position: absolute;
-    margin-top: -19px;
-    right: -5px;
+    margin-top: -46px;
+    right: -23px;
 }
 
 /* TABLE  */
@@ -69,6 +77,22 @@ span.arrow:before {
     padding-right: 10px;
     vertical-align: middle;
     float: right;
+  }
+  .panel-sub {
+      margin: 0 auto;
+      display: table;
+  }
+  .panel {
+      margin:0px;
+  }
+  .data-panel {
+      position: fixed;
+      background-color: aliceblue;
+      left: 0px;
+      width:100%;
+      clear: both;
+      bottom: 0px;
+      margin: 0 auto;
   }
 label {
     color: black;
@@ -125,11 +149,34 @@ input:checked + label {
     font-size: 15px;
     margin: 0 5px 5px 0;
 }
+.panel-left {
+    padding: 20px
+}
+.body-forms {
+    margin-bottom: 20px;
+    background: #b5b5b536;
+    border-radius: 5px;
+}
 .cont-l{
     float:left;
+    padding-bottom: 20px;
 }
 .cont-r{
     float: right;
+}
+.button-rotete-left {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); /* Internet Explorer 9 */
+    -webkit-transform: rotate(-90deg); /* Safari i Chrome */
+    -o-transform: rotate(-90deg); /* Opera */
+    -moz-transform: rotate(-90deg); /* Firefox */
+}
+.button-rotete-right {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg); /* Internet Explorer 9 */
+    -webkit-transform: rotate(90deg); /* Safari i Chrome */
+    -o-transform: rotate(90deg); /* Opera */
+    -moz-transform: rotate(90deg); /* Firefox */
 }
 textarea.form-control {
     min-height: 200px;
@@ -144,6 +191,9 @@ textarea.form-control {
 .toggle-type  {
     display: inline-block;
     padding: 0px 8px 0px 0px;
+}
+.btn-width-lg {
+    width:100%;
 }
 .toggle-editor {
     display: inline-block;
