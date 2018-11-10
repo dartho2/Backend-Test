@@ -13,7 +13,21 @@
           <div id="{{sectionName}}" class="tab-pane fade in active">
               <div *ngFor="let content of contents">
                 <div *ngIf="content.type">
-                  <app-content-create [sectionID]="content"></app-content-create>
+                
+                  <div id="accordion">
+
+                      <div class="card">
+                        <div class="card-header">
+                          <a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}"> {{content._id}}<span _ngcontent-c5="" class="arrow"></span>
+                             
+                          </a>
+                        </div>
+                        <div id="{{content._id}}" class="collapse" data-parent="#accordion">
+                          <div class="card-body" *ngIf="dataId === content._id">
+                            <app-content-create [sectionID]="content"></app-content-create>
+                          </div>
+                        </div>
+                      </div>
                 </div>
                 <!-- {{content.type}} -->
               
