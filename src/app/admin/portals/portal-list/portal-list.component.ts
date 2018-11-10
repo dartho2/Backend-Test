@@ -15,7 +15,10 @@ export class PortalListComponent implements OnInit, OnDestroy {
   title = '';
   portals: Portal[];
   sections;
+  contentData;
+  sectionID;
   dataId;
+  ContentToSection;
   portalName;
   sectionName;
   contents;
@@ -55,12 +58,16 @@ export class PortalListComponent implements OnInit, OnDestroy {
   }
   showContent(sections){
     console.log(sections)
+    this.sectionID = sections._id
     this.sectionName = sections.name
     this.contents = sections.data
     console.log(this.sectionName)
   }
   showData(id) {
     this.dataId = id
+  }
+  addContentToSection() {
+    this.ContentToSection = true
   }
   ngOnDestroy() {
     this.portalsSub.unsubscribe();

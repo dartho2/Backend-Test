@@ -28,22 +28,28 @@ export class ContentService {
     }
     updateContent(content: Content) {
         return this._http.post("https://karmazdrowia.pl:8080/api/content_items/" + content._id, content);
-       
-    
+
+
     }
     createContent(content: Content) {
         return this._http.post("https://karmazdrowia.pl:8080/api/content_items/", content);
-       
-    
+
     }
+    getSections(sectionID) {
+        return this._http.get("https://karmazdrowia.pl:8080/api/sections/" + sectionID)
+    }
+    createContentToSections(sectionData: Content, sectionID) {
+        return (this._http.post("https://karmazdrowia.pl:8080/api/sections/" + sectionID , sectionData))
+    }
+
     allert() {
-        window.setTimeout(function () { 
+        window.setTimeout(function () {
             console.log('allert')
-        $('.alert-success').show().fadeOut( 2000, function() {
-        $('.alert-success').hide();
-        })
+            $('.alert-success').show().fadeOut(2000, function () {
+                $('.alert-success').hide();
+            })
         }, 2000)
-       }
+    }
 
 
 }

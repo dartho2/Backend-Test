@@ -24,7 +24,7 @@
                         </div>
                         <div id="{{content._id}}" class="collapse" data-parent="#accordion">
                           <div class="card-body" *ngIf="dataId === content._id">
-                            <app-content-create [sectionID]="content"></app-content-create>
+                            <app-content-create [contentData]="content"></app-content-create>
                           </div>
                         </div>
                       </div>
@@ -34,6 +34,10 @@
               
               </div>
           </div>
+          <div *ngIf="ContentToSection">
+              <app-content-create [sectionID]="sectionID"></app-content-create>
+          </div>
+          <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
         </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { Content } from '../content.model';
 import { isObject } from 'util';
+import { map } from 'rxjs/operators';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -12,12 +13,15 @@ declare var jQuery: any;
   styleUrls: ['./content-create.component.css']
 })
 export class ContentCreateComponent implements OnInit {
+  @Input() contentData: any;
   @Input() sectionID: any;
   aligns = ['left', 'center', 'right', 'justify'];
   type = ['text', 'text_and_image', 'schedule', 'table', 'gallery', 'contact']
   mode;
   typeID = '';
+  createdID;
   contentId;
+  dataID;
   contentForm;
   message;
   bodyForm: FormGroup;
@@ -54,18 +58,45 @@ export class ContentCreateComponent implements OnInit {
         })
     } else {
       delete this.bodyForm.value._id
+      if(this.sectionID){
+        this.contenstService.createContent(this.bodyForm.value).pipe(
+        map((res: Response) => {
+          this.createdID = res;
+          this.contenstService.getSections(this.sectionID).subscribe(section =>{
+            console.log("getsection", section);
+            var jsonSection;
+            jsonSection = section
+            jsonSection.data.push(this.createdID._id) ;
+            this.contenstService.createContentToSections(jsonSection, this.sectionID).subscribe(response =>{
+              this.message = response;
+              this.contenstService.allert()
+            })
+            // jsonSection.push(this.pushID(this.sectionID) )
+            // console.log("pushniete", jsonSection, this.createdID._id)
+
+          })
+          // this.createdID._id
+        }))
+        .subscribe(response => {
+          this.message = response;
+          this.contenstService.allert();
+        }) 
+      } else {
       this.contenstService.createContent(this.bodyForm.value).subscribe(response => {
         this.message = response;
         this.contenstService.allert();
-      })
+     
+      }) 
+    }
     };
   }
+
   initComp() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("contentId") || this.sectionID) {
+      if (paramMap.has("contentId") || this.contentData) {
         this.mode = "edit";
-        if(this.sectionID) {
-          this.contentId = this.sectionID._id
+        if(this.contentData) {
+          this.contentId = this.contentData._id
         } else {
         this.contentId = paramMap.get("contentId");
       }
