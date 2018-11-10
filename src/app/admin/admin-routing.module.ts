@@ -5,6 +5,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ContentListComponent } from './content/content-list/content-list.component';
 import { ContentCreateComponent } from './content/content-create/content-create.component';
 import { AuthGuard } from '../_guards/auth.guard';
+import { PortalListComponent } from './portals/portal-list/portal-list.component';
 
 const adminRoutes: Routes = [
   {
@@ -19,7 +20,8 @@ const adminRoutes: Routes = [
           { path: 'content', component: ContentListComponent },
           { path: 'content/edit/:contentId', component: ContentCreateComponent },
           { path: 'content/create', component: ContentCreateComponent },
-          { path: 'content/:type', component: ContentListComponent }
+          { path: 'content/:type', component: ContentListComponent },
+          { path: 'portal', component: PortalListComponent }
         ]
       }
     ]

@@ -1,0 +1,26 @@
+<div class="">
+  <h2>Portals</h2>
+  <ul class="nav nav-tabs">
+    <li *ngFor="let portal of portals"><a class="nav-link" data-toggle="tab" (click)="showSections(portal)" href="#{{portal.name}}">{{portal.label}}</a></li>
+  </ul>
+
+  <div class="tab-content" *ngIf="portalName">
+    <div id="{{portalName}}" class="tab-pane fade in active">
+      <ul class="nav nav-tabs">
+        <li *ngFor="let section of sections"><a class="nav-link" data-toggle="tab" (click)="showContent(section)" href="#{{section.name}}">{{section.label}}</a></li>
+      </ul>
+      <div class="tab-content" *ngIf="sectionName">
+          <div id="{{sectionName}}" class="tab-pane fade in active">
+              <div *ngFor="let content of contents">
+                <div *ngIf="content.type">
+                  <app-content-create [sectionID]="content"></app-content-create>
+                </div>
+                <!-- {{content.type}} -->
+              
+              
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ import { TextContentComponent } from './content/_form/text-content.component';
 import { TableContentomponent } from './content/_form/table-content.component';
 import { GalleryContentomponent } from './content/_form/gallery-content.component';
 import { ScheduleContentomponent } from './content/_form/schedule-content.component';
+import { PortalListComponent } from './portals/portal-list/portal-list.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,7 +30,8 @@ import { ScheduleContentomponent } from './content/_form/schedule-content.compon
     TextContentComponent,
     TableContentomponent,
     GalleryContentomponent,
-    ScheduleContentomponent
+    ScheduleContentomponent,
+    PortalListComponent
     
     
   ]

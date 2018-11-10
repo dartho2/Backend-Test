@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ declare var jQuery: any;
   styleUrls: ['./content-create.component.css']
 })
 export class ContentCreateComponent implements OnInit {
-
+  @Input() sectionID: any;
   aligns = ['left', 'center', 'right', 'justify'];
   type = ['text', 'text_and_image', 'schedule', 'table', 'gallery', 'contact']
   mode;
@@ -62,9 +62,13 @@ export class ContentCreateComponent implements OnInit {
   }
   initComp() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("contentId")) {
+      if (paramMap.has("contentId") || this.sectionID) {
         this.mode = "edit";
+        if(this.sectionID) {
+          this.contentId = this.sectionID._id
+        } else {
         this.contentId = paramMap.get("contentId");
+      }
         this.contenstService.getContent(this.contentId).subscribe(res => {
           this.contentForm = res;
           this.typeID = this.contentForm.type;
@@ -84,7 +88,9 @@ export class ContentCreateComponent implements OnInit {
       type: [data ? data.type : '',],
       styles: this._fb.group({
         float: [data ? data.styles.float : '',],
-        text_type: [data ? data.styles.text_type : '',]
+        text_type: [data ? data.styles.text_type : '',],
+        list_typ: [data ? data.styles.list_typ : '',],
+        text_align: [data ? data.styles.text_align : '',]
       }),
       content: this._fb.array(
         this.getContent(data ? data.content : null)
