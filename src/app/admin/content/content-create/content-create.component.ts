@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input,  } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
-import { Content } from '../content.model';
 import { isObject } from 'util';
 import { map } from 'rxjs/operators';
 declare var $: any;
@@ -15,7 +14,6 @@ declare var jQuery: any;
 export class ContentCreateComponent implements OnInit {
   @Input() contentData: any;
   @Input() sectionID: any;
-  @Output() text_
   aligns = ['left', 'center', 'right', 'justify'];
   type = ['text', 'text_and_image', 'schedule', 'table', 'gallery', 'contact'];
   text_type;
@@ -149,7 +147,6 @@ console.log(name , "name")
     });
   }
   buildForm(data: any): FormGroup {
-    console.log(data)
     return this.bodyForm = this._fb.group({
       _id: [data ? data._id : null],
       type: [data ? data.type : '',],

@@ -31,7 +31,6 @@ export class TableContentomponent implements OnInit {
     }
   }
   addRowTable(control) {
-    console.log(control)
     control.push(
       this._fb.array([''])
     )
@@ -56,7 +55,6 @@ export class TableContentomponent implements OnInit {
     )
   }
   addRowSchedule(control) {
-    console.log(control)
   }
   addHeader(control, index){
     control.insert(index+1,this._fb.control(''))
