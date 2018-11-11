@@ -1,17 +1,33 @@
 tr {
     text-align: center;
 }
+a {
+    color: black;
+}
+a:focus, a:hover {
+    color:#4e4e4e;
+}
 #exTab1 .tab-content {
     color : white;
     background-color: #428bca;
     padding : 5px 15px;
   }
-  
+  .nav>li>a {
+      font-size: 1rem;
+      font-weight: 400;
+  }
   #exTab2 h3 {
     color : white;
     background-color: #428bca;
     padding : 5px 15px;
   }
+  .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.tab-content {
+    padding-top: 20px;
+}
   
   /* remove border radius for the tab */
   
@@ -25,12 +41,23 @@ tr {
     border-radius: 4px 4px 0 0 ;
   }
   
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    background-color: #ffbc02;
+    color: black;
+    border: 0px solid transparent;
+    box-shadow: 0 0 20px rgba(45, 45, 45, 0.28);
+  }
+  .nav-tabs {
+border: none;
+  }
   #exTab3 .tab-content {
     color : white;
     background-color: #428bca;
     padding : 5px 15px;
   }
-  
+  .text {
+    text-align: center;
+  }
   
   
   

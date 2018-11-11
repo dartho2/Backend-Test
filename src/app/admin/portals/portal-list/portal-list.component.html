@@ -1,9 +1,22 @@
-<div class="">
+<div class="card"> 
+    <div class="card-body">
   <h2>Portals</h2>
   <ul class="nav nav-tabs">
-    <li *ngFor="let portal of portals"><a class="nav-link" data-toggle="tab" (click)="showSections(portal)" href="#{{portal.name}}">{{portal.label}}</a></li>
+    <li *ngFor="let portal of portals" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 Services-tab  item">
+      
+      <a class="nav-link tab-color" data-toggle="tab" (click)="showSections(portal)" href="#{{portal.name}}">
+          <div class="text">
+          	<div class="folded-corner service_tab_1">
+        <i class="fa fa-image fa-5x fa-icon-image"></i>
+        <p class="item-title">
+      {{portal.label}}</p>
+    </div>
+    </div>
+    </a>
+  
+  </li>
   </ul>
-
+ 
   <div class="tab-content" *ngIf="portalName">
     <div id="{{portalName}}" class="tab-pane fade in active">
       <ul class="nav nav-tabs">
@@ -40,5 +53,6 @@
           <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
         </div>
     </div>
+  </div>
   </div>
 </div>

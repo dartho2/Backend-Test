@@ -14,10 +14,14 @@ body {
   background-color: #2e353d;
   position: fixed;
   top: 0px;
-  width: 220px;
+  width: 250px;
   height: 100%;
   color: #e1ffff;
 }
+@media (max-width: 767.98px){
+  .nav-side-menu {
+      height: unset!important;
+  }}
 
 .nav-side-menu .brand {
   background-color: #23282e;
@@ -101,7 +105,7 @@ i.fa.fa-edit.fa-lg.fa-fw.sidebar-icon {
 }
 
 .nav-side-menu li {
-  padding-left: 0px;
+  padding-left: 20px;
   border-left: 3px solid #2e353d;
   border-bottom: 1px solid #23282e;
 }
