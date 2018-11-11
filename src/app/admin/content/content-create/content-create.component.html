@@ -3,40 +3,46 @@
 </div>
 <form [formGroup]="bodyForm" (submit)="onAddContent()">
   <div class="col-md-3 cont-r panel-left">
-      <div formGroupName="styles">
-          <div class="panel panel-default">
-          <a data-toggle="collapse" data-parent="#accordion" href="#text_type" aria-expanded="true">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <label for="text_type">Text Type<span class="arrow"></span></label>
-                </h4>
-              </div>
-            </a>
-            <div id="text_type" class="panel-collapse collapse show">
-                <div class="panel-body">
-                  <p>
+    <div formGroupName="styles">
+      <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#text_type" aria-expanded="true">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <label for="text_type">Text Type<span class="arrow"></span></label>
+            </h4>
+          </div>
+        </a>
+        <div id="text_type" class="panel-collapse collapse show">
+          <div class="panel-body">
+            <!-- <p>
                     <input type="email" class="form-control" id="text_type" formControlName="text_type" name="text_type">
-                  </p>
-                </div>
-              </div>
+                  </p> -->
+            <div class="form-group">
+              <label for="sel1">Select list (select one):</label>
+              <select class="form-control" (change)="onChangeFormDisplay($event.target.value)" formControlName="text_type">
+                <option value="{{text.label}}" *ngFor="let text of text_type">{{text.name}}</option>
+              </select>
             </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" data-parent="#accordion" href="#float" aria-expanded="true">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <label for="float">FLOAT<span class="arrow"></span></label>
-                      </h4>
-                    </div>
-                  </a>
-                  <div id="float" class="panel-collapse collapse show">
-                      <div class="panel-body">
-                        <p>
-                          <input type="email" class="form-control" id="float" formControlName="float" name="float">
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-        </div> 
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#float" aria-expanded="true">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <label for="float">FLOAT<span class="arrow"></span></label>
+            </h4>
+          </div>
+        </a>
+        <div id="float" class="panel-collapse collapse show">
+          <div class="panel-body">
+            <p>
+              <input type="email" class="form-control" id="float" formControlName="float" name="float">
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#tag" aria-expanded="true">
         <div class="panel-heading">
@@ -47,18 +53,17 @@
       </a>
       <div id="tag" class="panel-collapse collapse show">
         <div class="panel-body">
-            <div formArrayName="tags" *ngFor="let tag of  bodyForm.get('tags')['controls'];let indexTag= index; async as users; last as isLast">
-          <p>
-            <input type="email" class="form-control" id="tag" formControlName="{{indexTag}}" name="tag" >
-          </p>
-          <button type="button" *ngIf="isLast" class="btn-xs btn-danger btn-width-lg" (click)="removeTag(indexTag)">Remove</button>
-         
-          </div> 
+          <div formArrayName="tags" *ngFor="let tag of  bodyForm.get('tags')['controls'];let indexTag= index; async as users; last as isLast">
+            <p>
+              <input type="email" class="form-control" id="tag" formControlName="{{indexTag}}" name="tag">
+            </p>
+            <button type="button" *ngIf="isLast" class="btn-xs btn-danger btn-width-lg" (click)="removeTag(indexTag)">Remove</button>
+
+          </div>
           <button type="button" class="btn-xs btn-success btn-width-lg" (click)="addTag()">Add</button>
         </div>
       </div>
     </div>
-
     <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#type" aria-expanded="true">
         <div class="panel-heading">
@@ -70,14 +75,14 @@
       <div id="type" class="panel-collapse collapse show">
         <div class="panel-body">
           <div class="toggle" *ngFor="let types of type;let radiotypeId= index">
-            <input type="radio" id="{{radiotypeId+types}}" [value]="types" (click)="changes(type[radiotypeId])"
+            <input type="radio" id="{{radiotypeId+types}}" [value]="types" (change)="onChangeTextType(types)" (click)="changes(type[radiotypeId])"
               formControlName="type" name="type">
             <label for="{{radiotypeId+types}}" class="btn"> <i class="fa-padding fas fa-align-{{types}}"></i>{{types}}</label>
           </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
   <div formArrayName="content">
     <div *ngFor="let contentBody of content.controls; let i=index" class="body-forms">
       <div formGroupName="{{i}}">
@@ -85,30 +90,30 @@
           <text-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-content>
         </div>
         <div *ngIf="typeID === 'schedule'">
-            <schedule-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></schedule-content>
-          </div>
+          <schedule-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></schedule-content>
+        </div>
         <div *ngIf="typeID === 'table'">
           <table-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></table-content>
         </div>
         <div *ngIf="typeID !== 'table' && typeID !== 'text_and_image' && typeID !=='schedule'">
-            <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
-          </div>
-        
-       
-      </div>  
+          <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
+        </div>
+
+
+      </div>
       <div class="clearfix"></div>
-<button type="submit" class="btn btn-default btn-width-lg" *ngIf="content.controls.length > 1" (click)="removeContent(i)"> <span
-            class="fa fa-minus"></span>Usuń</button>
+      <button type="submit" class="btn btn-default btn-width-lg" *ngIf="content.controls.length > 1" (click)="removeContent(i)">
+        <span class="fa fa-minus"></span>Usuń</button>
     </div>
 
   </div>
 
   <div class="data-panel">
     <div class="panel-sub">
-  <button type="button" class="btn btn-info" (click)="addContent()">Dodaj</button>
-  <button type="submit" class="btn btn-primary ">Save</button>
-</div>
-</div>
+      <button type="button" class="btn btn-info" (click)="addContent()">Dodaj</button>
+      <button type="submit" class="btn btn-primary ">Save</button>
+    </div>
+  </div>
 </form>
 <hr>
 <div class="clearfix"></div>

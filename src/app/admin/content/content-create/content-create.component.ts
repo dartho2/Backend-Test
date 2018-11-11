@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
@@ -15,8 +15,10 @@ declare var jQuery: any;
 export class ContentCreateComponent implements OnInit {
   @Input() contentData: any;
   @Input() sectionID: any;
+  @Output() text_
   aligns = ['left', 'center', 'right', 'justify'];
-  type = ['text', 'text_and_image', 'schedule', 'table', 'gallery', 'contact']
+  type = ['text', 'text_and_image', 'schedule', 'table', 'gallery', 'contact'];
+  text_type;
   mode;
   typeID = '';
   createdID;
@@ -36,12 +38,51 @@ export class ContentCreateComponent implements OnInit {
   get content() {
     return <FormArray>this.bodyForm.get('content');
   }
-
+  onChangeTextType(data) {
+      if (!data) {
+        return null
+      } else if (data === 'text') {
+        return this.text_type = [
+          {"label": "block_box","name": "block1"}, 
+          {"label": "block-t-t", "name": "block2"},
+          {"label": "block-t-a'", "name": "block3"},
+          {"label": "block_q", "name": "block4"}
+        ]
+      } 
+      else if (data === 'text_and_image') {
+        return this.text_type = [
+          {"label": "block_box","name": "block1"}, 
+          {"label": "referencje", "name": "referencje"},
+          {"label": "block-o-t'", "name": "block3"},
+          {"label": "block-o", "name": "block4"},
+          {"label": "block-o-s", "name": "block5"}
+        ] 
+      } else if (data === 'table' || data === 'schedule' ) {
+        return this.text_type = [
+          {"label": "price-l","name": "cennik1"}, 
+          {"label": "schedule", "name": "grafik"},
+          {"label": "table-o-a'", "name": "cennik2"},
+          {"label": "price-l-n", "name": "cennik3"}
+        ] 
+      } 
+      else if (data === 'list' || data === 'gallery' || 'contact') {
+        return this.text_type = [
+          {"label": "default","name": "default"}
+        ] 
+      }
+       else {
+        return null
+      }
+    
+  }
+  onChangeFormDisplay(name){
+console.log(name , "name")
+  }
   ngOnInit() {
     this.initComp()
   }
   changes(type) {
-    if(this.mode === 'create'){
+    if(this.mode === 'create' || this.sectionID){
     this.typeID = type
   } else {
     this.message = 'Nie można zmienić edytowanego Formatu';
@@ -63,7 +104,6 @@ export class ContentCreateComponent implements OnInit {
         map((res: Response) => {
           this.createdID = res;
           this.contenstService.getSections(this.sectionID).subscribe(section =>{
-            console.log("getsection", section);
             var jsonSection;
             jsonSection = section
             jsonSection.data.push(this.createdID._id) ;
@@ -71,11 +111,7 @@ export class ContentCreateComponent implements OnInit {
               this.message = response;
               this.contenstService.allert()
             })
-            // jsonSection.push(this.pushID(this.sectionID) )
-            // console.log("pushniete", jsonSection, this.createdID._id)
-
           })
-          // this.createdID._id
         }))
         .subscribe(response => {
           this.message = response;

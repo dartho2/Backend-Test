@@ -55,15 +55,12 @@ export class PortalListComponent implements OnInit, OnDestroy {
         this.portalName = portals.name
         this.sectionName = null;
         this.sections = portals.sections
-        console.log(this.portalName)
   }
   showContent(sections){
-    console.log(sections)
     this.ContentToSection = false;
     this.sectionID = sections._id
     this.sectionName = sections.name
     this.contents = sections.data
-    console.log(this.sectionName)
   }
   showData(id) {
     this.ContentToSection = false;
