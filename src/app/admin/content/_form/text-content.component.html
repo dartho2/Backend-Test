@@ -12,7 +12,6 @@
     </div>
     <app-ngx-editor formControlName="text"></app-ngx-editor>
   </div>
-
   <div class="collapse-body cont-l col-md-9">
     <div formArrayName="items">
       <div class="panel panel-default">
@@ -116,30 +115,33 @@
         </div>
       </div>
     </div>
-    <div formArrayName="contact" >
-        <div *ngFor="let contentcontact of contentForm.get('contact')['controls']; let j=index">
-          <div [formGroupName]="j">
-            <div class="panel panel-default">
-              <a data-toggle="collapse" data-parent="#accordion" href="#contentcontact-{{j}}{{i}}">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <label for="contentcontact-{{j}}{{i}}">Contact</label>
-                  </h4>
-                </div>
-              </a>
-              <div id="contentcontact-{{j}}{{i}}" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <p>
-                    <input type="email" class="form-control" id="contentcontact-{{j}}{{i}}" placeholder="phone" formControlName="phone" name="title">
-                    <input type="email" class="form-control" id="contentcontact-{{j}}{{i}}" placeholder="email" formControlName="email" name="url">
-                    <input type="email" class="form-control" id="contentcontact-{{j}}{{i}}" placeholder="reference" formControlName="reference" name="url">
-                  </p>
-                </div>
+    <div formArrayName="contact">
+      <div *ngFor="let contentcontact of contentForm.get('contact')['controls']; let j=index">
+        <div [formGroupName]="j">
+          <div class="panel panel-default">
+            <a data-toggle="collapse" data-parent="#accordion" href="#contentcontact-{{j}}{{i}}">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <label for="contentcontact-{{j}}{{i}}">Contact</label>
+                </h4>
+              </div>
+            </a>
+            <div id="contentcontact-{{j}}{{i}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  <input type="email" class="form-control" id="contentcontact-{{j}}{{i}}" placeholder="phone"
+                    formControlName="phone" name="title">
+                  <input type="email" class="form-control" id="contentcontact-{{j}}{{i}}" placeholder="email"
+                    formControlName="email" name="url">
+                  <input type="email" class="form-control" id="contentcontact-{{j}}{{i}}" placeholder="reference"
+                    formControlName="reference" name="url">
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     <div formArrayName="image">
       <div *ngFor="let contentitems of contentForm.get('image')['controls']; let j=index">
         <div [formGroupName]="j">
