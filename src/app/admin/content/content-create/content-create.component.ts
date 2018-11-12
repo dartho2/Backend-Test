@@ -41,28 +41,21 @@ export class ContentCreateComponent implements OnInit {
         return null
       } else if (data === 'text') {
         return this.text_type = [
-          {"label": "default","name": "default-new"}, 
-          {"label": "block_box","name": "block1"}, 
-          {"label": "block-t-t", "name": "block2"},
-          {"label": "block-t-a'", "name": "block3"},
-          {"label": "block_q", "name": "block4"}
+          {"label": "default","name": "default-new"}
         ]
       } 
       else if (data === 'text_and_image') {
         return this.text_type = [
           {"label": "default","name": "default-new"}, 
-          {"label": "block_box","name": "block1"}, 
           {"label": "referencje", "name": "referencje"},
-          {"label": "block-o-t'", "name": "block3"},
-          {"label": "text_image_r", "name": "treners"},
-          {"label": "block-o-s", "name": "block5"}
+          {"label": "text_image_r", "name": "treners"}
         ] 
       } else if (data === 'table' || data === 'schedule' ) {
         return this.text_type = [
-          {"label": "price-l","name": "cennik1"}, 
+          {"label": "price-l","name": "cennik-default"}, 
           {"label": "schedule", "name": "grafik"},
-          {"label": "table-o-a'", "name": "cennik2"},
-          {"label": "price-l-n", "name": "cennik3"}
+          {"label": "table-o-a'", "name": "tabela-test"},
+          {"label": "price-l-n", "name": "cennik-z-podpisem"}
         ] 
       } else if (data === 'gallery' ) {
         return this.text_type = [

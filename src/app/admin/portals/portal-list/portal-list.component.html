@@ -20,8 +20,11 @@
   <div class="tab-content" *ngIf="portalName">
     <div id="{{portalName}}" class="tab-pane fade in active">
       <ul class="nav nav-tabs">
-        <li *ngFor="let section of sections"><a class="nav-link" data-toggle="tab" (click)="showContent(section)" href="#{{section.name}}">{{section.label}}</a></li>
+        <li *ngFor="let section of sections">
+          <a class="nav-link" data-toggle="tab" (click)="showContent(section)" href="#{{section.name}}">{{section.label}}</a>
+        </li>
       </ul>
+  
       <div class="tab-content" *ngIf="sectionName">
           <div id="{{sectionName}}" class="tab-pane fade in active">
               <div *ngFor="let content of contents; let i=index">
@@ -33,11 +36,11 @@
                         <div class="card-header">
                           <a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}"> 
                            <!-- <div *ngFor="let content of content.content"><div *ngIf="content.title">{{content.title}}</div></div> -->
-                            {{content._id}} <div style="display: inline"*ngFor="let tag of content.tags">{{tag}}, </div>
+                            <li class="list-tag "*ngFor="let tag of content.tags"> {{tag}} </li>
                             
-                            <span _ngcontent-c5="" class="arrow"></span>
+                            <span class="arrow fa fa-2x fa-angle-down"></span>
                             
-                          </a> 
+                          </a>
                           <!-- <span (click)="goDown(i)">down</span> -->
                         </div>
                         <div id="{{content._id}}" class="collapse" data-parent="#accordion">

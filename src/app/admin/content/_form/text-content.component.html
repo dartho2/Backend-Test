@@ -5,8 +5,8 @@
         <label for="title">
           <h2>Title</h2>
         </label>
-        <input type="email" class="form-control full" id="title" formControlName="title" name="title" aria-describedby="emailHelp">
-        <input type="email" class="form-control full" id="title" formControlName="lead" name="title" aria-describedby="emailHelp">
+        <input type="email" class="form-control full" id="title" placeholder="title" formControlName="title" name="title" aria-describedby="emailHelp">
+        <input type="email" class="form-control full" id="title" placeholder="lead" formControlName="lead" name="title" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted"></small>
       </div>
     </div>
@@ -46,7 +46,7 @@
       <div id="reference{{i}}" class="panel-collapse collapse">
         <div class="panel-body">
           <p>
-            <input type="email" class="form-control" id="reference{{i}}" formControlName="reference" name="reference">
+            <input type="email" placeholder="url"  class="form-control" id="reference{{i}}" formControlName="reference" name="reference">
           </p>
         </div>
       </div>
@@ -62,7 +62,7 @@
       <div id="decriptions{{i}}" class="panel-collapse collapse">
         <div class="panel-body">
           <p>
-            <input type="email" class="form-control" id="decriptions{{i}}" formControlName="decriptions" name="decriptions">
+            <input type="email" placeholder="decription" class="form-control" id="decriptions{{i}}" formControlName="decriptions" name="decriptions">
           </p>
         </div>
       </div>
@@ -78,7 +78,7 @@
       <div id="button{{i}}" class="panel-collapse collapse">
         <div class="panel-body">
           <p>
-            <input type="email" class="form-control" id="button{{i}}" formControlName="button" name="button">
+            <input type="email" placeholder="true/false" class="form-control" id="button{{i}}" formControlName="button" name="button">
           </p>
         </div>
       </div>
@@ -94,7 +94,7 @@
       <div id="signature{{i}}" class="panel-collapse collapse">
         <div class="panel-body">
           <p>
-            <input type="email" class="form-control" id="signature{{i}}" formControlName="signature" name="signature">
+            <input type="email" class="form-control" placeholder="signature(podpis)" id="signature{{i}}" formControlName="signature" name="signature">
           </p>
         </div>
       </div>
@@ -110,7 +110,7 @@
       <div id="date{{i}}" class="panel-collapse collapse">
         <div class="panel-body">
           <p>
-            <input type="email" class="form-control" id="date{{i}}" formControlName="date" name="date">
+            <input type="email" class="form-control" placeholder="data" id="date{{i}}" formControlName="date" name="date">
           </p>
         </div>
       </div>
@@ -156,8 +156,9 @@
             <div id="images-{{j}}{{i}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <p>
-                  <input type="email" class="form-control" id="images-{{j}}{{i}}" formControlName="title" name="title">
-                  <input type="email" class="form-control" id="images-{{j}}{{i}}" formControlName="url" name="url">
+                  <input type="email" class="form-control" id="images-{{j}}{{i}}" placeholder="title" formControlName="title" name="title">
+                  <input type="email" class="form-control" id="images-{{j}}{{i}}" placeholder="url" formControlName="url" name="url">
+                  <input type="email" class="form-control" id="images-{{j}}{{i}}" placeholder="description" formControlName="description" name="description">
                 </p>
               </div>
             </div>

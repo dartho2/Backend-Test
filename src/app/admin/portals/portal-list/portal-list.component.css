@@ -28,6 +28,32 @@ a:focus, a:hover {
 .tab-content {
     padding-top: 20px;
 }
+/* .span.arrow:before:hover {
+    color:red !important;
+} */
+.card-header:hover{
+background-color: #ffbc02;
+}
+.card-header:hover span.arrow {
+    color: black;
+    }
+span.arrow {
+    /* font-family: 'FontAwesome';
+    content: "\f107";
+    display: inline-block; */
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: right;
+  }
+.list-tag {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    list-style-type: none;
+    padding-left: 15px;
+  }
   
   /* remove border radius for the tab */
   
