@@ -54,7 +54,7 @@ export class ContentCreateComponent implements OnInit {
           {"label": "block_box","name": "block1"}, 
           {"label": "referencje", "name": "referencje"},
           {"label": "block-o-t'", "name": "block3"},
-          {"label": "block-o", "name": "block4"},
+          {"label": "text_image_r", "name": "treners"},
           {"label": "block-o-s", "name": "block5"}
         ] 
       } else if (data === 'table' || data === 'schedule' ) {
