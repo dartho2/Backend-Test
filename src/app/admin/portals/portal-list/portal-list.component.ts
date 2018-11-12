@@ -50,6 +50,7 @@ export class PortalListComponent implements OnInit, OnDestroy {
       });
 
   }
+
   showSections(portals){
        this.ContentToSection = false;
         this.portalName = portals.name
@@ -61,6 +62,10 @@ export class PortalListComponent implements OnInit, OnDestroy {
     this.sectionID = sections._id
     this.sectionName = sections.name
     this.contents = sections.data
+    // this.contents.map(x => {
+    //   console.log(x._id, ' <=> ', this.sectionID)
+    // })
+    
   }
   showData(id) {
     this.ContentToSection = false;

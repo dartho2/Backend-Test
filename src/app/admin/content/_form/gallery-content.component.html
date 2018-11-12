@@ -1,1 +1,67 @@
-<H1 style="color:red">Wybierz Inny format! Gallery <span class="badge badge-secondary">Comming soon !!!</span></H1>
+<div [formGroup]="contentForm">
+    <div class="col-md-9 content-row">
+      <!-- <div class="form-inlines">
+        <div class="form-group">
+          <label for="title">
+            <h2>Title</h2>
+          </label>
+          <input type="email" class="form-control full" id="title" formControlName="title" name="title" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+      </div>
+      <app-ngx-editor formControlName="text"></app-ngx-editor>
+    </div> -->
+    <div formArrayName="videos">
+        <div  class ="col-lg-6 col-md-6 col-sm-12 col-xs-12" *ngFor="let contentitems of contentForm.get('videos')['controls']; let j=index; async as users; last as isLast">
+          <div [formGroupName]="j">
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#videos-{{j}}{{i}}">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="videos-{{j}}{{i}}">videos</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="videos-{{j}}{{i}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="videos-{{j}}{{i}}" formControlName="title" placeholder="title" name="title">
+                    <input type="email" class="form-control" id="videos-{{j}}{{i}}" formControlName="url" placeholder="url" name="url">
+                    <app-ngx-editor formControlName="description"></app-ngx-editor>
+                  </p>
+                </div>
+              </div>
+            </div> <div class="clearfix"></div>
+            <button type="button" *ngIf="isLast" class="btn-xs btn-danger " (click)="removeVideo(i, j)">Remove</button>
+            <button type="button" *ngIf="isLast" class="btn-xs btn-success" (click)="addVideo(i)">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div formArrayName="image">
+        <div *ngFor="let contentitems of contentForm.get('image')['controls']; let j=index">
+          <div [formGroupName]="j">
+            <div class="panel panel-default">
+              <a data-toggle="collapse" data-parent="#accordion" href="#images-{{j}}{{i}}">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <label for="images-{{j}}{{i}}">image</label>
+                  </h4>
+                </div>
+              </a>
+              <div id="images-{{j}}{{i}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <p>
+                    <input type="email" class="form-control" id="images-{{j}}{{i}}" placeholder="title" formControlName="title" name="title">
+                    <input type="email" class="form-control" id="images-{{j}}{{i}}" placeholder="url" formControlName="url" name="url">
+                    <app-ngx-editor formControlName="description"></app-ngx-editor>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

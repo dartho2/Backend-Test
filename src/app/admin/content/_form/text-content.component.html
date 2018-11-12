@@ -2,7 +2,9 @@
   <div class="col-md-9 content-row">
     <div class="form-inlines">
       <div class="form-group">
-        <label for="title"><h2>Title</h2></label>
+        <label for="title">
+          <h2>Title</h2>
+        </label>
         <input type="email" class="form-control full" id="title" formControlName="title" name="title" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted"></small>
       </div>
@@ -11,6 +13,28 @@
   </div>
 
   <div class="collapse-body cont-l col-md-9">
+    <div formArrayName="items">
+      <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#items{{i}}">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <label for="items{{i}}">items</label>
+            </h4>
+          </div>
+        </a>
+        <div id="items{{i}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div *ngFor="let header of contentForm.get('items')['controls']; let j=index; async as users; last as isLast; first as isFirst">
+              <p>
+                <input type="email" class="form-control" formControlName="{{j}}">
+                <button type="button" *ngIf="isLast" class="btn-xs btn-danger " (click)="removeItems(contentForm.controls.items, j)">Remove</button>
+                <button type="button" *ngIf="isLast" class="btn-xs btn-success" (click)="addItems(contentForm.controls.items, j)">Add</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="panel panel-default">
       <a data-toggle="collapse" data-parent="#accordion" href="#reference{{i}}">
         <div class="panel-heading">
@@ -92,7 +116,6 @@
       </div>
     </div>
     <div formArrayName="image">
-
       <div *ngFor="let contentitems of contentForm.get('image')['controls']; let j=index">
         <div [formGroupName]="j">
           <div class="panel panel-default">

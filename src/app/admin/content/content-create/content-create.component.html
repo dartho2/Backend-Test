@@ -86,7 +86,7 @@
   <div formArrayName="content">
     <div *ngFor="let contentBody of content.controls; let i=index" class="body-forms">
       <div formGroupName="{{i}}">
-        <div *ngIf="typeID === 'text_and_image'">
+        <div *ngIf="typeID === 'text_and_image' || typeID === 'text'">
           <text-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-content>
         </div>
         <div *ngIf="typeID === 'schedule'">
@@ -95,9 +95,12 @@
         <div *ngIf="typeID === 'table'">
           <table-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></table-content>
         </div>
-        <div *ngIf="typeID !== 'table' && typeID !== 'text_and_image' && typeID !=='schedule'">
-          <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
+        <div *ngIf="typeID === 'gallery'">
+        <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
         </div>
+        <!-- <div *ngIf="typeID !== 'table' && typeID !== 'text' && typeID !== 'text_and_image' && typeID !=='schedule'">
+          <gallery-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></gallery-content>
+        </div> -->
 
 
       </div>
@@ -117,4 +120,4 @@
 </form>
 <hr>
 <div class="clearfix"></div>
-<!-- <pre>{{bodyForm.value | json}}</pre> -->
+<pre>{{bodyForm.value | json}}</pre>

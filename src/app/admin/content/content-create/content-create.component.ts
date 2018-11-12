@@ -41,6 +41,7 @@ export class ContentCreateComponent implements OnInit {
         return null
       } else if (data === 'text') {
         return this.text_type = [
+          {"label": "default","name": "default-new"}, 
           {"label": "block_box","name": "block1"}, 
           {"label": "block-t-t", "name": "block2"},
           {"label": "block-t-a'", "name": "block3"},
@@ -49,6 +50,7 @@ export class ContentCreateComponent implements OnInit {
       } 
       else if (data === 'text_and_image') {
         return this.text_type = [
+          {"label": "default","name": "default-new"}, 
           {"label": "block_box","name": "block1"}, 
           {"label": "referencje", "name": "referencje"},
           {"label": "block-o-t'", "name": "block3"},
@@ -62,8 +64,12 @@ export class ContentCreateComponent implements OnInit {
           {"label": "table-o-a'", "name": "cennik2"},
           {"label": "price-l-n", "name": "cennik3"}
         ] 
+      } else if (data === 'gallery' ) {
+        return this.text_type = [
+          {"label": "default","name": "default-new"},
+        ] 
       } 
-      else if (data === 'list' || data === 'gallery' || 'contact') {
+      else if (data === 'list' || 'contact') {
         return this.text_type = [
           {"label": "default","name": "default"}
         ] 
@@ -181,6 +187,10 @@ console.log(name , "name")
         reference: [contentBody.reference ? contentBody.reference : ''],
         decriptions: [contentBody.decriptions ? contentBody.decriptions : ''],
         headers: this._fb.array(contentBody.headers ? contentBody.headers : ''),
+        items: this._fb.array(
+          // contentBody.data.map(dataResult => { return dataResult})
+          contentBody.items ? contentBody.items : '' 
+        ),
         data: this._fb.array(
           contentBody.data.map(dataResult => {
             return this._fb.array(
@@ -208,6 +218,9 @@ console.log(name , "name")
         ),
         image: this._fb.array(
           this.getImage(contentBody ? contentBody.image : null)
+        ),
+        videos: this._fb.array(
+          this.getVideo(contentBody ? contentBody.videos : null)
         )
       });
     }) :
@@ -221,23 +234,41 @@ console.log(name , "name")
         reference: '',
         decriptions: '',
         headers: this._fb.array(['']),
+        items: this._fb.array(['']),
         data: this._fb.array([this._fb.array([''])]),
         image: this._fb.array(
           this.getImage(null)
-        )
+        ),
+        videos:this._fb.array(
+          this.getVideo(null)
+        ),
       })]
 
   }
-
+  getVideo(video: any): FormGroup[] {
+    return video ? video.map(videoBody => {
+      return this._fb.group({
+        url: [videoBody.url],
+        title: [videoBody.title],
+        description: [videoBody.description],
+      });
+    }) : [this._fb.group({
+      url: '',
+      title: '',
+      description: ''
+    })]
+  }
   getImage(image: any[]): FormGroup[] {
     return image ? image.map(imageBody => {
       return this._fb.group({
         url: [imageBody.url],
-        title: [imageBody.title]
+        title: [imageBody.title],
+        description: [imageBody.description? imageBody.description : '']
       });
     }) : [this._fb.group({
       url: '',
-      title: ''
+      title: '',
+      description: ''
     })]
   }
   addContent() {
@@ -247,6 +278,8 @@ console.log(name , "name")
       );
     }))
   }
+
+
 
   removeContent(i: number) {
     const control = <FormArray>this.bodyForm.controls['content'];

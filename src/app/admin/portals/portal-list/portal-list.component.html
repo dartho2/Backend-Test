@@ -24,16 +24,21 @@
       </ul>
       <div class="tab-content" *ngIf="sectionName">
           <div id="{{sectionName}}" class="tab-pane fade in active">
-              <div *ngFor="let content of contents">
+              <div *ngFor="let content of contents; let i=index">
                 <div *ngIf="content.type">
                 
                   <div id="accordion">
 
                       <div class="card">
                         <div class="card-header">
-                          <a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}"> {{content._id}}<span _ngcontent-c5="" class="arrow"></span>
-                             
-                          </a>
+                          <a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}"> 
+                           <!-- <div *ngFor="let content of content.content"><div *ngIf="content.title">{{content.title}}</div></div> -->
+                            {{content._id}}
+                            
+                            <span _ngcontent-c5="" class="arrow"></span>
+                            
+                          </a> 
+                          <!-- <span (click)="goDown(i)">down</span> -->
                         </div>
                         <div id="{{content._id}}" class="collapse" data-parent="#accordion">
                           <div class="card-body" *ngIf="dataId === content._id">
