@@ -33,5 +33,20 @@ export class GalleryContentomponent implements OnInit {
       let formControl = (<FormArray>this.contentCreate.bodyForm.controls['content']).at(index);
       ( < FormArray > formControl.get('videos')).removeAt(indexGroup)}
   }
+  addImage(index) {
+    console.log(index);
+    let formControl = (<FormArray>this.contentCreate.bodyForm.controls['content']).at(index);
+    console.log("at ", formControl);
+    ( < FormArray > formControl.get('image')).push(this._fb.group({
+      url: '',
+      title: '',
+      description: ''
+    }));
+  }
+    removeImage(index:number, indexGroup: number ) {
+      if( indexGroup !== 0 ){
+      let formControl = (<FormArray>this.contentCreate.bodyForm.controls['content']).at(index);
+      ( < FormArray > formControl.get('image')).removeAt(indexGroup)}
+  }
 }
 

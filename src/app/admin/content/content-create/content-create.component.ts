@@ -163,7 +163,7 @@ console.log(name , "name")
         text_align: [data ? data.styles.text_align : '',]
       }),
       content: this._fb.array(
-        this.getContent(data ? data.content : null)
+        this.getContent(data ? data.content : null),
       ),
       tags: this._fb.array(
         this.getTags(data ? data.tags : null)
@@ -187,6 +187,9 @@ console.log(name , "name")
         reference: [contentBody.reference ? contentBody.reference : ''],
         decriptions: [contentBody.decriptions ? contentBody.decriptions : ''],
         headers: this._fb.array(contentBody.headers ? contentBody.headers : ''),
+        contact: this._fb.array(
+          this.getContact(contentBody ? contentBody.contact : null)
+      ),
         items: this._fb.array(
           // contentBody.data.map(dataResult => { return dataResult})
           contentBody.items ? contentBody.items : '' 
@@ -234,6 +237,9 @@ console.log(name , "name")
         reference: '',
         decriptions: '',
         headers: this._fb.array(['']),
+        contact: this._fb.array(
+          this.getContact(null)
+      ),
         items: this._fb.array(['']),
         data: this._fb.array([this._fb.array([''])]),
         image: this._fb.array(
@@ -244,6 +250,19 @@ console.log(name , "name")
         ),
       })]
 
+  }
+  getContact(contact: any): FormGroup[] { 
+    return contact ? contact.map(contactBody => {
+      return this._fb.group({
+        phone:[contactBody.phone? contactBody.phone : ""],
+        email:[contactBody.email? contactBody.email : ""],
+        reference:[contactBody.reference? contactBody.reference : ""]
+      })
+    }): [this._fb.group({
+      phone: '',
+      email: '',
+      reference: ''
+    })]
   }
   getVideo(video: any): FormGroup[] {
     return video ? video.map(videoBody => {

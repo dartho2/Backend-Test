@@ -33,7 +33,7 @@
                         <div class="card-header">
                           <a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}"> 
                            <!-- <div *ngFor="let content of content.content"><div *ngIf="content.title">{{content.title}}</div></div> -->
-                            {{content._id}}
+                            {{content._id}} <div style="display: inline"*ngFor="let tag of content.tags">{{tag}}, </div>
                             
                             <span _ngcontent-c5="" class="arrow"></span>
                             
