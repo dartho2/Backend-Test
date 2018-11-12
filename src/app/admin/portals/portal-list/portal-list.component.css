@@ -34,6 +34,12 @@ a:focus, a:hover {
 .card-header:hover{
 background-color: #ffbc02;
 }
+a[aria-expanded="true"]{
+  background-color: #ffbc02;
+}
+a[aria-expanded="false"]{
+  background-color: transparent;
+}
 .card-header:hover span.arrow {
     color: black;
     }
