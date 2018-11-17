@@ -5,7 +5,7 @@
         <div class="col-md-12" *ngIf="sections._id === portalID">
           <li *ngFor="let section of sections.sections">
 
-            <div id="accordion" *ngIf="section._id === sectionID">
+            <div id="accordionSections" *ngIf="section._id === sectionID">
               <div *ngFor="let content of section.data; let i=index">
 
                 <div class="card">
@@ -21,7 +21,7 @@
           <span (click)="goUp(content._id)" class="arrow fa fa-2x fa-angle-up"></span>
           </h5>
         </div>
-        <div id="{{i}}" class="collapse" attr.aria-labelledby="head{{i}}" data-parent="#accordion">
+        <div id="{{i}}" class="collapse" attr.aria-labelledby="head{{i}}" data-parent="#accordionSections">
           <div class="card-body" *ngIf="contentID === content._id">
             <app-content-create [contentData]="content"></app-content-create>
           </div>
