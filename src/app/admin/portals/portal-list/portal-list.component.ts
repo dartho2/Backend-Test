@@ -16,6 +16,7 @@ export class PortalListComponent implements OnInit, OnDestroy {
   portals: Portal[];
   sections;
   contentData;
+  portalId;
   sectionID;
   dataId;
   ContentToSection;
@@ -31,29 +32,15 @@ export class PortalListComponent implements OnInit, OnDestroy {
     this.portalService.getPortals();
     this.portalsSub = this.portalService.getPortalsUpdatedListener()
       .subscribe((portals: Portal[]) => {
-        console.log(portals, "portals")
         this.portals = portals;
-        // this.route.paramMap.subscribe((paramMap: ParamMap) => {
-          // if (paramMap.has("type")) {
-          //   console.log(portals)
-          //   this.title = this.modeType = paramMap.get("type")
-          // this.contents = contents.filter(type => type.type === this.modeType)
-          // this.contents = contents.filter(type => type.tags.includes(this.modeType))
-          // console.log(this.contents)
-          // console.log(this.contentArray)
-          //  this.contents(this.contentArray)    
-          // }else{
-          // this.contents = contents;
-          // }})
-
-        // })
       });
 
   }
 
-  showSections(portals){
+  showSections(portals, id){
        this.ContentToSection = false;
         this.portalName = portals.name
+        this.portalId = id;
         this.sectionName = null;
         this.sections = portals.sections
   }
@@ -62,9 +49,6 @@ export class PortalListComponent implements OnInit, OnDestroy {
     this.sectionID = sections._id
     this.sectionName = sections.name
     this.contents = sections.data
-    // this.contents.map(x => {
-    //   console.log(x._id, ' <=> ', this.sectionID)
-    // })
     
   }
   showData(id) {
@@ -77,5 +61,37 @@ export class PortalListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.portalsSub.unsubscribe();
   }
+
+  // goUp(id){
+  //   console.log('id',id)
+  //   let a;
+  //   var arrID = this.sections.findIndex(x => x._id === id)
+  //       let c: string;  
+  //  this.portalService.getPortal(this.portalId).subscribe(x=> {
+
+  //     a = x
+  //     console.log('beffore', a)
+  //     c = a.sections.splice(arrID, 1)
+  //     a.sections.splice(arrID+1, 0, c[0])
+  //     console.log('after', a)
+  //     this.portalService.changePosition(this.portalId, a)
+  //  })
+  //  this.portalsSub = this.portalService.getPortalsUpdatedListener()
+  //  .subscribe((portals: Portal[]) => {
+  //    let c  = portals;
+  //    console.log('c',c)
+  //  });
+    //    a = x
+    //   var c: string;    
+    //    var arrID = a.sections.findIndex(x => x === id)
+    //    c = a.sections.splice(arrID, 1)
+    //    a.sections.splice(arrID+1, 0, c[0])
+    //   this.portalService.changePosition(this.selectedId, a)
+   
+  
+    //   console.log('arr',a)
+    //   console.log(this.portals)
+    //   console.log(this.selectedId)
+    // }
 
 }

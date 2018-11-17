@@ -1,0 +1,94 @@
+<!-- <div class="card"> 
+  <div class="card-body">s
+    <div class="tab-content">
+      <div class="tab-panel">
+        <ul class="nav nav-tabs">
+          <li *ngFor="let section of portals">
+            <div *ngFor="let sections of section.sections">
+              <a class="nav-link" data-toggle="tab" routerLinkActive="active"
+                [routerLink]="sections._id">{{sections.label}}</a>
+                <span (click)="goUp(sections._id)" class="arrow fa fa-2x fa-angle-down"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <router-outlet></router-outlet> -->
+<!-- {{sections.label}} -->
+<!-- <div *ngFor="let sections of portals">
+  <hr>
+  <div *ngIf="sections._id === portal">
+    <div *ngFor="let section of sections.sections">{{section.label}} <span (click)="goUp(section._id)" class="arrow fa fa-2x fa-angle-down"></span></div>
+  </div>
+</div>
+ -->
+
+
+
+
+<div class="card-body">
+  <div class="tab-content">
+    <div class="tab-panel">
+      <ul class="list-inline" *ngFor="let sections of portals">
+        <div *ngIf="sections._id === portal">
+          <li class="list-inline-item" *ngFor="let section of sections.sections">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="section._id">
+                <!-- <a class="nav-link" > -->
+              {{section.label}}
+             
+              
+              <span (click)="goUp(section._id)" class="arrow fa fa-2x fa-angle-right"></span>
+              <span (click)="goDown(section._id)" class="arrow fa fa-2x fa-angle-left"></span>
+            </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+<!-- <li *ngFor="let section of sections">
+       <p *ngFor="let d of section.sections" > <a class="nav-link" data-toggle="tab" (click)="showContent(section)" href="#{{d.name}}">{{d.label}}</a> <span (click)="goUp(d._id)" class="arrow fa fa-2x fa-angle-down"></span></p>
+       
+      </li> -->
+
+
+
+<!-- <div class="tab-content" *ngIf="sectionName">
+  <div id="{{sectionName}}" class="tab-pane fade in active">
+    <div *ngFor="let content of contents; let i=index">
+      <div *ngIf="content.type">
+        <div id="accordion">
+          <div class="card"><a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}">
+            <div class="card-header">
+              
+                <li class="list-tag " *ngFor="let tag of content.tags"> {{tag}} </li>
+                <span class="arrow fa fa-2x fa-angle-down"></span>
+            
+            </div>  </a>
+            <div id="{{content._id}}" class="collapse" data-parent="#accordion">
+              <div class="card-body" *ngIf="dataId === content._id">
+                <app-content-create [contentData]="content"></app-content-create>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="ContentToSection">
+      <app-content-create [sectionID]="sectionID"></app-content-create>
+    </div>
+    <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
+  </div>
+</div> -->

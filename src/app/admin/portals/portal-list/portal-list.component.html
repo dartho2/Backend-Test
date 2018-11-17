@@ -1,9 +1,13 @@
+<!-- <div *ngFor="let p of portals"><hr>
+  <div *ngFor="let a of p.sections">{{a._id}}={{a.label}}</div>
+</div> -->
+
 <div class="card">
   <div class="card-body">
     <h2>Portals</h2>
     <ul class="nav nav-tabs">
       <li *ngFor="let portal of portals" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 Services-tab  item">
-        <a class="nav-link tab-color" data-toggle="tab" (click)="showSections(portal)" href="#{{portal.name}}">
+        <a class="nav-link tab-color" data-toggle="tab" (click)="showSections(portal, portal._id)" routerLinkActive="active" [routerLink]="portal._id">
           <div class="text">
             <div class="folded-corner service_tab_1">
               <i class="fa fa-image fa-5x fa-icon-image"></i>
@@ -14,40 +18,5 @@
         </a>
       </li>
     </ul>
-    <div class="tab-content" *ngIf="portalName">
-      <div id="{{portalName}}" class="tab-pane fade in active">
-        <ul class="nav nav-tabs">
-          <li *ngFor="let section of sections">
-            <a class="nav-link" data-toggle="tab" (click)="showContent(section)" href="#{{section.name}}">{{section.label}}</a>
-          </li>
-        </ul>
-        <div class="tab-content" *ngIf="sectionName">
-          <div id="{{sectionName}}" class="tab-pane fade in active">
-            <div *ngFor="let content of contents; let i=index">
-              <div *ngIf="content.type">
-                <div id="accordion">
-                  <div class="card"><a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}">
-                    <div class="card-header">
-                      
-                        <li class="list-tag " *ngFor="let tag of content.tags"> {{tag}} </li>
-                        <span class="arrow fa fa-2x fa-angle-down"></span>
-                    
-                    </div>  </a>
-                    <div id="{{content._id}}" class="collapse" data-parent="#accordion">
-                      <div class="card-body" *ngIf="dataId === content._id">
-                        <app-content-create [contentData]="content"></app-content-create>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="ContentToSection">
-              <app-content-create [sectionID]="sectionID"></app-content-create>
-            </div>
-            <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
+  <router-outlet></router-outlet>

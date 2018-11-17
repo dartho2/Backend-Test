@@ -1,0 +1,124 @@
+<div class="card-body">
+  <div class="tab-content">
+    <div class="tab-panel">
+      <ul class="nav nav-tabs" *ngFor="let sections of portals">
+        <div class="col-md-12" *ngIf="sections._id === portalID">
+          <li *ngFor="let section of sections.sections">
+
+            <div id="accordion" *ngIf="section._id === sectionID">
+              <div *ngFor="let content of section.data; let i=index">
+
+                <div class="card">
+                  <div class="card-header" id="head{{i}}">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" (click)="showData(content._id)" data-toggle="collapse"
+                        attr.data-target="#{{i}}" aria-expanded="true" attr.aria-controls="{{i}}">
+          <li class="list-tag " *ngFor="let tag of content.tags">{{tag}}</li>
+          
+         
+          </button> 
+          <span (click)="goDown(content._id)" class="arrow fa fa-2x fa-angle-down"></span>
+          <span (click)="goUp(content._id)" class="arrow fa fa-2x fa-angle-up"></span>
+          </h5>
+        </div>
+        <div id="{{i}}" class="collapse" attr.aria-labelledby="head{{i}}" data-parent="#accordion">
+          <div class="card-body" *ngIf="contentID === content._id">
+            <app-content-create [contentData]="content"></app-content-create>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+</li>
+<div *ngIf="ContentToSection">
+    <app-content-create [sectionID]="sectionID"></app-content-create>
+  
+  </div>
+  <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
+</div>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- <div class="tab-content">
+                  <div class="tab-panel active">
+                   
+                        <div id="accordion">
+                          <div class="card">
+                            <a class="card-link" (click)="showData(content._id)" data-toggle="collapse" href="#{{content._id}}">
+                              <div class="card-header">
+          <li class="list-tag " *ngFor="let tag of content.tags">
+            {{tag}}
+          </li>
+          <span class="arrow fa fa-2x fa-angle-down"></span>
+        </div>
+        </a>
+        <div id="{{content._id}}" class="collapse" data-parent="#accordion">
+          <div class="card-body" *ngIf="contentID === content._id">
+            <app-content-create [contentData]="content"></app-content-create>
+          </div>
+        </div>
+    </div>
+  </div> -->
+
+<!-- <div *ngIf="ContentToSection">
+  <app-content-create [sectionID]="sectionID"></app-content-create>
+</div> -->
+<!-- <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button> -->
+<!-- </div>
+</div> -->
+
+
+
+
+<!-- <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Collapsible Group Item #1
+          </button>
+        </h5>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Collapsible Group Item #2
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Collapsible Group Item #3
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+  </div> -->
