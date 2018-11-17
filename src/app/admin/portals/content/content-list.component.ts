@@ -84,4 +84,7 @@ export class ContentComponent implements OnInit, OnDestroy {
     })
 
   }
+  contentDelete(id){
+    this.portalService.deleteContent(id)
+  }
 }

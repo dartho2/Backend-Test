@@ -39,11 +39,10 @@ span.arrow.fa.fa-angle-down:hover {
   padding-top: 20px;
 }
 .align-middle {
-  height: 50%;
   overflow: auto;
   margin: auto;
   position: absolute;
-  top: 0;
+  top: 20px;
   bottom: 0;
   right: 0;
   vertical-align: middle !important;
