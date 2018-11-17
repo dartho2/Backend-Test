@@ -72,12 +72,27 @@ span.arrow {
 #exTab3 .nav-pills > li > a {
   border-radius: 4px 4px 0 0 ;
 }
+a.nav-link.active {
+  background-color: #ffbc02;
+  border: 0px solid transparent;
+  box-shadow: 0 0 20px rgba(45, 45, 45, 0.28);
+}
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
   background-color: #ffbc02;
   color: black;
   border: 0px solid transparent;
   box-shadow: 0 0 20px rgba(45, 45, 45, 0.28);
+}
+span.arrow.fa.fa-angle-left:hover {
+  cursor: pointer;
+  position: relative;
+  color: #7b7b7b;
+}
+span.arrow.fa.fa-angle-right:hover {
+  cursor: pointer;
+  position: relative;
+  color: #7b7b7b;
 }
 .nav-tabs {
 border: none;

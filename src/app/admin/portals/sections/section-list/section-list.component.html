@@ -33,15 +33,16 @@
     <div class="tab-panel">
       <ul class="list-inline" *ngFor="let sections of portals">
         <div *ngIf="sections._id === portal">
-          <li class="list-inline-item" *ngFor="let section of sections.sections">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="section._id">
+          <li class="list-inline-item col-md-auto" *ngFor="let section of sections.sections">
+            <a class="nav-link text-center" routerLinkActive="active" [routerLink]="section._id">
                 <!-- <a class="nav-link" > -->
               {{section.label}}
-             
-              
-              <span (click)="goUp(section._id)" class="arrow fa fa-2x fa-angle-right"></span>
-              <span (click)="goDown(section._id)" class="arrow fa fa-2x fa-angle-left"></span>
+             <br>
             </a>
+            <div class="col-md-auto">
+              <span (click)="goUp(section._id)" class="arrow fa fa-angle-right"></span>
+              <span (click)="goDown(section._id)" class="arrow fa fa-angle-left"></span>
+            </div>
           </li>
         </div>
       </ul>

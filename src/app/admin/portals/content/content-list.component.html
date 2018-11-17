@@ -11,14 +11,17 @@
                 <div class="card">
                   <div class="card-header" id="head{{i}}">
                     <h5 class="mb-0">
-                      <button class="btn btn-link" (click)="showData(content._id)" data-toggle="collapse"
-                        attr.data-target="#{{i}}" aria-expanded="true" attr.aria-controls="{{i}}">
+                      <a class="nav-link tab-color" (click)="showData(content._id)" data-toggle="collapse"
+                        attr.data-target="#{{i}}" aria-expanded="false" attr.aria-controls="{{i}}">
           <li class="list-tag " *ngFor="let tag of content.tags">{{tag}}</li>
-          
-         
-          </button> 
-          <span (click)="goDown(content._id)" class="arrow fa fa-2x fa-angle-down"></span>
-          <span (click)="goUp(content._id)" class="arrow fa fa-2x fa-angle-up"></span>
+
+
+                    </a>
+          <div class="align-middle">
+            <span (click)="goDown(content._id)" class="arrow fa fa-angle-down"></span>
+            <span (click)="goUp(content._id)" class="arrow fa fa-angle-up"></span>
+          </div>
+
           </h5>
         </div>
         <div id="{{i}}" class="collapse" attr.aria-labelledby="head{{i}}" data-parent="#accordionSections">
@@ -31,10 +34,10 @@
 </div>
 </li>
 <div *ngIf="ContentToSection">
-    <app-content-create [sectionID]="sectionID"></app-content-create>
-  
-  </div>
-  <button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
+  <app-content-create [sectionID]="sectionID"></app-content-create>
+
+</div>
+<button type="button" class="btn btn-info" (click)="addContentToSection()">Dodaj</button>
 </div>
 </ul>
 </div>

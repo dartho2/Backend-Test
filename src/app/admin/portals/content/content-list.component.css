@@ -25,8 +25,28 @@ a:focus, a:hover {
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
+span.arrow.fa.fa-angle-up:hover {
+  cursor: pointer;
+  position: relative;
+  color: #7b7b7b;
+}
+span.arrow.fa.fa-angle-down:hover {
+  cursor: pointer;
+  position: relative;
+  color: #7b7b7b;
+}
 .tab-content {
   padding-top: 20px;
+}
+.align-middle {
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  vertical-align: middle !important;
 }
 /* .span.arrow:before:hover {
   color:red !important;
