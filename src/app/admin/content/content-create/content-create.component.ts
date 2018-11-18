@@ -1,9 +1,10 @@
-import { Component, OnInit, Input,  } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges,  } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { isObject } from 'util';
 import { map } from 'rxjs/operators';
+import { PortalService } from '../../portals/portal.service';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -11,7 +12,7 @@ declare var jQuery: any;
   templateUrl: './content-create.component.html',
   styleUrls: ['./content-create.component.css']
 })
-export class ContentCreateComponent implements OnInit {
+export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
   @Input() contentData: any;
   @Input() sectionID: any;
   aligns = ['left', 'center', 'right', 'justify'];
@@ -25,7 +26,7 @@ export class ContentCreateComponent implements OnInit {
   contentForm;
   message;
   bodyForm: FormGroup;
-  constructor(public contenstService: ContentService,
+  constructor(public contenstService: ContentService, private portalServices: PortalService,
     private _fb: FormBuilder,
     public route: ActivatedRoute) {
 
@@ -76,6 +77,7 @@ export class ContentCreateComponent implements OnInit {
 console.log(name , "name")
   }
   ngOnInit() {
+    console.log('app-create')
     this.initComp()
   }
   changes(type) {
@@ -125,8 +127,10 @@ console.log(name , "name")
   }
 
   initComp() {
+    
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("contentId") || this.contentData) {
+      if (this.contentData) {
+        console.log('contentData', this.contentData)
         this.mode = "edit";
         if(this.contentData) {
           this.contentId = this.contentData._id
@@ -134,6 +138,7 @@ console.log(name , "name")
         this.contentId = paramMap.get("contentId");
       }
         this.contenstService.getContent(this.contentId).subscribe(res => {
+          console.log('create-comp')
           this.contentForm = res;
           this.typeID = this.contentForm.type;
           this.buildForm(this.contentForm)
@@ -306,5 +311,12 @@ console.log(name , "name")
     const controls = <FormArray>this.bodyForm.controls['tags'];
     controls.push(this._fb.control(''))
   }
-
+  ngOnDestroy(){
+    console.log('destr')
+    this.contentData = null
+  }
+  ngOnChanges(){
+    console.log('change')
+  }
+  
 }

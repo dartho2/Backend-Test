@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscriber, Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { Portal } from '../portal.model';
   templateUrl: './content-list.component.html',
   styleUrls: ['./content-list.component.css']
 })
-export class ContentComponent implements OnInit, OnDestroy {
+export class ContentComponent implements OnInit, OnDestroy, OnChanges {
   selectedId
   portals: Portal[];
   portal;
@@ -36,9 +36,10 @@ export class ContentComponent implements OnInit, OnDestroy {
     })
 
     this.route.paramMap.subscribe(x => {
+      
       this.sectionID = x.get('contentID')
-
-
+      this.contentID =false
+      this.ContentToSection = false
       if (this.portals) {
         this.sections = this.portals.filter(x => x._id === this.portalID)
 
@@ -47,12 +48,14 @@ export class ContentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.portalsSub.unsubscribe();
   }
   addContentToSection() {
     this.ContentToSection = true
+    this.contentID = false
   }
   showData(id) {
+    this.ContentToSection = false
     this.contentID = id
   }
   goDown(id) {
@@ -88,5 +91,8 @@ export class ContentComponent implements OnInit, OnDestroy {
     if(confirm("Are you sure to delete "+id)) {
       this.portalService.deleteContent(id)
     }
+  }
+  ngOnChanges(){
+    console.log('zmiana')
   }
 }
