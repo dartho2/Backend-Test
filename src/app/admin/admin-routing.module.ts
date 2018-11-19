@@ -24,7 +24,7 @@ const adminRoutes: Routes = [
           { path: 'content/create', component: ContentCreateComponent },
           { path: 'content/:type', component: ContentListComponent },
           {
-            path: 'portal', component: PortalListComponent, children: [
+            path: 'portal', component: PortalListComponent, canActivate: [AuthGuard], children: [
               { path: ':sectionID', component: SectionListComponent, children: [
                 { path: ':contentID', component: ContentComponent }
               ]}

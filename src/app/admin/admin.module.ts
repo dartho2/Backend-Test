@@ -16,6 +16,7 @@ import { ScheduleContentomponent } from './content/_form/schedule-content.compon
 import { PortalListComponent } from './portals/portal-list/portal-list.component';
 import { SectionListComponent } from './portals/sections/section-list/section-list.component';
 import { ContentComponent } from './portals/content/content-list.component';
+import { TextImageContentComponent } from './content/_form/text-image.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,6 +31,7 @@ import { ContentComponent } from './portals/content/content-list.component';
     HeaderComponent,
     NavbarComponent,
     TextContentComponent,
+    TextImageContentComponent,
     TableContentomponent,
     GalleryContentomponent,
     ScheduleContentomponent,

@@ -83,8 +83,11 @@
   <div formArrayName="content">
     <div *ngFor="let contentBody of content.controls; let i=index" class="body-forms">
       <div formGroupName="{{i}}">
-        <div *ngIf="typeID === 'text_and_image' || typeID === 'text'">
+        <div *ngIf="typeID === 'text'">
           <text-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-content>
+        </div>
+        <div *ngIf="typeID === 'text_and_image'">
+          <text-image [group]="bodyForm.controls.content.controls[i]" [i]="i"></text-image>
         </div>
         <div *ngIf="typeID === 'schedule'">
           <schedule-content [group]="bodyForm.controls.content.controls[i]" [i]="i"></schedule-content>
