@@ -2,9 +2,10 @@ import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-
+declare var $: any;
+declare var jQuery: any;
 @Component({
-  selector: 'photo-list',
+  selector: 'photo-list-upload',
   templateUrl: 'photo-upload.component.html'
 })
 export class PhotoUploadComponent implements OnInit {
@@ -149,4 +150,5 @@ export class PhotoUploadComponent implements OnInit {
     return Object.keys(fileProperties)
       .map((key) => ({ 'key': key, 'value': fileProperties[key] }));
   }
+
 }
