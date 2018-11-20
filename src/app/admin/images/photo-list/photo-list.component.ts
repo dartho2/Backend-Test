@@ -10,7 +10,7 @@ import {Photo} from '../model/photo';
 })
 export class PhotoListComponent implements OnInit {
 
-    private photos: Observable<Photo[]>;
+    public photos: Observable<Photo[]>;
     private publicId: string = 'officialchucknorrispage';
 
     constructor(
