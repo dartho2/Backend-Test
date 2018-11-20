@@ -11,9 +11,7 @@ export class PhotoAlbum {
 
     constructor(private http: HttpClient, private cloudinary: Cloudinary) {
     }
-    getSection(id) {
-        return this.http.get("https://karmazdrowia.pl:8080/api/images")
-    }
+   
     getPhotos(): Observable<Photo[]> {
         // instead of maintaining the list of images, we rely on the 'myphotoalbum' tag
         // and simply retrieve a list of all images with that tag.

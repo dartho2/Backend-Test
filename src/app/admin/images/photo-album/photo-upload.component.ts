@@ -2,6 +2,7 @@ import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-5.x';
+import { PhotoAlbum } from '../model/photo-album.service';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -20,7 +21,8 @@ export class PhotoUploadComponent implements OnInit {
   constructor(
     private cloudinary: Cloudinary,
     private zone: NgZone,
-    private http: HttpClient
+    private http: HttpClient,
+    public photoAlbum: PhotoAlbum
   ) {
     this.responses = [];
     this.title = '';
@@ -104,6 +106,7 @@ export class PhotoUploadComponent implements OnInit {
           status,
           data: JSON.parse(response)
         }
+       
       );
 
     // Update model on upload progress event
