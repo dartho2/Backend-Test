@@ -17,6 +17,7 @@ import { PortalListComponent } from './portals/portal-list/portal-list.component
 import { SectionListComponent } from './portals/sections/section-list/section-list.component';
 import { ContentComponent } from './portals/content/content-list.component';
 import { TextImageContentComponent } from './content/_form/text-image.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 // import { JwtInterceptor, ErrorInterceptor } from '../_helpers';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
@@ -24,7 +25,9 @@ import { TextImageContentComponent } from './content/_form/text-image.component'
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    NgxEditorModule 
+    NgxEditorModule ,
+    FroalaEditorModule,
+    FroalaViewModule
   ],
   declarations: [
     AdminComponent,
