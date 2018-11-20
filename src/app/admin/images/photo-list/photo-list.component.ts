@@ -12,14 +12,15 @@ export class PhotoListComponent implements OnInit {
 
     private photos: Observable<Photo[]>;
     private publicId: string = 'angular_sample/iakcidxsofuizrox83u4';
-image
+image;
     constructor(
         private photoAlbum: PhotoAlbum
     ) { }
 
     ngOnInit(): void {
         this.photos = this.photoAlbum.getPhotos();
-        this.image = this.photoAlbum.getImage();
+        this.photoAlbum.getImage().subscribe(x=> this.image =this.photoAlbum.getImagess())
+        console.log(this.image)
     }
 
     // return https://915629246747733:EMNYQ5vwrLxDNVHBPAUe3Vh3cF8@api.cloudinary.com/v1_1/duvsjgmt5/resources/image

@@ -32,8 +32,9 @@ export class PhotoAlbum {
     }
 
     getImage() {
-        return this.http.get('https://915629246747733:EMNYQ5vwrLxDNVHBPAUe3Vh3cF8@api.cloudinary.com/v1_1/duvsjgmt5/resources/image').subscribe(x=>{
-            return x
-        })
+        return this.http.get('https://915629246747733:EMNYQ5vwrLxDNVHBPAUe3Vh3cF8@api.cloudinary.com/v1_1/duvsjgmt5/resources/image')
+    }
+    getImagess() {
+        return this.http.get('https://api.cloudinary.com/v1_1/duvsjgmt5/resources/image')
     }
 }
