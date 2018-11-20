@@ -8,7 +8,8 @@ import { ContentCreateComponent } from './content/content-create/content-create.
 import { PortalListComponent } from './portals/portal-list/portal-list.component';
 import { SectionListComponent } from './portals/sections/section-list/section-list.component';
 import { ContentComponent } from './portals/content/content-list.component';
-
+import {PhotoListComponent} from './images/photo-list/photo-list.component';
+import {PhotoUploadComponent} from './images/photo-album/photo-upload.component';
 const adminRoutes: Routes = [
   {
     path: '',
@@ -21,7 +22,7 @@ const adminRoutes: Routes = [
           { path: 'content/edit/:contentId', component: ContentCreateComponent },
           { path: 'content/create', component: ContentCreateComponent },
           { path: 'content/:type', component: ContentListComponent },
-          {
+             {
             path: 'portal', component: PortalListComponent, children: [
               { path: ':sectionID', component: SectionListComponent, children: [
                 { path: ':contentID', component: ContentComponent }
@@ -29,7 +30,20 @@ const adminRoutes: Routes = [
             ]
           }
         ]
-      }
+      },
+      {
+        path: 'photos',
+        component: PhotoListComponent
+    },
+    {
+        path: 'photos/new',
+        component: PhotoUploadComponent
+    },
+    {
+        path: '',
+        redirectTo: '/photos',
+        pathMatch: 'full'
+    }
     ]
   }
 ]

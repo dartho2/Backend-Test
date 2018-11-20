@@ -18,6 +18,16 @@ import { SectionListComponent } from './portals/sections/section-list/section-li
 import { ContentComponent } from './portals/content/content-list.component';
 import { TextImageContentComponent } from './content/_form/text-image.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import {FileUploadModule} from 'ng2-file-upload';
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
+import cloudinaryConfiguration from './config';
+import * as cloudinary from 'cloudinary-core';
+import {PhotoListComponent} from './images/photo-list/photo-list.component';
+import {PhotoUploadComponent} from './images/photo-album/photo-upload.component';
+import {PhotoAlbum} from './images/model/photo-album.service';
+// Cloudinary module
+
+// Application modules
 // import { JwtInterceptor, ErrorInterceptor } from '../_helpers';
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
@@ -26,8 +36,11 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     AdminRoutingModule,
     ReactiveFormsModule,
     NgxEditorModule ,
+    FormsModule ,
     FroalaEditorModule,
-    FroalaViewModule
+    FroalaViewModule,
+    CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
+        FileUploadModule,
   ],
   declarations: [
     AdminComponent,
@@ -42,9 +55,14 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     ScheduleContentomponent,
     PortalListComponent,
     SectionListComponent,
-    ContentComponent
+    ContentComponent,
+    PhotoListComponent,
+    PhotoUploadComponent
     
     
-  ]
+  ],
+  providers: [
+    PhotoAlbum,
+]
 })
 export class AdminModule {}
