@@ -21,14 +21,14 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {FileUploadModule} from 'ng2-file-upload';
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
 import cloudinaryConfiguration from './config';
-import { Cloudinary } from 'cloudinary-core';
+import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
 // import * as Cloudinary from 'cloudinary-core';
 import {PhotoListComponent} from './images/photo-list/photo-list.component';
 import {PhotoUploadComponent} from './images/photo-album/photo-upload.component';
 import {PhotoAlbum} from './images/model/photo-album.service';
 // Cloudinary module
-export const cloudinaryLib = {
-  Cloudinary: Cloudinary
+export const cloudinary = {
+  Cloudinary: CloudinaryCore
 };
 // Application modules
 // import { JwtInterceptor, ErrorInterceptor } from '../_helpers';
@@ -42,7 +42,7 @@ export const cloudinaryLib = {
     FormsModule ,
     FroalaEditorModule,
     FroalaViewModule,
-    CloudinaryModule.forRoot(cloudinaryLib, {
+    CloudinaryModule.forRoot(cloudinary, {
       cloud_name: 'duvsjgmt5',
       upload_preset: "tfkqqmpi"
     }),
