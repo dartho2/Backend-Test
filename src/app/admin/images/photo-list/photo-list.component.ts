@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {PhotoAlbum} from '../model/photo-album.service';
 import {Photo} from '../model/photo';
 
@@ -12,26 +13,16 @@ export class PhotoListComponent implements OnInit {
 
     private photos: Observable<Photo[]>;
     private publicId: string = 'angular_sample/iakcidxsofuizrox83u4';
-image;
-    constructor(
+
+    constructor(private _http: HttpClient,
         private photoAlbum: PhotoAlbum
     ) { }
 
-    ngOnInit(): void {
-        this.photos = this.photoAlbum.getPhotos();
-        this.photoAlbum.getImage().subscribe(x=> this.image =this.photoAlbum.getImagess())
-        console.log(this.image)
+    ngOnInit() {
+
     }
 
-    // return https://915629246747733:EMNYQ5vwrLxDNVHBPAUe3Vh3cF8@api.cloudinary.com/v1_1/duvsjgmt5/resources/image
-    changePublicId() {
-        this.publicId = (this.publicId === 'angular_sample/iakcidxsofuizrox83u4') ? 'billclinton' : 'angular_sample/iakcidxsofuizrox83u4';
-    }
+   
+   
 
-    onLoadImage(success) {
-        console.log('On load', success);
-    }
-    onErrorImage(err) {
-        console.log('On error!!', err);
-    }
 }
