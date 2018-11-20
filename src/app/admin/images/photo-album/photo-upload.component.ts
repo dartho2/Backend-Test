@@ -12,7 +12,7 @@ export class PhotoUploadComponent implements OnInit {
   @Input()
   responses: Array<any>;
 
-  private hasBaseDropZoneOver: boolean = false;
+  public hasBaseDropZoneOver: boolean = false;
   private uploader: FileUploader;
   private title: string;
 
