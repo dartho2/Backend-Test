@@ -19,7 +19,9 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
     checkToken(token) {
-     return this.http.get<any>(`https://karmazdrowia.pl:8080/api/validate_token`)
+     return this.http.get<any>(`https://karmazdrowia.pl:8080/api/validate_token`).subscribe(token => { 
+     return token
+     })
     }
     login(user: string, password: string) {
         return this.http.post<any>(`https://karmazdrowia.pl:8080/api/auth/login`, { user, password })
