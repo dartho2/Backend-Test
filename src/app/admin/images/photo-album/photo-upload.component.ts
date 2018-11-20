@@ -13,7 +13,7 @@ export class PhotoUploadComponent implements OnInit {
   responses: Array<any>;
 
   public hasBaseDropZoneOver: boolean = false;
-  private uploader: FileUploader;
+  public uploader: FileUploader;
   private title: string;
 
   constructor(
