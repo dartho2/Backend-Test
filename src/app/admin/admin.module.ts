@@ -21,7 +21,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {FileUploadModule} from 'ng2-file-upload';
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
 import cloudinaryConfiguration from './config';
-import * as cloudinary from 'cloudinary-core';
+import * as Cloudinary from 'cloudinary-core';
 import {PhotoListComponent} from './images/photo-list/photo-list.component';
 import {PhotoUploadComponent} from './images/photo-album/photo-upload.component';
 import {PhotoAlbum} from './images/model/photo-album.service';
@@ -39,7 +39,14 @@ import {PhotoAlbum} from './images/model/photo-album.service';
     FormsModule ,
     FroalaEditorModule,
     FroalaViewModule,
-    CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
+    CloudinaryModule.forRoot(Cloudinary, {
+      cloud_name: 'duvsjgmt5',
+      upload_preset: "tfkqqmpi"
+    }),
+    // CloudinaryModule.forRoot(cloudinary, {
+    //   cloud_name: 'duvsjgmt5',
+    //   upload_preset: "tfkqqmpi"
+    // }),
         FileUploadModule,
   ],
   declarations: [
