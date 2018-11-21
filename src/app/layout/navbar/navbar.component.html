@@ -1,5 +1,5 @@
 <div class="nav-side-menu">
-  <div class="brand"> <a routerLink="/"><i class="fab fa-2x fa-github"></i> Dashboard</a></div>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/"><i class="fab fa-2x fa-github"></i> Dashboard</a>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   <div class="menu-list">
     <ul id="menu-content" class="menu-content collapse out">
@@ -13,6 +13,9 @@
           <li>
             <a routerLink="/photos/new"><i class="fa fa-copyright fa-lg fa-fw sidebar-icon"></i> Images Uploader</a>
           </li>
+          <li class="logout">
+              <a class="nav-link" [routerLink]="['/login']"><i class="fas fa-sign-out-alt fa-lg fa-fw sidebar-icon"></i>Logout</a>
+            </li>
     </ul>
   </div>
 </div>

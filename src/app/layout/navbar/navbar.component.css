@@ -8,7 +8,23 @@ body {
   margin-left: 220px;
   padding: 15px;
 }
-
+@media (max-width: 769px){
+.logout {
+    display: block;
+    bottom: 0px;
+    border-top: 1px solid white;
+  }
+}
+@media (min-width: 769px){
+  .logout {
+      display: none !important;
+      bottom: 0px;
+      border-top: unset;
+    }
+  }
+  .navbar-brand {
+    color: white;
+  }
 .nav-side-menu {
   overflow: auto;
   background-color: #2e353d;

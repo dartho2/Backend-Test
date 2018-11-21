@@ -15,3 +15,13 @@
   .navbar-light .navbar-nav .nav-link {
       color: white;
   }
+  @media (max-width: 769px){
+  .navbar-visible-top {
+display: none;
+}
+  }
+@media (min-width: 769px){
+    .navbar-visible-top {
+  display: flex;
+  }
+  }
