@@ -99,11 +99,16 @@ span.arrow:before {
 .content-row {
     display: inline-block;
 }
-/* .panel-sub {
-  margin: 0 auto;
-  display: table;
+ .panel-sub {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #e9ecef;
 }
-
+/*
 .panel {
   margin: 0px;
 }

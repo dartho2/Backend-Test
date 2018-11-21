@@ -16,6 +16,30 @@ a:focus, a:hover {
     font-size: 1rem;
     font-weight: 400;
 }
+@media (min-width: 720px){
+.modal-dialog {
+    max-width: 100%;
+    margin: 14px;
+}
+}
+
+.close {
+  font-size: 2.5rem; 
+  position: absolute;
+    right: -10px;
+    top: -10px;
+    color: red;
+    opacity: 1 ;
+}
+.fa-times-circle:before {
+  color: red;
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto; 
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
 #exTab2 h3 {
   color : white;
   background-color: #428bca;

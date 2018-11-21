@@ -1,5 +1,5 @@
 <div [formGroup]="contentForm">
-    <div class="col-md-9 content-row">
+    <div class="content-row">
       <div class="form-inlines">
         <div class="form-group">
           <label for="title">
@@ -12,7 +12,7 @@
       </div>
       <app-ngx-editor formControlName="text"></app-ngx-editor>
     </div>
-    <div class="collapse-body cont-l col-md-9">
+    <div class="collapse-body">
       <div formArrayName="items">
         <div class="panel panel-default">
           <a data-toggle="collapse" data-parent="#accordion" href="#items{{i}}">
