@@ -1,32 +1,26 @@
-import {Injectable} from '@angular/core';
-import {Response} from '@angular/http';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Subject } from "rxjs";
 import {Photo} from './photo';
 import {Cloudinary} from '@cloudinary/angular-5.x';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PhotoAlbum {
-
-    constructor(private http: HttpClient, private cloudinary: Cloudinary) {
+    private photo: Photo[]= [];
+    private photoUpdated = new Subject<Photo[]>();
+    constructor(private _http: HttpClient, private cloudinary: Cloudinary) {
     }
    
-    getPhotos(): Observable<Photo[]> {
-        // instead of maintaining the list of images, we rely on the 'myphotoalbum' tag
-        // and simply retrieve a list of all images with that tag.
-        // let url = this.cloudinary.url('myphotoalbum', {
-        //     format: 'json',
-        //     type: 'list',
-        //     // cache bust (lists are cached by the CDN for 1 minute)
-        //     // *************************************************************************
-        //     // Note that this is practice is DISCOURAGED in production code and is here
-        //     // for demonstration purposes only
-        //     // *************************************************************************
-        //     version: Math.ceil(new Date().getTime() / 1000)
-        // });
-
-        return this.http.get("https://karmazdrowia.pl:8080/api/images")
-            .pipe(map((data: any) => data.resources));
-    }
+    getPhotos() {
+            return this._http.get<Photo[]>("https://karmazdrowia.pl:8080/api/images").subscribe(data => {
+                this.photo = data['resources'];
+                this.photoUpdated.next(this.photo);
+            })
+        }
+        getPhotoUpdatedListener() {
+            return this.photoUpdated.asObservable();
+        }
+        // return this.http.get("https://karmazdrowia.pl:8080/api/images")
+        //     .pipe(map((data: any) => data.resources));
+    // }
 }

@@ -123,6 +123,9 @@ export class PhotoUploadComponent implements OnInit {
   updateTitle(value: string) {
     this.title = value;
   }
+  clicUpdate() {
+    this.photoAlbum.getPhotos();
+}
 
   // Delete an uploaded image
   // Requires setting "Return delete token" to "Yes" in your upload preset configuration

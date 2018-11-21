@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {PhotoAlbum} from '../model/photo-album.service';
 import {Photo} from '../model/photo';
 
@@ -10,20 +10,25 @@ import {Photo} from '../model/photo';
 })
 export class PhotoListComponent implements OnInit {
 
-    public photos: Observable<Photo[]>;
-    private publicId: string = 'officialchucknorrispage';
-
+    photo: Photo[];
+    private photoSub: Subscription;
     constructor(
         private photoAlbum: PhotoAlbum
     ) { }
 
-    ngOnInit(): void {
-        this.photos = this.photoAlbum.getPhotos();
+    ngOnInit() {
+        this.photoAlbum.getPhotos()
+        this.photoSub = this.photoAlbum.getPhotoUpdatedListener()
+      .subscribe((photos: Photo[]) => {
+        this.photo = photos;
+      });
     }
 
-    // changePublicId() {
-    //     this.publicId = (this.publicId === 'officialchucknorrispage') ? 'billclinton' : 'officialchucknorrispage';
-    // }
+    copyInputMessage(inputElement){
+        inputElement.select();
+        document.execCommand('copy');
+        inputElement.setSelectionRange(0, 0);
+      }
 
     onLoadImage(success) {
         console.log('On load', success);
@@ -31,4 +36,7 @@ export class PhotoListComponent implements OnInit {
     onErrorImage(err) {
         console.log('On error!!', err);
     }
+    ngOnDestroy() {
+        this.photoSub.unsubscribe();
+      }
 }
