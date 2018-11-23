@@ -1,13 +1,9 @@
-<!-- <div *ngFor="let p of portals"><hr>
-  <div *ngFor="let a of p.sections">{{a._id}}={{a.label}}</div>
-</div> -->
-
 <div class="card">
   <div class="card-body">
     <h2>Portals</h2>
     <ul class="nav nav-tabs">
       <li *ngFor="let portal of portals" class="col-lg-3 col-md-3 col-sm-12 col-xs-12 Services-tab  item">
-        <a class="nav-link tab-color" data-toggle="tab" (click)="showSections(portal, portal._id)" routerLinkActive="active" [routerLink]="portal._id">
+        <a class="nav-link tab-color" data-toggle="tab" routerLinkActive="active" [routerLink]="portal._id">
           <div class="text">
             <div class="folded-corner service_tab_1">
               <i class="fa fa-image fa-5x fa-icon-image"></i>

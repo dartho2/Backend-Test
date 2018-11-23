@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
-import { Content } from './content.model';
+import { Content } from '../../content/content.model';
 import { Router } from "@angular/router";
+import { PortalService } from "../portal.service";
 declare var $: any;
 declare var jQuery: any;
 
@@ -10,7 +11,7 @@ declare var jQuery: any;
 export class ContentService {
     private contents;
     private contentsUpdated = new Subject<Content[]>();
-    constructor(private _http: HttpClient, private router: Router) { }
+    constructor(private _http: HttpClient, private router: Router, private portalServices: PortalService) { }
 
     getContents() {
         return this._http.get("https://karmazdrowia.pl:8080/api/content_items")

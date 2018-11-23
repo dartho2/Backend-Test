@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscriber, Subscription } from 'rxjs';
-import { Section } from '../sections/section.model';
-import { PortalService } from '../portal.service';
-import { Portal } from '../portal.model';
+import { Section } from '../../sections/section.model';
+import { PortalService } from '../../portal.service';
+import { Portal } from '../../portal.model';
 
 @Component({
   selector: 'content-list',

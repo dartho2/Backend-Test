@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable, Subscriber, Subscription } from 'rxjs';
-import { Section } from '../section.model';
+import { ActivatedRoute} from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { PortalService } from '../../portal.service';
 import { Portal } from '../../portal.model';
 
@@ -12,10 +11,9 @@ import { Portal } from '../../portal.model';
   styleUrls: ['./section-list.component.css']
 })
 export class SectionListComponent implements OnInit, OnDestroy {
-  selectedId
+
   portals: Portal[];
   portal;
-  sections;
   private portalsSub: Subscription;
   constructor(private route: ActivatedRoute, private portalService: PortalService) { }
 
@@ -25,18 +23,12 @@ export class SectionListComponent implements OnInit, OnDestroy {
       .subscribe((portals: Portal[]) => {
         this.portals = portals;
       });
-    this.route.paramMap.subscribe(x => {
-      this.portal = x.get('sectionID')
-      if (this.portal) {
-        if (this.portals) {
-          this.sections = this.portals.filter(x => x._id === this.portal)
-        }
-      }
+    this.route.paramMap.subscribe(params => {
+      this.portal = params.get('sectionID')
+    
     })
   }
-  portalFilter(portal) {
-    this.portals = portal.filter(portal => portal._id === this.selectedId)
-  }
+ 
   ngOnDestroy() {
     this.portalsSub.unsubscribe();
   }

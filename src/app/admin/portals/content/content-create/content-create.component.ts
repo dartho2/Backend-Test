@@ -4,7 +4,7 @@ import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { isObject } from 'util';
 import { map } from 'rxjs/operators';
-import { PortalService } from '../../portals/portal.service';
+import { PortalService } from '../../portal.service';
 declare var $: any;
 declare var jQuery: any;
 @Component({

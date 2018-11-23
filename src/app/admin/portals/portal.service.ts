@@ -8,7 +8,7 @@ declare var jQuery: any;
 
 @Injectable({ providedIn: 'root' })
 export class PortalService {
-    private portals: Portal[] =[];
+    private portals: Portal[] = [];
     private portalsUpdated = new Subject<Portal[]>();
     constructor(private _http: HttpClient, private router: Router) { }
 
@@ -20,10 +20,10 @@ export class PortalService {
             });
     }
     getPortal(id) {
-       return this._http.get("https://karmazdrowia.pl:8080/api/portals/" + id )
+        return this._http.get("https://karmazdrowia.pl:8080/api/portals/" + id)
     }
     changePosition(id, a) {
-       return this._http.post<Portal[]>("https://karmazdrowia.pl:8080/api/portals/" + id, a ).subscribe(portalData => {
+        return this._http.post<Portal[]>("https://karmazdrowia.pl:8080/api/portals/" + id, a).subscribe(portalData => {
             this.portals = portalData;
             this.getPortals()
         });
@@ -31,35 +31,21 @@ export class PortalService {
     getPortalsUpdatedListener() {
         return this.portalsUpdated.asObservable();
     }
-    // getContent(id: string) {
-    //     return this._http.get("https://karmazdrowia.pl:8080/api/sections/" + id);
-    // }
+
     getSection(id) {
-        return this._http.get("https://karmazdrowia.pl:8080/api/sections/" + id )
+        return this._http.get("https://karmazdrowia.pl:8080/api/sections/" + id)
     }
     changePositionSections(id, a) {
-        return this._http.post<Portal[]>("https://karmazdrowia.pl:8080/api/sections/" + id, a ).subscribe(portalData => {
-             this.portals = portalData;
-             this.getPortals()
-         });
-     }
-     deleteContent(id) {
+        return this._http.post<Portal[]>("https://karmazdrowia.pl:8080/api/sections/" + id, a).subscribe(portalData => {
+            this.portals = portalData;
+            this.getPortals()
+        });
+    }
+    deleteContent(id) {
         return this._http.delete<Portal[]>("https://karmazdrowia.pl:8080/api/content_items/" + id).subscribe(portalData => {
             this.portals = portalData;
             this.getPortals()
         });
-     }
-    // updateContent(content: Portal) {
-    //     return this._http.post("https://karmazdrowia.pl:8080/api/portals/" + content._id, content);
-       
-    
-    // }
-    // createContent(content: Portal) {
-    //     return this._http.post("https://karmazdrowia.pl:8080/api/portals/", content);
-       
-    
-    // }
-
-
+    }
 
 }

@@ -9,10 +9,6 @@
                 <div class="card">
                   <div class="card-header" id="head{{i}}">
                     <h5 class="mb-0">
-                      <!-- <a class="nav-link tab-color" (click)="showData(content._id)" data-toggle="collapse"
-                        attr.data-target="#{{i}}" aria-expanded="false" attr.aria-controls="{{i}}">
-          <li class="list-tag " *ngFor="let tag of content.tags">{{tag}}</li>
-          </a> -->
                       <a class="nav-link tab-color" data-toggle="modal" (click)="showData(content._id)"
                         [attr.data-target]="'#image' + i">
           <li class="list-tag " *ngFor="let tag of content.tags">{{tag}}</li>
