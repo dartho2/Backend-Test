@@ -1,6 +1,5 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
-
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent} from '../layout/header/header.component';
 import { ContentCreateComponent } from './portals/content/content-create/content-create.component';
