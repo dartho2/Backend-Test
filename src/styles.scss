@@ -16,6 +16,9 @@ body,html{
 display:  block !important;
     }
 }
+.fr-popup {
+  z-index:9999 !important;
+}
 main {
     padding-bottom: 100px;
 }
