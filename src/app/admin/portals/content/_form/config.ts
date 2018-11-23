@@ -10,7 +10,7 @@ export const ConfigForm  = {
         indent_size: 1,
         imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
         imageManagerLoadURL: "https://karmazdrowia.pl:8080/api/images",
-        imageManagerLoadMethod: "GETs",
+        imageManagerLoadMethod: "'GET, POST, OPTIONS, PUT, DELETE'",
         imageManagerPageSize: 20,
  
         // Set a scroll offset (value in pixels).
