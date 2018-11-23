@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
-import { Content } from '../../content/content.model';
+import { Content } from './content/content.model';
 import { Router } from "@angular/router";
 import { PortalService } from "../portal.service";
 declare var $: any;
