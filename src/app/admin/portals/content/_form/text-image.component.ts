@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
-
+import { ConfigForm } from './config'
 
 @Component({
   selector: 'text-image',
@@ -15,6 +15,7 @@ export class TextImageContentComponent implements OnInit {
     constructor(public _fb: FormBuilder) { }
   ngOnInit() {
   }
+  public config = ConfigForm
   // get image() {
   //     return <FormArray>this.contentForm.get('image');
   //   }
