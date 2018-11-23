@@ -9,14 +9,16 @@ export const ConfigForm  = {
         toolbarSticky: false,
         indent_size: 1,
         imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
-        imageManagerLoadURL: "https://karmazdrowia.pl:8080/api/images",
-        imageManagerLoadMethod: "'GET, POST, OPTIONS, PUT, DELETE'",
-        imageManagerPageSize: 20,
- 
-        // Set a scroll offset (value in pixels).
-        imageManagerScrollOffset: 10,
         wrap_line_length: 0,
-
+        paragraphStyles: {
+          class1: 'Class 1',
+          class2: 'Class 2',
+          text_muted: 'text-muted'
+        },
+        inlineStyles: {
+          'text-muted': 'color: #6c757d!important; font-weight: 400; font-family: robotlight; font-size: 18px; font-style: normal;',
+          'Small Blue': 'font-size: 14px; color: blue;'
+        },
           fontFamily: {
             "Roboto,sans-serif": 'Roboto',
             "Oswald,sans-serif": 'Oswald',
