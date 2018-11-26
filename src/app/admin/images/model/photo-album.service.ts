@@ -13,7 +13,7 @@ export class PhotoAlbum {
    
     getPhotos() {
             return this._http.get<Photo[]>("https://karmazdrowia.pl:8080/api/images").subscribe(data => {
-                this.photo = data['resources'];
+                this.photo = data;
                 this.photoUpdated.next(this.photo);
             })
         }
