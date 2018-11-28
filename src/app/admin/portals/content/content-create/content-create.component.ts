@@ -21,6 +21,7 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
   mode;
   typeID = '';
   createdID;
+  portalID;
   contentId;
   dataID;
   contentForm;
@@ -77,6 +78,7 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
 console.log(name , "name")
   }
   ngOnInit() {
+
     console.log('app-create')
     this.initComp()
   }
@@ -106,10 +108,7 @@ console.log(name , "name")
             var jsonSection;
             jsonSection = section
             jsonSection.data.push(this.createdID._id) ;
-            this.contenstService.createContentToSections(jsonSection, this.sectionID).subscribe(response =>{
-              this.message = response;
-              this.contenstService.allert()
-            })
+            this.contenstService.createContentToSections(jsonSection, this.sectionID)
           })
         }))
         .subscribe(response => {
@@ -117,11 +116,7 @@ console.log(name , "name")
           this.contenstService.allert();
         }) 
       } else {
-      this.contenstService.createContent(this.bodyForm.value).subscribe(response => {
-        this.message = response;
-        this.contenstService.allert();
-     
-      }) 
+      this.contenstService.createContent(this.bodyForm.value)
     }
     };
   }
@@ -138,7 +133,6 @@ console.log(name , "name")
         this.contentId = paramMap.get("contentId");
       }
         this.contenstService.getContent(this.contentId).subscribe(res => {
-          console.log('create-comp')
           this.contentForm = res;
           this.typeID = this.contentForm.type;
           this.buildForm(this.contentForm)
@@ -312,11 +306,21 @@ console.log(name , "name")
     controls.push(this._fb.control(''))
   }
   ngOnDestroy(){
-    console.log('destr')
+  
+      console.log('delete')
+      $('.modal').removeClass('in');
+                $('.modal').attr("aria-hidden","true");
+                $('.modal').css("display", "none");
+                $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open');
+
     this.contentData = null
   }
   ngOnChanges(){
     console.log('change')
+    
+  
   }
+  
   
 }
