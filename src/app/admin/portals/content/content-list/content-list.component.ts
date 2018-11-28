@@ -68,10 +68,10 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
     console.log(this.content)
   }
  
-  // addContentToSection() {
-  //   this.ContentToSection = true
-  //   this.contentID = false
-  // }
+  addContentToSection() {
+    this.ContentToSection = true
+    this.contentID = false
+  }
   showData(id) {
     this.ContentToSection = false
     this.contentID = id
@@ -105,11 +105,11 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
   //   })
 
   // }
-  // contentDelete(id){
-  //   if(confirm("Are you sure to delete "+id)) {
-  //     this.portalService.deleteContent(id)
-  //   }
-  // }
+  contentDelete(id){
+    if(confirm("Are you sure to delete "+id)) {
+      this.portalService.deleteContent(id)
+    }
+  }
   ngOnChanges(){
     console.log('zmiana')
   } 

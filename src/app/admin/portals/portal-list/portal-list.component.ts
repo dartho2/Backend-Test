@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Portal } from '../portal.model';
 import { PortalService } from '../portal.service';
 import { ParamMap, ActivatedRoute } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-portal-list',
@@ -26,6 +27,11 @@ export class PortalListComponent implements OnInit, OnDestroy {
         this.portals = portals;
       });
 
+  }
+  drop(event: CdkDragDrop<Portal[]>) {
+    moveItemInArray(this.portals, event.previousIndex, event.currentIndex);
+    // console.log(this.sections, this.portal)
+    // this.portalService.changePosition(this.portal, this.sections)
   }
 
   ngOnDestroy() {

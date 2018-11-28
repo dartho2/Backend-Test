@@ -3,14 +3,17 @@
     <div *ngFor="let tag of content.data; let i=index">
       <li class="list-tag example-box" cdkDrag>
         <span class="col-md-10">{{tag.tags}}/{{tag._id}}</span>
-        <a class="col-md-1 example-link" data-toggle="modal" [attr.data-target]="'#image' + i" (click)="showData(content._id)"><i class="far fa-edit"></i>
+        <div class="col-md-2">
+        <a class="example-link p-link" data-toggle="modal" [attr.data-target]="'#image' + i" (click)="showData(content._id)"><i class="far fa-edit"></i>
         </a>
-        <div class="example-handle col-md-1" cdkDragHandle>
+        <a class="example-link p-link" (click)="contentDelete(tag._id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        <div class="example-link example-handle" cdkDragHandle>
           <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
             <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
             <path d="M0 0h24v24H0z" fill="none"></path>
           </svg>
         </div>
+      </div>
       </li>
       <div class="modal fade" id="image{{i}}" tabindex="-1" role="dialog" attr.aria-labelledby="image{{i}}Title"
         aria-hidden="true">
@@ -32,4 +35,24 @@
       </div>
     </div>
   </div>
+  <div *ngIf="ContentToSection">
+      <div class="modal fade" id="images" tabindex="-1" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-footer">
+              <button type="button" class="fas fa-2x fa-times-circle close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-header">
+              <div class="card-body">
+                <app-content-create [sectionID]="sectionID"></app-content-create>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-info" data-toggle="modal" [attr.data-target]="'#images'" (click)="addContentToSection()">Dodaj</button>
 </div>

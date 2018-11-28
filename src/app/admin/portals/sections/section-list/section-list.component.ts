@@ -38,11 +38,11 @@ export class SectionListComponent implements OnInit, OnDestroy {
   }
   drop(event: CdkDragDrop<Portal[]>) {
     moveItemInArray(this.sections.sections, event.previousIndex, event.currentIndex);
-    console.log(this.sections, this.portal)
-    this.portalService.changePosition(this.portal, this.sections)
+    // console.log(this.sections, this.portal)
+    // this.portalService.changePosition(this.portal, this.sections)
   }
 
   ngOnDestroy() {
-    this.portalsSub.unsubscribe();
+    // this.portalsSub.unsubscribe();
   }
 }
