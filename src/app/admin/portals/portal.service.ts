@@ -22,10 +22,12 @@ export class PortalService {
     getPortal(id) {
         return this._http.get("https://karmazdrowia.pl:8080/api/portals/" + id)
     }
-    changePosition(id, a) {
-        return this._http.post<Portal[]>("https://karmazdrowia.pl:8080/api/portals/" + id, a).subscribe(portalData => {
-            this.portals = portalData;
-            this.getPortals()
+    changePosition(id, content) {
+        return this._http.post("https://karmazdrowia.pl:8080/api/portals/" + id, content).subscribe(portalData => {
+            // this.portals = content;
+            // this.portals.push(content);
+            // console.log(portalData)
+            // this.portalsUpdated.next([...this.portals]);
         });
     }
     getPortalsUpdatedListener() {

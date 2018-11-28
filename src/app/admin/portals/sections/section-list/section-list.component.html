@@ -1,21 +1,14 @@
-<div class="card-body">
-  <div class="tab-content">
-    <div class="tab-panel">
-      <ul class="list-inline" *ngFor="let sections of portals">
-        <div *ngIf="sections._id === portal">
-          <li class="list-inline-item col-md-auto" *ngFor="let section of sections.sections">
-            <a class="nav-link text-center" routerLinkActive="active" [routerLink]="section._id">
-              {{section.label}}
-             <br>
-            </a>
-            <div class="col-md-auto">
-              <span (click)="goUp(section._id)" class="arrow fa fa-angle-right"></span>
-              <span (click)="goDown(section._id)" class="arrow fa fa-angle-left"></span>
+<div class="testimonial-group" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="row text-center flex-nowrap" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"> 
+      <button class="s-list"*ngFor="let section of sections.sections" routerLinkActive="active" [routerLink]="section._id"  cdkDrag>
+           {{section.label}}
+           <div class="example-handle" cdkDragHandle>
+              <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+              </svg>
             </div>
-          </li>
-        </div>
-      </ul>
+          </button>
     </div>
   </div>
-</div>
 <router-outlet></router-outlet>
