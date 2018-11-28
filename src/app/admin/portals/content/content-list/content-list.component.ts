@@ -32,7 +32,6 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
       // this.contentID =false
       // this.ContentToSection = false
       this.portalService.getSection(this.sectionID).subscribe(response => {
-        console.log(response)
         this.content = response
       })
       // if (this.portals) {
@@ -107,7 +106,12 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
   // }
   contentDelete(id){
     if(confirm("Are you sure to delete "+id)) {
-      this.portalService.deleteContent(id)
+      this.portalService.deleteContent(id).subscribe(() => {
+        this.portalService.getSection(this.sectionID).subscribe(response => {
+          this.content = response
+        })
+    })
+
     }
   }
   ngOnChanges(){

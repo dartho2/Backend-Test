@@ -44,10 +44,7 @@ export class PortalService {
         });
     }
     deleteContent(id) {
-        return this._http.delete<Portal[]>("https://karmazdrowia.pl:8080/api/content_items/" + id).subscribe(portalData => {
-            this.portals = portalData;
-            this.getPortals()
-        });
+        return this._http.delete<Portal[]>("https://karmazdrowia.pl:8080/api/content_items/" + id)
     }
 
 }
