@@ -1,3 +1,5 @@
+<div class="popu-background">
+  <div class="popu-content">
 <div class="alert alert-success" *ngIf="message">
   <strong>{{message}}</strong>
 </div>
@@ -110,10 +112,12 @@
   <div class="clearfix"></div>
   <div class="data-panel">
     <div class="panel-sub">
-      <button type="button" class="btn btn-info" (click)="addContent()">Dodaj</button>
-      <button type="submit" class="btn btn-primary save-content" >Save</button>
+       <button type="button" class="btn btn-outline-info waves-effect" (click)="gotoBack()">Back</button>
+       <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" (click)="addContent()">Add</button>
+       <button type="submit" class="btn btn-outline-success btn-rounded waves-effect">Save</button>
     </div>
   </div>
 </form>
-<hr>
-<div class="clearfix"></div>
+
+</div>
+</div>

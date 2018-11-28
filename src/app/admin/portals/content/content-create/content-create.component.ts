@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges,  } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit, Input, OnDestroy, OnChanges, } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ContentService } from '../content.service';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { isObject } from 'util';
@@ -21,6 +21,7 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
   mode;
   typeID = '';
   createdID;
+  sectionsID;
   portalID;
   contentId;
   dataID;
@@ -29,6 +30,7 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
   bodyForm: FormGroup;
   constructor(public contenstService: ContentService, private portalServices: PortalService,
     private _fb: FormBuilder,
+    public router: Router,
     public route: ActivatedRoute) {
 
     this.buildForm(null)
@@ -39,106 +41,100 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
     return <FormArray>this.bodyForm.get('content');
   }
   onChangeTextType(data) {
-      if (!data) {
-        return null
-      } else if (data === 'text') {
-        return this.text_type = [
-          {"label": "default","name": "default-new"}
-        ]
-      } 
-      else if (data === 'text_and_image') {
-        return this.text_type = [
-          {"label": "default","name": "default-new"}, 
-          {"label": "referencje", "name": "referencje"},
-          {"label": "text_image_r", "name": "treners"}
-        ] 
-      } else if (data === 'table' || data === 'schedule' ) {
-        return this.text_type = [
-          {"label": "price-l","name": "cennik-default"}, 
-          {"label": "schedule", "name": "grafik"},
-          {"label": "table-o-a'", "name": "tabela-test"},
-          {"label": "price-l-n", "name": "cennik-z-podpisem"}
-        ] 
-      } else if (data === 'gallery' ) {
-        return this.text_type = [
-          {"label": "default","name": "default-new"},
-        ] 
-      } 
-      else if (data === 'list' || 'contact') {
-        return this.text_type = [
-          {"label": "default","name": "default"}
-        ] 
-      }
-       else {
-        return null
-      }
-    
+    if (!data) {
+      return null
+    } else if (data === 'text') {
+      return this.text_type = [
+        { "label": "default", "name": "default-new" }
+      ]
+    }
+    else if (data === 'text_and_image') {
+      return this.text_type = [
+        { "label": "default", "name": "default-new" },
+        { "label": "referencje", "name": "referencje" },
+        { "label": "text_image_r", "name": "treners" }
+      ]
+    } else if (data === 'table' || data === 'schedule') {
+      return this.text_type = [
+        { "label": "price-l", "name": "cennik-default" },
+        { "label": "schedule", "name": "grafik" },
+        { "label": "table-o-a'", "name": "tabela-test" },
+        { "label": "price-l-n", "name": "cennik-z-podpisem" }
+      ]
+    } else if (data === 'gallery') {
+      return this.text_type = [
+        { "label": "default", "name": "default-new" },
+      ]
+    }
+    else if (data === 'list' || 'contact') {
+      return this.text_type = [
+        { "label": "default", "name": "default" }
+      ]
+    }
+    else {
+      return null
+    }
   }
-  onChangeFormDisplay(name){
-console.log(name , "name")
+  onChangeFormDisplay(name) {
   }
   ngOnInit() {
-
-    console.log('app-create')
     this.initComp()
   }
   changes(type) {
-    if(this.mode === 'create' || this.sectionID){
-    this.typeID = type
-  } else {
-    this.message = 'Nie można zmienić edytowanego Formatu';
-    this.contenstService.allert()
-    this.typeID = this.typeID
-  
-  }
+    if (this.mode === 'create' || this.sectionID) {
+      this.typeID = type
+    } else {
+      this.message = 'Nie można zmienić edytowanego Formatu';
+      this.contenstService.allert()
+      this.typeID = this.typeID
+
+    }
   }
   onAddContent() {
     if (this.mode === "edit") {
       this.contenstService.updateContent(this.bodyForm.value).subscribe(response => {
         this.message = response;
         this.contenstService.allert()
-        })
+      })
     } else {
       delete this.bodyForm.value._id
-      if(this.sectionID){
+      if (this.sectionID) {
+        console.log('save1')
         this.contenstService.createContent(this.bodyForm.value).pipe(
-        map((res: Response) => {
-          this.createdID = res;
-          this.contenstService.getSections(this.sectionID).subscribe(section =>{
-            var jsonSection;
-            jsonSection = section
-            jsonSection.data.push(this.createdID._id) ;
-            this.contenstService.createContentToSections(jsonSection, this.sectionID)
+          map((res: Response) => {
+            this.createdID = res;
+            this.contenstService.getSections(this.sectionID).subscribe(section => {
+              var jsonSection;
+              jsonSection = section
+              jsonSection.data.push(this.createdID._id);
+              this.contenstService.createContentToSections(jsonSection, this.sectionID).subscribe(()=>
+              {
+                this.router.navigate(["../"], {relativeTo: this.route});
+              })
+            })
+          }))
+          .subscribe(response => {
+            this.message = response;
+            this.contenstService.allert();
           })
-        }))
-        .subscribe(response => {
-          this.message = response;
-          this.contenstService.allert();
-        }) 
       } else {
-      this.contenstService.createContent(this.bodyForm.value)
-    }
+        this.contenstService.createContent(this.bodyForm.value)
+      }
     };
   }
 
   initComp() {
-    
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (this.contentData) {
-        console.log('contentData', this.contentData)
+      if (paramMap.has("content")) {
         this.mode = "edit";
-        if(this.contentData) {
-          this.contentId = this.contentData._id
-        } else {
-        this.contentId = paramMap.get("contentId");
-      }
+        this.contentId = paramMap.get("content");
         this.contenstService.getContent(this.contentId).subscribe(res => {
           this.contentForm = res;
           this.typeID = this.contentForm.type;
           this.buildForm(this.contentForm)
-
         });
       } else {
+        this.sectionID = paramMap.get("contentID")
         this.mode = "create";
         this.contentId = null;
       }
@@ -163,8 +159,8 @@ console.log(name , "name")
     })
   }
   getTags(tagsItems: any) {
-    return tagsItems? tagsItems.map(tagsBody => {
-      return [tagsBody? tagsBody : '' ]
+    return tagsItems ? tagsItems.map(tagsBody => {
+      return [tagsBody ? tagsBody : '']
     }) : [this._fb.control('')]
   }
   getContent(content: any) {
@@ -181,10 +177,10 @@ console.log(name , "name")
         headers: this._fb.array(contentBody.headers ? contentBody.headers : ''),
         contact: this._fb.array(
           this.getContact(contentBody ? contentBody.contact : null)
-      ),
+        ),
         items: this._fb.array(
           // contentBody.data.map(dataResult => { return dataResult})
-          contentBody.items ? contentBody.items : '' 
+          contentBody.items ? contentBody.items : ''
         ),
         data: this._fb.array(
           contentBody.data.map(dataResult => {
@@ -231,26 +227,26 @@ console.log(name , "name")
         headers: this._fb.array(['']),
         contact: this._fb.array(
           this.getContact(null)
-      ),
+        ),
         items: this._fb.array(['']),
         data: this._fb.array([this._fb.array([''])]),
         image: this._fb.array(
           this.getImage(null)
         ),
-        videos:this._fb.array(
+        videos: this._fb.array(
           this.getVideo(null)
         ),
       })]
 
   }
-  getContact(contact: any): FormGroup[] { 
+  getContact(contact: any): FormGroup[] {
     return contact ? contact.map(contactBody => {
       return this._fb.group({
-        phone:[contactBody.phone? contactBody.phone : ""],
-        email:[contactBody.email? contactBody.email : ""],
-        reference:[contactBody.reference? contactBody.reference : ""]
+        phone: [contactBody.phone ? contactBody.phone : ""],
+        email: [contactBody.email ? contactBody.email : ""],
+        reference: [contactBody.reference ? contactBody.reference : ""]
       })
-    }): [this._fb.group({
+    }) : [this._fb.group({
       phone: '',
       email: '',
       reference: ''
@@ -274,7 +270,7 @@ console.log(name , "name")
       return this._fb.group({
         url: [imageBody.url],
         title: [imageBody.title],
-        description: [imageBody.description? imageBody.description : '']
+        description: [imageBody.description ? imageBody.description : '']
       });
     }) : [this._fb.group({
       url: '',
@@ -290,11 +286,12 @@ console.log(name , "name")
     }))
   }
 
-
-
   removeContent(i: number) {
     const control = <FormArray>this.bodyForm.controls['content'];
     control.removeAt(i);
+  }
+  gotoBack(){
+    this.router.navigate(["../"], {relativeTo: this.route});
   }
 
   removeTag(i: number) {
@@ -305,22 +302,16 @@ console.log(name , "name")
     const controls = <FormArray>this.bodyForm.controls['tags'];
     controls.push(this._fb.control(''))
   }
-  ngOnDestroy(){
-    this.contentData = null
-      console.log('delete')
-      $('.modal').removeClass('in');
-                $('.modal').attr("aria-hidden","true");
-                $('.modal').css("display", "none");
-                $('.modal-backdrop').remove();
-                $('body').removeClass('modal-open');
 
-    
+  ngOnDestroy() {
+    this.contentData = null
+    console.log('delete')
+    $('.modal').removeClass('in');
+    $('.modal').attr("aria-hidden", "true");
+    $('.modal').css("display", "none");
+    $('.modal-backdrop').remove();
+    $('body').removeClass('modal-open');
   }
-  ngOnChanges(){
-    console.log('change')
-    
-  
-  }
-  
-  
+
+  ngOnChanges() {}
 }

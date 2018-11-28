@@ -20,7 +20,10 @@ const adminRoutes: Routes = [
             path: 'portal', component: PortalListComponent, children: [
               {
                 path: ':sectionID', component: SectionListComponent, children: [
-                  { path: ':contentID', component: ContentComponent }
+                  { path: ':contentID', component: ContentComponent },
+                  { path: ':contentID/create', component: ContentCreateComponent },
+                  { path: ':contentID/edit/:content', component: ContentCreateComponent },
+                  { path: ':contentID/edit', redirectTo: ':contentID' },
                 ]
               }
             ]

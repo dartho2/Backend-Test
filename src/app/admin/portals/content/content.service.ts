@@ -40,9 +40,7 @@ export class ContentService {
         return this._http.get("https://karmazdrowia.pl:8080/api/sections/" + sectionID)
     }
     createContentToSections(sectionData: Content, sectionID) {
-        return this._http.post("https://karmazdrowia.pl:8080/api/sections/" + sectionID , sectionData).subscribe(responseData => {
-            this.router.navigate(["../" ], { relativeTo: this.route });
-        });
+        return this._http.post("https://karmazdrowia.pl:8080/api/sections/" + sectionID , sectionData)
     }
 
     allert() {

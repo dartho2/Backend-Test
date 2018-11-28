@@ -137,8 +137,6 @@ export const cloudinary = {
     ContentComponent,
     PhotoListComponent,
     PhotoUploadComponent
-    
-    
   ],
   providers: [
     PhotoAlbum,
