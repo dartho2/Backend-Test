@@ -4,7 +4,7 @@
       <li class="list-tag example-box" cdkDrag>
         <span class="col-md-10">{{tag.tags}}/{{tag._id}}</span>
         <div class="col-md-2">
-        <a class="example-link p-link" data-toggle="modal" [attr.data-target]="'#image' + i" (click)="showData(content._id)"><i class="far fa-edit"></i>
+        <a class="example-link p-link" data-toggle="modal" [attr.data-target]="'#image' + i" (click)="showData(tag._id)"><i class="far fa-edit"></i>
         </a>
         <a class="example-link p-link" (click)="contentDelete(tag._id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
         <div class="example-link example-handle" cdkDragHandle>
@@ -23,7 +23,7 @@
               <button type="button" class="fas fa-2x fa-times-circle close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-header">
-              <div class="card-body" *ngIf="contentID === content._id">
+              <div class="card-body" *ngIf="contentID === tag._id">
                 <app-content-create [contentData]="tag"></app-content-create>
               </div>
             </div>

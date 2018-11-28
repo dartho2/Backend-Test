@@ -306,7 +306,7 @@ console.log(name , "name")
     controls.push(this._fb.control(''))
   }
   ngOnDestroy(){
-  
+    this.contentData = null
       console.log('delete')
       $('.modal').removeClass('in');
                 $('.modal').attr("aria-hidden","true");
@@ -314,7 +314,7 @@ console.log(name , "name")
                 $('.modal-backdrop').remove();
                 $('body').removeClass('modal-open');
 
-    this.contentData = null
+    
   }
   ngOnChanges(){
     console.log('change')
