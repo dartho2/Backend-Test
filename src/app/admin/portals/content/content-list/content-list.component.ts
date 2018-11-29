@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscriber, Subscription } from 'rxjs';
@@ -13,26 +13,36 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
   styleUrls: ['./content-list.component.css']
 })
 export class ContentComponent implements OnInit, OnDestroy, OnChanges {
+  
   selectedId
   portals: Portal[];
   portal;
   sections;
   portalID;
   contentID;
+  dragAndDrop;
   ContentToSection = false;
   sectionID;
   content;
+ 
+  cdkDrag;
+  contentChangePosition = null;
   private portalsSub: Subscription;
   constructor(private route: ActivatedRoute, private portalService: PortalService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(param => {
-      
+      this.contentChangePosition = null;
       this.sectionID = param.get('contentID')
       // this.contentID =false
       // this.ContentToSection = false
       this.portalService.getSection(this.sectionID).subscribe(response => {
-        this.content = response
+        // this.dragAndDrop = null
+        window.clearInterval(this.dragAndDrop)
+        
+        this.dragAndDrop = this.content = response
+        
+        // this.drop(this.dragAndDrop);
       })
       // if (this.portals) {
       //   this.sections = this.portals.filter(x => x._id === this.portalID)
@@ -62,9 +72,9 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
     // }
     // )
   }
-  drop(event: CdkDragDrop<Portal[]>) {
-    moveItemInArray(this.content.data, event.previousIndex, event.currentIndex);
-    console.log(this.content)
+  drop(event: CdkDragDrop<any[]>) {
+      moveItemInArray(this.dragAndDrop.data, event.previousIndex, event.currentIndex);
+    // this.contentChangePosition = this.content.data
   }
  
   addContentToSection() {
@@ -74,6 +84,10 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
   showData(id) {
     this.ContentToSection = false
     this.contentID = id
+  }
+  saveContentPosition(){
+    console.log(this.sectionID,'sectiokn id')
+    // this.portalService.changePosition(this.portal, this.contentChangePosition)
   }
   // goDown(id) {
   //   let a;
@@ -118,6 +132,8 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
     console.log('zmiana')
   } 
   ngOnDestroy() {
-    // this.portalsSub.unsubscribe();
+    // this.contentChangePosition = null
+    console.log('destroy')
+    // this.change.unsubscribe();
   }
 }

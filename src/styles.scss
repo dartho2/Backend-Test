@@ -200,3 +200,12 @@ span {padding-left: 12px;}
   display: block;
     float: left;
 }
+.content-page {
+  padding: 0px !important;
+}
+.container-fluid {
+  padding: 0px;
+}
+button:focus {
+  outline: transparent;
+}

@@ -43,6 +43,7 @@ export class SectionListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('dd')
     // this.portalsSub.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-<div class="testimonial-group" cdkDropList (cdkDropListDropped)="drop($event)">
+<div class="content-body testimonial-group" cdkDropList (cdkDropListDropped)="drop($event)">
     <div class="row p-body text-center flex-nowrap" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"> 
       <button class="p-list" *ngFor="let portal of portals" routerLinkActive="active" [routerLink]="portal._id" cdkDrag>
           {{portal.label}}

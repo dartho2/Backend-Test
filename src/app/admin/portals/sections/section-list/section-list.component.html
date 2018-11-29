@@ -1,5 +1,5 @@
-<div class="testimonial-group" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div class="row text-center flex-nowrap" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"> 
+<div class="content-body testimonial-group" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="row p-body text-center flex-nowrap" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"> 
       <button class="s-list"*ngFor="let section of sections.sections" routerLinkActive="active" [routerLink]="section._id"  cdkDrag>
            {{section.label}}
            <div class="example-handle" cdkDragHandle>
