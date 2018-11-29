@@ -1,27 +1,26 @@
-<div id="game1" *ngIf="content">
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let tag of content.data; let i=index">
-      <li class="list-tag example-box" cdkDrag>
-        <span class="col-md-10">{{tag.tags}}/{{tag._id}} {{cdkDropList}}</span>
-        <div class="col-md-2">
-          <a class="example-link p-link" routerLinkActive="active" [routerLink]="['edit/', tag._id]"><i class="far fa-edit"></i>
-          </a>
-          <a class="example-link p-link" (click)="contentDelete(tag._id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
-          <div class="example-link example-handle" cdkDragHandle>
-            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-              <path d="M0 0h24v24H0z" fill="none"></path>
-            </svg>
-          </div>
+<div *ngIf="content" cdkDropList (cdkDropListDropped)="drop($event)">
+  <div class="example-list" cdkDropList (cdkDropListDropped)="drop($event)">
+    <li class="list-tag example-box" *ngFor="let tag of content.data; let i=index" routerLinkActive="active"
+      [routerLink]="tag._id" cdkDrag>
+      <span class="col-md-10">{{tag._id}}</span>
+      <div class="col-md-2">
+        <a class="example-link p-link" routerLinkActive="active" [routerLink]="['edit/', tag._id]"><i class="far fa-edit"></i>
+        </a>
+        <a class="example-link p-link" (click)="contentDelete(tag._id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        <div class="example-link example-handle" cdkDragHandle>
+          <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
         </div>
-      </li>
-    </div>
+      </div>
+    </li>
   </div>
 </div>
 <router-outlet></router-outlet>
 <div class="data-panel">
   <div class="panel-sub">
     <button type="submit" class="btn btn-outline-success btn-rounded waves-effect" routerLinkActive="active" routerLink="create">Create</button>
-    <div *ngIf="contentChangePosition"> <button type="button" (click)='saveContentPosition()' class="btn btn-outline-success btn-rounded waves-effect">Save</button></div>
+    <button *ngIf="contentChangePosition" type="button" (click)='saveContentPosition()' class="btn btn-outline-danger btn-rounded waves-effect" >Save Change Positions</button>
   </div>
 </div>

@@ -74,7 +74,7 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
   }
   drop(event: CdkDragDrop<any[]>) {
       moveItemInArray(this.dragAndDrop.data, event.previousIndex, event.currentIndex);
-    // this.contentChangePosition = this.content.data
+    this.contentChangePosition = this.dragAndDrop.data
   }
  
   addContentToSection() {
@@ -86,7 +86,11 @@ export class ContentComponent implements OnInit, OnDestroy, OnChanges {
     this.contentID = id
   }
   saveContentPosition(){
-    console.log(this.sectionID,'sectiokn id')
+    // console.log(this.sectionID,'sectiokn id || content',this.dragAndDrop
+    // )
+    this.portalService.changePositionSections(this.sectionID, this.dragAndDrop)
+    this.contentChangePosition = null;
+
     // this.portalService.changePosition(this.portal, this.contentChangePosition)
   }
   // goDown(id) {
