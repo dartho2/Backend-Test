@@ -4,10 +4,12 @@
     border-bottom: 1px solid #dfe0e1;
 }
 .bg-light {
-    background: #23282e !important;
+    background: #232323 !important;
 }
 .navbar-light .navbar-brand {
     color:white !important;
+    font-size:12px;
+
   }
    .fa-sign-out-alt {
       color:white;
@@ -23,5 +25,6 @@ display: none;
 @media (min-width: 769px){
     .navbar-visible-top {
   display: flex;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
   }
   }

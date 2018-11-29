@@ -227,10 +227,10 @@ span {
  right: 0px;
  text-align: center;
  align-items: center;
- background: black;
+ background: #303030;
  padding: 0.5rem;
  left: 0px;
- opacity: 0.8;
+ 
 }
 .panel-sub button {
   margin-left: 15px;
