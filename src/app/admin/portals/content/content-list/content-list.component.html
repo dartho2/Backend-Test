@@ -2,7 +2,7 @@
   <div class="example-list" cdkDropList (cdkDropListDropped)="drop($event)">
     <li class="list-tag example-box" *ngFor="let tag of content.data; let i=index" routerLinkActive="active"
       [routerLink]="tag._id" cdkDrag>
-      <span class="col-md-10">{{tag._id}}</span>
+      <span class="col-md-10">{{tag.content[0].title}}<div *ngIf="tag.content[0].title.length < 1">{{tag.tags}}</div></span>
       <div class="col-md-2">
         <a class="example-link p-link" routerLinkActive="active" [routerLink]="['edit/', tag._id]"><i class="far fa-edit"></i>
         </a>

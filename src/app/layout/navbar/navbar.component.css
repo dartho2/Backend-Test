@@ -25,7 +25,7 @@ body {
   .nav-side-menu li a {
     display: block;
     text-decoration: none;
-    color: black;
+    color: #c8c8c8;
   }
   .navbar-brand {
     color: white;
@@ -44,14 +44,14 @@ body {
   .nav-side-menu li a {
     display: block;
     text-decoration: none;
-    color: white;
+    color: #c8c8c8;
   }
   
 }
 @media (min-width: 769.00px){
   .nav-side-menu {
     overflow: auto;
-    background-color: #e7e7e8;
+    background-color: #515151;
     position: fixed;
     top: 0px;
     width: 250px;
@@ -128,7 +128,7 @@ i.fa-calendar.fa-lg.fa-fw.sidebar-icon {
   color: rgb(0, 94, 172);
 }
 i.fa.fa-home.fa-lg.fa-fw.sidebar-icon {
-  color: red;
+  /* color: red; */
 }
 i.fa.fa-copyright.fa-lg.fa-fw.sidebar-icon {
  color: whitesmoke;
@@ -240,4 +240,13 @@ i.fa.fa-edit.fa-lg.fa-fw.sidebar-icon {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+}
+svg {
+  position: absolute;
+    top: 0px;
+    width: 25px;
+    right: 0px;
+}
+a.svg{
+  position: relative;
 }
