@@ -1,3 +1,4 @@
+<div class="content-body">
 <div *ngIf="content" cdkDropList (cdkDropListDropped)="drop($event)">
   <div class="example-list" cdkDropList (cdkDropListDropped)="drop($event)">
     <li class="list-tag example-box" *ngFor="let tag of content.data; let i=index" routerLinkActive="active"
@@ -23,4 +24,5 @@
     <button type="submit" class="btn btn-outline-success btn-rounded waves-effect" routerLinkActive="active" routerLink="create">Create</button>
     <button *ngIf="contentChangePosition" type="button" (click)='saveContentPosition()' class="btn btn-outline-danger btn-rounded waves-effect" >Save Change Positions</button>
   </div>
+</div>
 </div>

@@ -237,4 +237,6 @@ span {
 }
 /* BOTTOM NAVIGATE */
 
-
+.content-body{
+  margin-bottom: 48px;
+}
