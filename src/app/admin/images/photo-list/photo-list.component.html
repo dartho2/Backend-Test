@@ -2,7 +2,7 @@
   <h1>Your Photos</h1>
   <div class="main-holder">
     <article *ngFor="let photo of photo; let i=index" class="card-box grid-view-card" data-test="card-box">
-      <a type="button" data-toggle="modal" [attr.data-target]="'#image' + i">
+      <a data-toggle="modal" [attr.data-target]="'#image' + i">
         <div class="asset-card-thumbnail box-link flex flex-grow items-center justify-center relative" data-test="asset-preview-thumbnail">
           <div class="-assetLoader___1L -transparentBg___3J flex justify-center items-center flex-grow" data-test="asset-loader">
             <div class="tc h-inherit flex flex-column justify-center thumbnail-img">
