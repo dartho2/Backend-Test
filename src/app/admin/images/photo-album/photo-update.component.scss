@@ -1,0 +1,39 @@
+/* BOTTOM NAVIGATE */
+.data-panel {
+    position: fixed;
+    z-index: 1051;
+    /* height: 100%; */
+    /* background-color: white; */
+    left: 0px;
+    width: 100%;
+    /* clear: both; */
+    bottom: 0px;
+    margin: 0 auto;
+  }
+  .panel-sub {
+    /* position: absolute;
+   bottom: 0px;
+   margin: 0 auto;
+   right: 0px;
+   text-align: center;
+   align-items: center;
+   background: white;
+   padding: 0.5rem;
+   left: 0px; */
+   position: absolute;
+   bottom: 0px;
+   margin: 0 auto;
+   right: 0px;
+   text-align: center;
+   align-items: center;
+   background: #303030;
+   padding: 0.5rem;
+   left: 0px;
+   
+  }
+  .panel-sub button {
+    margin-left: 15px;
+  }
+  /* BOTTOM NAVIGATE */
+  
+  

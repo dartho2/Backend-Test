@@ -7,7 +7,8 @@ declare var $: any;
 declare var jQuery: any;
 @Component({
   selector: 'photo-list-upload',
-  templateUrl: 'photo-upload.component.html'
+  templateUrl: 'photo-upload.component.html',
+  styleUrls: ['photo-update.component.scss']
 })
 export class PhotoUploadComponent implements OnInit {
 

@@ -1,54 +1,61 @@
-<div class="photo-list">
-    <h1>Your Photos</h1>
-    
-
-    <div class="photos">
-        
-        <div class="photo" *ngFor="let photo of photo; let i=index">
-            <!-- | orderBy:'version':true -->
-            <h2 *ngIf="photo.context">{{photo.context.custom.photo}}</h2>
-          
-           
-            
-            <a type="button" data-toggle="modal" [attr.data-target]="'#image' + i">
-                <cl-transformation quality="auto" fetch-format="auto"></cl-transformation>
-               
-                <cl-image
-                        public-id={{photo.public_id}}
-                        class="thumbnail inline"
-                        width="150"
-                        height="150"
-                        crop="fit"
-                        quality="80"
-                        format="jpg"
-                        (mouseenter)="photo.isMouseOver = true"
-                        (mouseleave)="photo.isMouseOver = false"
-                        [attr.opacity]="photo.isMouseOver ? '50' : null"
-                >
-                </cl-image>
-            </a>
-            <div class="modal fade" id="image{{i}}" tabindex="-1" role="dialog" attr.aria-labelledby="image{{i}}Title" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="image{{i}}Title">Modal title</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" [value]="photo.secure_url" #userinput>
-                        <button (click)="copyInputMessage(userinput)" value="click to copy" >Click to Copy</button>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                   
-                    </div>
-                  </div>
-                </div>
-              </div>
+<div class="photo-list card card-block">
+  <h1>Your Photos</h1>
+  <div class="main-holder">
+    <article *ngFor="let photo of photo; let i=index" class="card-box grid-view-card" data-test="card-box">
+      <a type="button" data-toggle="modal" [attr.data-target]="'#image' + i">
+        <div class="asset-card-thumbnail box-link flex flex-grow items-center justify-center relative" data-test="asset-preview-thumbnail">
+          <div class="-assetLoader___1L -transparentBg___3J flex justify-center items-center flex-grow" data-test="asset-loader">
+            <div class="tc h-inherit flex flex-column justify-center thumbnail-img">
+              <cl-image public-id={{photo.public_id}} width="230" height="150" format="jpg" (mouseenter)="photo.isMouseOver = true"
+                (mouseleave)="photo.isMouseOver = false">
+              </cl-image>
+            </div>
+          </div>
         </div>
-
-        
+      </a>
+      <span class="asset-info-wrapper">
+        <div class="-assetInfo___Dp textbox" data-balloon-pos="up" data-balloon-length="fix" data-balloon-always="false"><strong
+            class="title"><span class="w-100 -trunc-wrapper___3a">{{photo.resource_type}}</span></strong>
+          <div class="flex items-center lh-solid min-h-xxs asset-folder-path f-xxs lh-xxs fill-gray-60 gray-60"
+            data-test="asset-folders-path"><span>
+              <div><span class="w-100 -trunc-wrapper___3a" data-test="asset-folders-path-text">{{photo.public_id}}</span></div>
+            </span></div>
+        </div>
+      </span>
+      <div class="-formatInner___9d flex flex-nowrap items-center justify-between gray-60 pt2 pb2 bt b--gray-40 asset-card-format">
+        <div class="inline-flex items-center flex-auto flex justify-start -formatItem___37 f-xxs lh-xxs action-dark">
+          <div class="mr1 box-xxs lh-xxs fill-action-dark">
+            <svg class="svgIcon" preserveAspectRatio="xMidYMid" viewBox="0 0 24 24">
+              <path d="M24,21.3333333 L24,2.66666667 C24,1.2 22.8,1.99840144e-15 21.3333333,1.99840144e-15 L2.66666667,1.99840144e-15 C1.2,1.99840144e-15 0,1.2 0,2.66666667 L0,21.3333333 C0,22.8 1.2,24 2.66666667,24 L21.3333333,24 C22.8,24 24,22.8 24,21.3333333 Z M7.33333333,14 L10.6666667,18.0133333 L15.3333333,12 L21.3333333,20 L2.66666667,20 L7.33333333,14 Z"></path>
+            </svg>
+          </div><span data-test="asset-format">{{photo.format}}</span>
+        </div>
+        <div data-test="asset-file-size" class="mr1 flex-auto flex justify-center -formatItem___37 f-xxs lh-xxs">{{photo.bytes}}
+          KB</div>
+        <div class="flex-auto flex justify-end -formatItem___37 di nowrap f-xxs lh-xxs" data-test="asset-dimensions">{{photo.height}}
+          × {{photo.width}}</div>
+      </div>
+      <div class="modal fade" id="image{{i}}" tabindex="-1" role="dialog" attr.aria-labelledby="image{{i}}Title"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="image{{i}}Title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <input type="text" [value]="['https://res.cloudinary.com/duvsjgmt5/image/upload/v'+ photo.version+'/'+photo.public_id+'.'+photo.format]" #userinput> -->
+            <input type="text" [value]="photo.secure_url" #userinput>
+            <button (click)="copyInputMessage(userinput)" value="click to copy">Click to Copy</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
+    </article>
+  </div>
 </div>
