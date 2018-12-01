@@ -8,6 +8,7 @@ import { SectionListComponent } from './portals/sections/section-list/section-li
 import { ContentComponent } from './portals/content/content-list/content-list.component';
 import { PhotoListComponent } from './images/photo-list/photo-list.component';
 import { PhotoUploadComponent } from './images/photo-album/photo-upload.component';
+import { CarnetsListComponent } from './carnets/carnets-list/carnets-list.component';
 const adminRoutes: Routes = [
   {
     path: '',
@@ -29,6 +30,10 @@ const adminRoutes: Routes = [
             ]
           }
         ]
+      },
+      {
+        path: 'carnets',
+        component: CarnetsListComponent
       },
       {
         path: 'photos',

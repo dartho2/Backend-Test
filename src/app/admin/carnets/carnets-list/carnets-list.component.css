@@ -2,24 +2,12 @@
 .data-panel {
     position: fixed;
     z-index: 1051;
-    /* height: 100%; */
-    /* background-color: white; */
     left: 0px;
     width: 100%;
-    /* clear: both; */
     bottom: 0px;
     margin: 0 auto;
   }
   .panel-sub {
-    /* position: absolute;
-   bottom: 0px;
-   margin: 0 auto;
-   right: 0px;
-   text-align: center;
-   align-items: center;
-   background: white;
-   padding: 0.5rem;
-   left: 0px; */
    position: absolute;
    bottom: 0px;
    margin: 0 auto;
@@ -35,3 +23,15 @@
     margin-left: 15px;
   }
   /* BOTTOM NAVIGATE */
+  
+
+.active-pink {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink .fa, .active-pink-2 .fa {
+    color: #f48fb1;
+}
+.form-inline {
+    display: inline-block;
+}

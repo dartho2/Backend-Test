@@ -64,6 +64,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { CarnetsListComponent } from './carnets/carnets-list/carnets-list.component';
 export const cloudinary = {
   Cloudinary: CloudinaryCore
 };
@@ -136,7 +137,8 @@ export const cloudinary = {
     SectionListComponent,
     ContentComponent,
     PhotoListComponent,
-    PhotoUploadComponent
+    PhotoUploadComponent,
+    CarnetsListComponent
   ],
   providers: [
     PhotoAlbum,
