@@ -9,6 +9,7 @@ export interface PeriodicElement {
   data: string;
   edata: string;
   used: string;
+  
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -30,9 +31,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 16, name: 'Diablo', type: 'nie wiem', data: '1-12-2018', edata: '12-13-2018', used: 'nie wiem'},
   {position: 17, name: 'Morrowind', type: 'nie wiem', data: '1-12-2018', edata: '12-12-2018', used: 'nie wiem'},
   {position: 18, name: 'Dragon boll', type: 'nie wiem', data: '1-12-2018', edata: '12-13-2018', used: 'nie wiem'}
- 
 ];
-
+export interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-carnets-list',
   templateUrl: './carnets-list.component.html',
@@ -41,7 +44,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class CarnetsListComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'type', 'data', 'edata', 'used'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+  value: string;
+  viewValue: string;
+  foods: Food[] = [
+    {value: 'Karnet1', viewValue: 'Karnet1'},
+    {value: 'Karnet2', viewValue: 'Karnet2'},
+    {value: 'Karnet3', viewValue: 'Karnet3'}
+  ];
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor() { }
 

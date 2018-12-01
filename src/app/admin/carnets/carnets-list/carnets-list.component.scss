@@ -115,7 +115,7 @@
       color: black !important;
   }
   ::ng-deep .mat-option-text {
-      color: white !important;
+      color: black !important;
   }
   .content-body{
     margin-bottom: 48px;
@@ -127,4 +127,9 @@
   }  
   mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
     border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .mat-form-field-hide-placeholder .mat-select-placeholder {
+    -webkit-text-fill-color: black !important;
+    color: black !important;
 }
