@@ -26,13 +26,14 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
   contentId;
   dataID;
   contentForm;
+  token;
   message;
   bodyForm: FormGroup;
   constructor(public contenstService: ContentService, private portalServices: PortalService,
     private _fb: FormBuilder,
     public router: Router,
     public route: ActivatedRoute) {
-
+    this.token = `${JSON.parse(window.localStorage.getItem('currentUser'))}`
     this.buildForm(null)
 
   }

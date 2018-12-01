@@ -40,7 +40,7 @@ export const ConfigForm  = {
           // image get
           requestWithCORS: false,
           requestHeaders: {
-            token: `${JSON.parse(localStorage.getItem('currentUser'))}`
+            token: `${JSON.parse(window.localStorage.getItem('currentUser'))}`
           },
           // imageManagerPreloader: "/images/loader.gif",
  
