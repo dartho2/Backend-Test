@@ -1,0 +1,30 @@
+<div class="content-body">
+    <mat-card>
+
+    <h1>Carnets ADD</h1>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Surname">
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-select placeholder="KarnetPortal" [(ngModel)]="selectedValue">
+        <mat-option value="option" *ngFor="let portal of karnet" [value]="portal">{{portal.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="selectedValue">
+      <mat-select placeholder="KarnetType" [(ngModel)]="selectedPackage">
+        <mat-option value="option" [value]="package" *ngFor="let package of selectedValue.options">{{package.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="selectedValue && selectedPackage">
+      <mat-select placeholder="KarnetPackage">
+        <mat-option value="option" *ngFor="let package of selectedPackage.package">{{package.name}} - {{package.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+ 
+</mat-card>
+</div>

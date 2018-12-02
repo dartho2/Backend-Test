@@ -47,9 +47,10 @@ export class CarnetsListComponent implements OnInit {
   value: string;
   viewValue: string;
   foods: Food[] = [
-    {value: 'Karnet1', viewValue: 'Karnet1'},
-    {value: 'Karnet2', viewValue: 'Karnet2'},
-    {value: 'Karnet3', viewValue: 'Karnet3'}
+    {value: 'Karnet1', viewValue: 'KARNETY ILOŚCIOWE'},
+    {value: 'Karnet2', viewValue: 'KARNET OPEN'},
+    {value: 'Karnet3', viewValue: 'TRENING PERSONALNY'},
+    {value: 'Karnet4', viewValue: 'PAKIETY SOLARIUM'},
   ];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
