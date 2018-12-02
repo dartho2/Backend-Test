@@ -11,7 +11,7 @@ import {FormControl} from '@angular/forms';
 export class CarnetCreateComponent implements OnInit {
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
-  selectedValue;
+  selectedOptions;
   selectedPackage;
   karnet: Karnet[] =
     [
