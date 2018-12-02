@@ -147,8 +147,7 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
       type: [data ? data.type : '',],
       styles: this._fb.group({
         float: [data ? data.styles.float : '',],
-        text_type: [data ? data.styles.text_type : '',],
-        list_typ: [data ? data.styles.list_typ : '',],
+        text_type: [data ? this.namesFormat(data.type, data.styles.text_type) : ''],
         text_align: [data ? data.styles.text_align : '',]
       }),
       content: this._fb.array(
@@ -158,6 +157,10 @@ export class ContentCreateComponent implements OnInit, OnDestroy, OnChanges {
         this.getTags(data ? data.tags : null)
       ),
     })
+  }
+  namesFormat(type, format ){
+    this.onChangeTextType(type)
+    return format
   }
   getTags(tagsItems: any) {
     return tagsItems ? tagsItems.map(tagsBody => {
