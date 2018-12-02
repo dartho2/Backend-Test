@@ -1,30 +1,50 @@
 <div class="content-body">
-    <mat-card>
-  <div class="photo-list card card-block">
-    <h1>Carnets ADD</h1>
-    <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="First Name">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Surname">
-      </mat-form-field>
+  <mat-card>
+    <div class="photo-list card card-block">
+      <h1>Carnets ADD</h1>
+      <div class="row">
+        <div class="example-container d-inline-block col-md-6">
+          <mat-form-field>
+            <input matInput placeholder="First Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Surname">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="Date from" [formControl]="date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="Date to" [formControl]="date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="KarnetPortal" [(ngModel)]="selectedValue">
+              <mat-option value="option" *ngFor="let portal of karnet" [value]="portal">{{portal.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="selectedValue">
+            <mat-select placeholder="KarnetType" [(ngModel)]="selectedOptions">
+              <mat-option value="option" [value]="options" *ngFor="let options of selectedValue.options">{{options.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="selectedValue && selectedOptions">
+            <mat-select placeholder="KarnetPackage">
+              <mat-option value="option" *ngFor="let package of selectedOptions.package">{{package.name}} -
+                {{package.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
-    <mat-form-field>
-      <mat-select placeholder="KarnetPortal" [(ngModel)]="selectedValue">
-        <mat-option value="option" *ngFor="let portal of karnet" [value]="portal">{{portal.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field *ngIf="selectedValue">
-      <mat-select placeholder="KarnetType" [(ngModel)]="selectedPackage">
-        <mat-option value="option" [value]="package" *ngFor="let package of selectedValue.options">{{package.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field *ngIf="selectedValue && selectedPackage">
-      <mat-select placeholder="KarnetPackage">
-        <mat-option value="option" *ngFor="let package of selectedPackage.package">{{package.name}} - {{package.value}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+  </mat-card>
+</div>
+
+<div class="data-panel">
+  <div class="panel-sub">
+    <button type="button" class="btn btn-outline-info btn-rounded waves-effect">ADD other</button>
+    <button type="button" class="btn btn-outline-success btn-rounded waves-effect">Save</button>
   </div>
-</mat-card>
 </div>
