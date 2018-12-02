@@ -31,6 +31,8 @@ export interface Package {
 })
 
 export class CarnetCreateComponent implements OnInit {
+  selectedValue;
+  selectedPackage;
   karnet: Karnet[] =
     [
       {
