@@ -12,7 +12,7 @@ export class CarnetCreateComponent implements OnInit {
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
   selectedOptions;
-  selectedPackage;
+  selectedValue;
   karnet: Karnet[] =
     [
       {
