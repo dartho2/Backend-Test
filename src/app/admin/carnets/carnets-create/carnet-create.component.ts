@@ -27,7 +27,7 @@ export interface Package {
 @Component({
   selector: 'app-carnet-create',
   templateUrl: './carnet-create.component.html',
-  styleUrls: ['./carnet-create.component.css']
+  styleUrls: ['./carnet-create.component.scss']
 })
 
 export class CarnetCreateComponent implements OnInit {
