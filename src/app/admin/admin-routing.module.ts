@@ -41,6 +41,10 @@ const adminRoutes: Routes = [
         component: CarnetCreateComponent
       },
       {
+        path: 'carnets/edit/:idCarnet',
+        component: CarnetCreateComponent
+      },
+      {
         path: 'photos',
         component: PhotoListComponent
       },

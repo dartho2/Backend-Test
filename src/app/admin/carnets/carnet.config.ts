@@ -7,16 +7,16 @@ export interface KarnetPortal {
     type: string;
     name: string;
     value: string;
-    options: Options[]
   }
   export interface Options {
-    type: string;
     name: string;
     value: string;
-    package: Package[];
   }
   export interface Package {
-    type: string;
     name: string;
     value: string;
+    amount: Amount;
+    time: number;
+    stime: number;
   }
+  export interface Amount {}

@@ -3,48 +3,56 @@
     <div class="photo-list card card-block">
       <h1>Carnets ADD</h1>
       <div class="row">
-        <div class="example-container d-inline-block col-md-6">
+        <form [formGroup]="bodyForm" class="example-container d-inline-block col-md-6" (submit)="onAddContent()">
           <mat-form-field>
-            <input matInput placeholder="First Name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Surname">
+            <input formControlName="name" matInput placeholder="First Name">
           </mat-form-field>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker1" placeholder="Date from" [formControl]="date">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            <input formControlName="surname" matInput placeholder="Surname">
           </mat-form-field>
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker2" placeholder="Date to" [formControl]="date">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-select placeholder="KarnetPortal" [(ngModel)]="selectedValue">
-              <mat-option value="option" *ngFor="let portal of karnet" [value]="portal">{{portal.name}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field *ngIf="selectedValue">
-            <mat-select placeholder="KarnetType" [(ngModel)]="selectedOptions">
-              <mat-option value="option" [value]="options" *ngFor="let options of selectedValue.options">{{options.name}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field *ngIf="selectedValue && selectedOptions">
-            <mat-select placeholder="KarnetPackage">
-              <mat-option value="option" *ngFor="let package of selectedOptions.package">{{package.name}} -
-                {{package.value}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+          <div *ngFor="let contentBody of type.controls; let i=index" formArrayName="type">
+            <div [formGroupName]="i">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="Date from" formControlName="sdata">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker2" placeholder="Date to" formControlName="edata">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="KarnetPortal" formControlName="name" [(ngModel)]="selectedValue">
+                  <mat-option value="option" *ngFor="let portal of karnet" [value]="portal.name">{{portal.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field *ngIf="selectedValue">
+                <mat-select placeholder="KarnetType" formControlName="options" [(ngModel)]="selectedOptions">
+                  <mat-option value="option" [value]="option.name" *ngFor="let option of options">{{option.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+                <mat-form-field *ngIf="selectedValue && selectedOptions">
+                  <mat-select formControlName="package" [(ngModel)]="selectPackage" placeholder="KarnetPackage">
+                    <mat-option value="option" *ngFor="let packag of package" [value]="packag">{{packag.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+           
+            </div>
+
+          </div>
+          <div class="data-panel">
+              <div class="panel-sub">
+                <button type="button" class="btn btn-outline-info btn-rounded waves-effect">ADD other</button>
+                <button type="submit" class="btn btn-outline-success btn-rounded waves-effect">Save</button>
+              </div>
+            </div> 
+         
+        </form>
+
       </div>
     </div>
+   
   </mat-card>
 </div>
 
-<div class="data-panel">
-  <div class="panel-sub">
-    <button type="button" class="btn btn-outline-info btn-rounded waves-effect">ADD other</button>
-    <button type="button" class="btn btn-outline-success btn-rounded waves-effect">Save</button>
-  </div>
-</div>
