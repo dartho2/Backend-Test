@@ -62,21 +62,21 @@ export class CarnetCreateComponent implements OnInit {
       time: 1
     },
     {
-      name: '6 miesięcy',
+      name: '6 miesięcy - JOGA',
       stime: 0,
-      value: '83',
+      value: '498',
       amount: [],
       time: 6
     },
     {
-      name: '3 miesięcy',
-      value: '118',
+      name: '3 miesięcy - JOGA',
+      value: '354',
       stime: 0,
       amount: [],
       time: 3
     },
     {
-      name: '12 miesięcy',
+      name: '1 miesięcy - JOGA',
       value: '139',
       stime: 0,
       amount: [],
@@ -84,14 +84,14 @@ export class CarnetCreateComponent implements OnInit {
     },
     {
       name: 'Siłowinia 6 msc',
-      value: '59',
+      value: '354',
       stime: 0,
       amount: [],
       time: 6
     },
     {
       name: 'Siłowinia 3 msc',
-      value: '84',
+      value: '252',
       stime: 0,
       amount: [],
       time: 3
@@ -105,14 +105,14 @@ export class CarnetCreateComponent implements OnInit {
     },
     {
       name: 'VACU 6 msc',
-      value: '65',
+      value: '390',
       stime: 0,
       amount: [],
       time: 6
     },
     {
       name: 'VACU 3 msc',
-      value: '92',
+      value: '276',
       stime: 0,
       amount: [],
       time: 3
@@ -126,14 +126,14 @@ export class CarnetCreateComponent implements OnInit {
     },
     {
       name: 'SIŁOWNIA + VACU 6 msc',
-      value: '83',
+      value: '498',
       stime: 0,
       amount: [],
       time: 6
     },
     {
       name: 'SIŁOWNIA + VACU 3 msc',
-      value: '118',
+      value: '354',
       stime: 0,
       amount: [],
       time: 3
@@ -146,21 +146,21 @@ export class CarnetCreateComponent implements OnInit {
       time: 1
     },
     {
-      name: 'ZAJĘCIA GRUPOWE + VACU 6 msc',
-      value: '83',
+      name: 'ZAJĘCIA GRUPOWE 6 msc',
+      value: '498',
       stime: 0,
       amount: [],
       time: 6
     },
     {
-      name: 'ZAJĘCIA GRUPOWE + VACU 3 msc',
-      value: '118',
+      name: 'ZAJĘCIA GRUPOWE 3 msc',
+      value: '354',
       stime: 0,
       amount: [],
       time: 3
     },
     {
-      name: 'ZAJĘCIA GRUPOWE + VACU 1 msc',
+      name: 'ZAJĘCIA GRUPOWE 1 msc',
       value: '139',
       stime: 0,
       amount: [],

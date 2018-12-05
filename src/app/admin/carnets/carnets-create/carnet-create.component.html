@@ -34,7 +34,7 @@
               </mat-form-field>
                 <mat-form-field *ngIf="selectedValue && selectedOptions">
                   <mat-select formControlName="package" [(ngModel)]="selectPackage" placeholder="KarnetPackage">
-                    <mat-option value="option" *ngFor="let packag of package" [value]="packag">{{packag.name}}</mat-option>
+                    <mat-option value="option" *ngFor="let packag of package" [value]="packag">{{packag.name}} ({{packag.value}} zł)</mat-option>
                   </mat-select>
                 </mat-form-field>
            
