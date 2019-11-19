@@ -14,6 +14,7 @@ export class PhotoAlbum {
     getPhotos() {
             return this._http.get<Photo[]>("https://karmazdrowia.pl:8080/api/images").subscribe(data => {
                 this.photo = data;
+console.log(data);
                 this.photoUpdated.next(this.photo);
             })
         }
