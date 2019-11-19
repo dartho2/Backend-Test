@@ -1,6 +1,7 @@
  <div class="photo-list card card-block">
   <h1>Your Photos</h1>
   <div class="main-holder">
+{{photo | json}} 
     <article *ngFor="let photo of photo; let i=index" class="card-box grid-view-card" data-test="card-box">
     {{photo}} 
 <a data-toggle="modal" [attr.data-target]="'#image' + i">
