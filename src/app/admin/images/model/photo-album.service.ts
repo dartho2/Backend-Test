@@ -12,7 +12,7 @@ export class PhotoAlbum {
     }
    
     getPhotos() {
-            return this._http.get<Photo[]>("https://karmazdrowia.pl:8080/api/image").subscribe(data => {
+            return this._http.get<Photo[]>("https://karmazdrowia.pl:8080/api/images").subscribe(data => {
                 this.photo = data;
                 this.photoUpdated.next(this.photo);
             })
@@ -20,7 +20,7 @@ export class PhotoAlbum {
         getPhotoUpdatedListener() {
             return this.photoUpdated.asObservable();
         }
-        // return this.http.get("https://karmazdrowia.pl:8080/api/image")
+        // return this.http.get("https://karmazdrowia.pl:8080/api/images")
         //     .pipe(map((data: any) => data.resources));
     // }
 }
