@@ -51,7 +51,7 @@ export const ConfigForm  = {
         imageManagerScrollOffset: 10,
  
         // Set the load images request URL.
-        imageManagerLoadURL: "https://karmazdrowia.pl:8080/api/image",
+        imageManagerLoadURL: "https://karmazdrowia.pl:8080/api/images",
  
         // Set the load images request type.
         imageManagerLoadMethod: "GET",
