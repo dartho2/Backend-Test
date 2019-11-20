@@ -38,7 +38,7 @@ export const ConfigForm  = {
 
           // enter: `{$.FroalaEditor.ENTER_DIV}`,
           // image get
-          requestWithCORS: false,
+          requestWithCORS: true,
           requestHeaders: {
             token: `${JSON.parse(window.localStorage.getItem('currentUser'))}`
           },
